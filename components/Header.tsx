@@ -7,7 +7,7 @@ export default function Header() {
     return (
         <>
             {/* Header */}
-            <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-green-500 shadow-lg">
+            <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-green-800 shadow-lg">
                 <div className="container mx-auto px-6 py-3">
                     <div className="flex justify-between items-center">
                         <Link
@@ -15,15 +15,15 @@ export default function Header() {
                             className="text-2xl font-bold text-green-500 hover:text-accent transition-colors glitch"
                         >
                             <span className="status-led"></span>
-                            <span className="text-white">root@0xb3d</span>:<span className="text-accent">~</span>#
+                            <span className="text-red-100">grimlabs</span>:<span className="text-accent">~</span>#
                         </Link>
 
                         <nav className="hidden md:flex space-x-6">
-                            {['about', 'skills', 'projects', 'blog', 'contact'].map((id) => (
+                            {['about', 'projects', 'blog'].map((id) => (
                                 <Link
                                     key={id}
-                                    href={`#${id}`}
-                                    className="text-green-500 hover:text-accent transition-colors hover:underline"
+                                    href={`${id}`}
+                                    className="hover:text-red-200 text-white hover:text-accent transition-colors hover:underline"
                                 >
                                     <span className="text-accent">[</span>
                                     {id}

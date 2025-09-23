@@ -6,8 +6,8 @@ export default function Blog() {
             <section id="blog" className="py-16 px-6 border-t border-green-500/30 bg-black/70">
                 <div className="container mx-auto max-w-4xl">
                     <div className="terminal-box">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-                            <span className="text-accent"></span> cat /var/log/blog/latest
+                        <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
+                            <span className="text-accent"></span> /blog/latest
                         </h2>
 
                         <div className="space-y-8">

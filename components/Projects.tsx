@@ -6,8 +6,8 @@ export default function Projects() {
             <section id="projects" className="py-16 px-6 bg-black/50 backdrop-blur-sm">
                 <div className="container mx-auto max-w-6xl">
                     <div className="terminal-box">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-                            <span className="text-accent"></span> ls -la /projects/
+                        <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
+                            <span className="text-accent"></span> /projects
                         </h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

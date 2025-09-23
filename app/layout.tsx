@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ObSec Portfolio",
-  description: "Obed's cybersecurity portfolio",
+  title: "GRIMLABS",
+  description: "Grimlabs Research Website",
 };
 
 export default function RootLayout({
