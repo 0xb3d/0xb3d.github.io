@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 import Contact from '@/components/Contact';
 import Hero from '@/components/Hero';
-import Blog from '@/components/Blog';
-import Projects from '@/components/Projects';
+import BlogSection from '@/components/BlogSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import About from '@/components/About';
 
 // import whoami from "@/data/whoami";
@@ -67,19 +67,20 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <Hero/>
+      <Hero />
 
       {/* About Section */}
-      <About/>
+      <About />
 
       {/* Projects Section */}
-      <Projects/>
+      <ProjectsSection />
+
 
       {/* Blog Section */}
-      <Blog/>
+      <BlogSection />
 
       {/* Contact Section */}
-      <Contact/>
+      <Contact />
 
     </>
   );

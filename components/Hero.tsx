@@ -10,7 +10,7 @@ export default function Hero() {
                             <span className="text-accent">$</span> whoami
                         </div>
                         <h1 
-                            className="text-8xl md:text-9xl text-red-500 mb-4" 
+                            className="text-4xl md:text-9xl text-red-500 mb-4" 
                             style={{ fontFamily: "'MR Robot', monospace"}}>
                             GRIMLABS
                         </h1>
@@ -26,28 +26,28 @@ export default function Hero() {
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-red-300 text-3xl text-accent mb-2">
+                            <div className="text-green-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-shield-alt"></i>
                             </div>
-                            <div className="font-bold text-red-600 font-mono">CyberSecurity</div>
+                            <div className="font-bold text-green-500 font-mono">CyberSecurity</div>
                         </div>
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-red-300 text-3xl text-accent mb-2">
+                            <div className="text-green-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-lock"></i>
                             </div>
-                            <div className="font-bold text-red-600 font-mono">Embedded Systems</div>
+                            <div className="font-bold text-green-500 font-mono">Embedded Systems</div>
                         </div>
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-red-300 text-3xl text-accent mb-2">
+                            <div className="text-green-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-bug"></i>
                             </div>
-                            <div className="font-bold text-red-600 font-mono">AI & Computational Engineering</div>
+                            <div className="font-bold text-green-500 font-mono">AI & Computational Engineering</div>
                         </div>
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-red-300 text-3xl text-accent mb-2">
+                            <div className="text-green-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-code"></i>
                             </div>
-                            <div className="font-bold text-red-600 font-mono">Full-Stack Development</div>
+                            <div className="font-bold text-green-500 font-mono">Full-Stack Development</div>
                         </div>
                     </div>
                 </div>
