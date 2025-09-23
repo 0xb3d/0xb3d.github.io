@@ -10,8 +10,8 @@ export default function About() {
             <section id="about" className="py-16 px-6 bg-black/50 backdrop-blur-sm">
                 <div className="container mx-auto max-w-4xl">
                     <div className="terminal-box">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                            <span className="text-accent"></span> about_me.txt
+                        <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-6">
+                            <span className="text-accent"></span> /about
                         </h2>
 
                         <div className="flex flex-col md:flex-row items-center gap-8">
@@ -43,8 +43,8 @@ export default function About() {
             <section id="skills" className="py-16 px-6 border-t border-green-500/30 bg-black/70">
                 <div className="container mx-auto max-w-4xl">
                     <div className="terminal-box">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-                            <span className="text-accent"></span> skillset --list-all
+                        <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
+                            <span className="text-accent"></span> /skillset
                         </h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

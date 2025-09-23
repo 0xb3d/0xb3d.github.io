@@ -5,7 +5,7 @@ export default function Contact() {
             <section id="contact" className="py-16 px-6 bg-black/50 backdrop-blur-sm">
                 <div className="container mx-auto max-w-4xl">
                     <div className="terminal-box">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+                        <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
                             <span className="text-accent"></span> sendmail --contact --secure
                         </h2>
 
