@@ -26,25 +26,25 @@ export default function Hero() {
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-green-300 text-3xl text-accent mb-2">
+                            <div className="text-gray-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-shield-alt"></i>
                             </div>
                             <div className="font-bold text-green-500 font-mono">CyberSecurity</div>
                         </div>
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-green-300 text-3xl text-accent mb-2">
+                            <div className="text-gray-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-lock"></i>
                             </div>
                             <div className="font-bold text-green-500 font-mono">Embedded Systems</div>
                         </div>
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-green-300 text-3xl text-accent mb-2">
+                            <div className="text-gray-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-bug"></i>
                             </div>
                             <div className="font-bold text-green-500 font-mono">AI & Computational Engineering</div>
                         </div>
                         <div className="hacker-card p-4 text-center">
-                            <div className="text-green-300 text-3xl text-accent mb-2">
+                            <div className="text-gray-300 text-3xl text-accent mb-2">
                                 <i className="fas fa-code"></i>
                             </div>
                             <div className="font-bold text-green-500 font-mono">Full-Stack Development</div>

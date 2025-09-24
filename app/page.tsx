@@ -41,7 +41,8 @@ export default function Home() {
     const draw = () => {
       ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00ff00';
+      // ctx.fillStyle = '#00ff00';
+      ctx.fillStyle ='#fff';
       ctx.font = fontSize + 'px monospace';
 
       rainDrops.forEach((_, i) => {
