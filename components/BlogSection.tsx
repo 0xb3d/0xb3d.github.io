@@ -1,5 +1,4 @@
 import Link from "next/link";
-import blogs from "@/data/blog";
 import BlogPage from "./BlogPage";
 
 export default function BlogSection() {

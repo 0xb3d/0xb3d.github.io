@@ -1,4 +1,3 @@
-import Link from "next/link";
 import ProjectsPage from "@/components/ProjectsPage";
 
 export default function Projects() {

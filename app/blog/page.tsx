@@ -1,4 +1,3 @@
-import Link from "next/link";
 import BlogPage from "@/components/BlogPage";
 export default function Blog() {
     return (
