@@ -13,7 +13,8 @@ export default function Footer() {
                                 GRIMLABS
                                 {/* <span className="text-accent">]</span> */}
                             </Link>
-                            <p className="text-gray-400 mt-2 font-mono text-sm">/secure by design </p>
+                            {/* <p className="text-gray-400 mt-2 font-mono text-sm">/secure by design </p> */}
+                             <p className="mt-2 font-mono text-gray-400">© 2025 GRIMLABS. All rights reserved.</p>
                         </div>
 
                         <div className="flex space-x-6">
@@ -26,19 +27,19 @@ export default function Footer() {
                             <Link href="#" className="text-gray-400 hover:text-green-500 transition-colors">
                                 <i className="fab fa-linkedin text-xl"></i>
                             </Link>
-                            <Link href="#" className="text-gray-400 hover:text-green-500 transition-colors">
+                            {/* <Link href="#" className="text-gray-400 hover:text-green-500 transition-colors">
                                 <i className="fas fa-rss text-xl"></i>
                             </Link>
                             <Link href="#" className="text-gray-400 hover:text-green-500 transition-colors">
                                 <i className="fab fa-hacker-news text-xl"></i>
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
-
+{/* 
                     <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm font-mono">
                         <p>Last updated: 2025-07-15 | Secure connection established</p>
                         <p className="mt-2">© 2025 GRIMLABS. All rights reserved.</p>
-                    </div>
+                    </div> */}
                 </div>
             </footer>
         </>

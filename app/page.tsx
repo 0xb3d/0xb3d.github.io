@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 import Contact from '@/components/Contact';
 import Hero from '@/components/Hero';
-import Blog from '@/components/Blog';
-import Projects from '@/components/Projects';
+import BlogSection from '@/components/BlogSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import About from '@/components/About';
 
 // import whoami from "@/data/whoami";
@@ -41,7 +41,8 @@ export default function Home() {
     const draw = () => {
       ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00ff00';
+      // ctx.fillStyle = '#00ff00';
+      ctx.fillStyle ='#fff';
       ctx.font = fontSize + 'px monospace';
 
       rainDrops.forEach((_, i) => {
@@ -67,19 +68,20 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <Hero/>
+      <Hero />
 
       {/* About Section */}
-      <About/>
+      <About />
 
       {/* Projects Section */}
-      <Projects/>
+      <ProjectsSection />
+
 
       {/* Blog Section */}
-      <Blog/>
+      <BlogSection />
 
       {/* Contact Section */}
-      <Contact/>
+      <Contact />
 
     </>
   );

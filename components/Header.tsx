@@ -1,9 +1,11 @@
 'use client'
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const router = useRouter();
     return (
         <>
             {/* Header */}
@@ -12,23 +14,31 @@ export default function Header() {
                     <div className="flex justify-between items-center">
                         <Link
                             href="/"
-                            className="text-2xl font-bold text-green-500 hover:text-accent transition-colors glitch"
+                            className="text-3xl text-red-500 hover:text-accent transition-colors glitch flex items-center"
+                            style={{ fontFamily: "'MR Robot', monospace" }}
                         >
                             <span className="status-led"></span>
-                            <span className="text-red-100">grimlabs</span>:<span className="text-accent">~</span>#
+                            GRIMLABS
                         </Link>
 
                         <nav className="hidden md:flex space-x-6">
-                            {['about', 'projects', 'blog'].map((id) => (
-                                <Link
+                            <button
+                                onClick={() => router.push("/#about")}
+                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
+                                <span className="text-accent">[</span>
+                                about
+                                <span className="text-accent">]</span>
+                            </button>
+
+                            {['projects', 'blog'].map((id) => (
+                                <button
                                     key={id}
-                                    href={`${id}`}
-                                    className="hover:text-red-200 text-white hover:text-accent transition-colors hover:underline"
-                                >
+                                    onClick={() => router.push(`/${id}`)}
+                                    className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
                                     <span className="text-accent">[</span>
-                                    {id}
+                                    <Link key={id} href="">{id}</Link>
                                     <span className="text-accent">]</span>
-                                </Link>
+                                </button>
                             ))}
                         </nav>
 
@@ -44,39 +54,32 @@ export default function Header() {
                     {menuOpen && (
                         <div className="md:hidden mt-4 space-y-3">
                             <Link
-                                href="#about"
+                                href="/#about"
                                 onClick={() => setMenuOpen(false)}
                                 className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
                             >
                                 <i className="fas fa-user-secret mr-2"></i>About
                             </Link>
-                            <Link
+                            {/* <Link
                                 href="#skills"
                                 onClick={() => setMenuOpen(false)}
                                 className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
                             >
                                 <i className="fas fa-code mr-2"></i>Skills
-                            </Link>
+                            </Link> */}
                             <Link
-                                href="#projects"
+                                href="/projects"
                                 onClick={() => setMenuOpen(false)}
                                 className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
                             >
                                 <i className="fas fa-project-diagram mr-2"></i>Projects
                             </Link>
                             <Link
-                                href="#blog"
+                                href="/blog"
                                 onClick={() => setMenuOpen(false)}
                                 className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
                             >
                                 <i className="fas fa-blog mr-2"></i>Blog
-                            </Link>
-                            <Link
-                                href="#contact"
-                                onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors"
-                            >
-                                <i className="fas fa-envelope mr-2"></i>Contact
                             </Link>
                         </div>
                     )}
