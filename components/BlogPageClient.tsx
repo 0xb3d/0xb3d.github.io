@@ -3,7 +3,18 @@
 
 import Link from "next/link"
 
-export default function BlogPage({blogs}: {blogs: any[]}) {
+type Blog = {
+  _id: string;
+  date: string | Date;
+  category: string;
+  readTime: string;
+  title: string;
+  link: string;
+  description: string;
+  tags?: string[];
+};
+
+export default function BlogPage({blogs}: {blogs: Blog[]}) {
   return (
     <div className="space-y-8">
       {blogs.map((blog) => (

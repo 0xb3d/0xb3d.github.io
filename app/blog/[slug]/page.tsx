@@ -9,7 +9,7 @@ interface BlogPostPageProps {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = params
+  const { slug } = await params
 
   const post = await client.fetch(postBySlugQuery, { slug })
 
