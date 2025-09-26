@@ -5,7 +5,7 @@ export default function Contact() {
             <section id="contact" className="py-16 px-6 bg-black/50 backdrop-blur-sm">
                 <div className="container mx-auto max-w-4xl">
                     <div className="terminal-box">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+                        <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
                             <span className="text-accent"></span> sendmail --contact --secure
                         </h2>
 
@@ -23,7 +23,7 @@ export default function Contact() {
                                         <i className="fas fa-envelope text-green-500 mr-4 w-6"></i>
                                         <div>
                                             <div className="text-gray-300">Email</div>
-                                            <div className="text-green-500 font-mono">contact@obsec.example</div>
+                                            <div className="text-green-500 font-mono">contact@grimlabs.org</div>
                                         </div>
                                     </div>
                                     <div className="flex items-center">
@@ -37,14 +37,14 @@ export default function Contact() {
                                         <i className="fab fa-twitter text-green-500 mr-4 w-6"></i>
                                         <div>
                                             <div className="text-gray-300">Twitter</div>
-                                            <div className="text-green-500 font-mono">@obsec_research</div>
+                                            <div className="text-green-500 font-mono">@grimlabs</div>
                                         </div>
                                     </div>
                                     <div className="flex items-center">
                                         <i className="fab fa-github text-green-500 mr-4 w-6"></i>
                                         <div>
                                             <div className="text-gray-300">GitHub</div>
-                                            <div className="text-green-500 font-mono">github.com/obsec</div>
+                                            <div className="text-green-500 font-mono">github.com/grimlabs</div>
                                         </div>
                                     </div>
                                 </div>

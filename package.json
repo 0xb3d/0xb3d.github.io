@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && gh-pages -d out"
+    "export": "next export",
+    "deploy": "npm run build && npm run export && gh-pages -d out",
+    "preinstall": "npx npm-force-resolutions",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -15,9 +18,17 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "next": "15.3.5",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@sanity/client": "^7.11.2",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.10.1",
+    "autoprefixer": "^10.4.21",
+    "next": "^15.3.5",
+    "next-sanity": "^11.4.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "sanity": "^4.10.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -28,6 +39,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "gh-pages": "^6.3.0",
+    "npm-force-resolutions": "^0.0.10",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
