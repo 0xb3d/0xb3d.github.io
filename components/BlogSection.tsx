@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BlogPage from "./BlogPage";
+import BlogPageServer from "./BlogPageServer";
 
 export default function BlogSection() {
   return (
@@ -8,7 +8,10 @@ export default function BlogSection() {
         <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
           <span className="text-accent"></span> /blog
         </h2>
-        <BlogPage/>
+        
+        {/* Show only 3 posts on homepage */}
+        <BlogPageServer limit={3} />
+
         <div className="text-center mt-12">
           <Link href="/blog" className="hacker-btn font-mono">
             <i className="fas fa-book-open mr-2"></i>View All Articles

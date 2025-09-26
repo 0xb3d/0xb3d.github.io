@@ -1,11 +1,10 @@
-'use client'
+'use client';
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const router = useRouter();
+    
     return (
         <>
             {/* Header */}
@@ -22,24 +21,29 @@ export default function Header() {
                         </Link>
 
                         <nav className="hidden md:flex space-x-6">
-                            <button
-                                onClick={() => router.push("/#about")}
+                            <Link
+                                href="/#about"
                                 className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
                                 <span className="text-accent">[</span>
                                 about
                                 <span className="text-accent">]</span>
-                            </button>
+                            </Link>
 
-                            {['projects', 'blog'].map((id) => (
-                                <button
-                                    key={id}
-                                    onClick={() => router.push(`/${id}`)}
-                                    className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
-                                    <span className="text-accent">[</span>
-                                    <Link key={id} href="">{id}</Link>
-                                    <span className="text-accent">]</span>
-                                </button>
-                            ))}
+                            <Link
+                                href="/projects"
+                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
+                                <span className="text-accent">[</span>
+                                projects
+                                <span className="text-accent">]</span>
+                            </Link>
+                            
+                            <Link
+                                href="/blog"
+                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
+                                <span className="text-accent">[</span>
+                                blog
+                                <span className="text-accent">]</span>
+                            </Link>
                         </nav>
 
                         <button
@@ -60,13 +64,6 @@ export default function Header() {
                             >
                                 <i className="fas fa-user-secret mr-2"></i>About
                             </Link>
-                            {/* <Link
-                                href="#skills"
-                                onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
-                            >
-                                <i className="fas fa-code mr-2"></i>Skills
-                            </Link> */}
                             <Link
                                 href="/projects"
                                 onClick={() => setMenuOpen(false)}
