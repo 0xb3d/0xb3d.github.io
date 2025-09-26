@@ -9,7 +9,6 @@ interface BlogPostPageProps {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   const { slug } = params
 
   const post = await client.fetch(postBySlugQuery, { slug })

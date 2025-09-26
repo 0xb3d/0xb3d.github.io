@@ -9,7 +9,8 @@
     "lint": "next lint",
     "export": "next export",
     "deploy": "npm run build && npm run export && gh-pages -d out",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npx npm-force-resolutions",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
