@@ -5,7 +5,7 @@ import Image from 'next/image'
 import {PortableText} from '@portabletext/react'
 
 interface BlogPostPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
