@@ -1,4 +1,4 @@
-import ProjectsPage from "@/components/ProjectsPage";
+import ProjectsPageServer from "@/components/ProjectsPageServer";
 
 export default function Projects() {
     return (
@@ -7,7 +7,7 @@ export default function Projects() {
                 <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
                     <span className="text-accent"></span> /projects
                 </h2>
-                <ProjectsPage />
+                <ProjectsPageServer />
             </div>
         </section>
     );

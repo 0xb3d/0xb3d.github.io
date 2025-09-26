@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ProjectsPage from "./ProjectsPage";
+import ProjectsPageServer from "./ProjectsPageServer";
 
 export default function ProjectsSection() {
     return (
@@ -8,7 +8,7 @@ export default function ProjectsSection() {
                 <h2 className="text-2xl md:text-3xl font-bold text-green-100 mb-8">
                     <span className="text-accent"></span> /projects
                 </h2>
-                <ProjectsPage />
+                <ProjectsPageServer limit={3}/>
             </div>
             <div className="text-center mt-12">
                 <Link href="/projects" className="hacker-btn font-mono">
