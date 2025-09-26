@@ -5,11 +5,11 @@ import Image from 'next/image'
 import {PortableText} from '@portabletext/react'
 
 interface BlogPostPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = params
+  const { slug } = await params
 
   const post = await client.fetch(postBySlugQuery, { slug })
 
