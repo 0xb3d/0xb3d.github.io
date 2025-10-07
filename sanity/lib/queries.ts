@@ -27,19 +27,20 @@ export const postBySlugQuery = groq`
     title,
     "link": "/" + slug.current,
     "date": publishedAt,
-    "category": categories[0]->title,
     readTime,
     description,
     tags,
+    body,
     "author": author->name,
     "mainImage": mainImage{
     asset->{
     url
     },
-    body
+    alt
     }
   }
 `
+
 
 // Project fields matching the original component needs
 const projectFields = groq`
