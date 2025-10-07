@@ -11,6 +11,7 @@ export const allPostsQuery = groq`
     readTime,
     description,
     tags,
+    body,
     "author": author->name,
     "mainImage": mainImage{
       asset->{
@@ -30,13 +31,24 @@ export const postBySlugQuery = groq`
     readTime,
     description,
     tags,
-    body,
+    body[]{
+      ...,
+      _type == "image" => {
+        _key,
+        _type,
+        alt,
+        "asset": asset->{
+          _id,
+          url
+        }
+      }
+    },
     "author": author->name,
     "mainImage": mainImage{
-    asset->{
-    url
-    },
-    alt
+      asset->{
+        url
+      },
+      alt
     }
   }
 `

@@ -1,7 +1,19 @@
 'use client'
 
 import hljs from 'highlight.js'
-import 'highlight.js/styles/github-dark.css'
+import 'highlight.js/styles/vs2015.css'
+
+// for different hightlight themes
+{/*
+    github-dark.css 
+    vs2015.css
+    atom-one-dark.css 
+    monokai-sublime.css 
+    nord.css 
+    tokyo-night-dark.css 
+    night-owl.css   
+*/}
+
 import { useEffect, useRef } from 'react'
 
 interface CodeBlockProps {

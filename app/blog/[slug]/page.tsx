@@ -87,6 +87,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const post = await client.fetch(postBySlugQuery, { slug })
 
+  console.log(post)
+
   if (!post) return <p>Post not found</p>
 
   return (
