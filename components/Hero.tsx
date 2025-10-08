@@ -15,13 +15,8 @@ export default function Hero() {
                             GRIMLABS
                         </h1>
                         <div className="text-lg md:text-xl mb-8">
-                            {/* <span className="text-accent"></span> FullStack Development <span className="text-accent">|</span> Web & Mobile App Security <span className="text-accent">|</span> Network Pentesting */}
                             A solo research lab exploring AI/ML, Cybersecurity, and Embedded systems.
                         </div>
-                        {/* <div className="flex items-center text-green-500">
-                            <span className="blink">_</span>
-                            <span className="ml-2">Initializing system scan...</span>
-                        </div> */}
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">

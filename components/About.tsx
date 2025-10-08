@@ -25,14 +25,6 @@ export default function About() {
                             <div className="md:w-2/3">
                                 {aboutParagraphs.map((text, index) => (
                                     <p key={index} className={`text-lg text-gray-200 ${index === aboutParagraphs.length - 1 ? 'mb-6' : 'mb-4'}`}><span className="text-green-500">$</span> {text}</p>))}
-
-                                {/* <div className="flex flex-wrap gap-3">
-                                    <span className="px-3 py-1 bg-green-900/30 text-green-500 rounded-full text-sm font-mono border border-green-500/30">OSCP</span>
-                                    <span className="px-3 py-1 bg-green-900/30 text-green-500 rounded-full text-sm font-mono border border-green-500/30">CEH</span>
-                                    <span className="px-3 py-1 bg-green-900/30 text-green-500 rounded-full text-sm font-mono border border-green-500/30">CISSP</span>
-                                    <span className="px-3 py-1 bg-green-900/30 text-green-500 rounded-full text-sm font-mono border border-green-500/30">Burp Suite</span>
-                                    <span className="px-3 py-1 bg-green-900/30 text-green-500 rounded-full text-sm font-mono border border-green-500/30">Metasploit</span>
-                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -62,18 +54,6 @@ export default function About() {
                                         <span className="text-red-500 mr-2">■</span>
                                         <span>Vulnerability Assessment & Management</span>
                                     </li>
-                                    {/* <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Secure Code Review (SAST/DAST)</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Incident Response & Forensics</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Security Architecture Design</span>
-                                    </li> */}
                                 </ul>
                             </div>
 
@@ -91,18 +71,6 @@ export default function About() {
                                         <span className="text-red-500 mr-2">■</span>
                                         <span>Kali Linux, Parrot OS</span>
                                     </li>
-                                    {/* <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Wireshark, Tcpdump</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Python, Bash, PowerShell</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Docker, Kubernetes</span>
-                                    </li> */}
                                 </ul>
                             </div>
 
@@ -120,18 +88,6 @@ export default function About() {
                                         <span className="text-red-500 mr-2">■</span>
                                         <span>MITRE ATT&CK Framework</span>
                                     </li>
-                                    {/* <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>NIST Cybersecurity Framework</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>PCI DSS Compliance</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Threat Modeling</span>
-                                    </li> */}
                                 </ul>
                             </div>
 
@@ -149,18 +105,6 @@ export default function About() {
                                         <span className="text-red-500 mr-2">■</span>
                                         <span>API Security Testing</span>
                                     </li>
-                                    {/* <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Cloud Security (AWS/Azure/GCP)</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Mobile App Security (iOS/Android)</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-green-500 mr-2">■</span>
-                                        <span>Social Engineering</span>
-                                    </li> */}
                                 </ul>
                             </div>
                         </div>

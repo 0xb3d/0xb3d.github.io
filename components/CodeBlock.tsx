@@ -35,7 +35,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
   return (
     <div className="my-6 not-prose">
       {filename && (
-        <div className="bg-[#37353e] px-2 py-1 rounded-t-lg text-xs text-gray-300 font-mono border-b border-gray-600">
+        <div className="bg-[#0f0e0e] px-2 py-1 rounded-t-lg text-xs text-gray-300 font-mono border-b border-gray-600">
           {filename}
         </div>
       )}

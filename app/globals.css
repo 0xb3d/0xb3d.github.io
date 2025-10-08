@@ -182,19 +182,20 @@ body {
 /* Hacker card styling */
 .hacker-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--primary);
+  /* border: 1px solid var(--primary); */
+  border: 1px solid rgb(100,100,100);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .hacker-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+  /* transform: translateY(-5px); */
+  /* box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3); */
   border-color: var(--accent);
 }
 
-.hacker-card::after {
+/* .hacker-card::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -204,11 +205,11 @@ body {
   background: linear-gradient(90deg, var(--primary), var(--accent));
   transform: scaleX(0);
   transition: transform 0.3s ease;
-}
+} */
 
-.hacker-card:hover::after {
+/* .hacker-card:hover::after {
   transform: scaleX(1);
-}
+} */
 
 /* Input field styling */
 .hacker-input {

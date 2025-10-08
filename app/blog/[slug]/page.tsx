@@ -93,8 +93,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <article className="min-h-screen bg-black/70  ">
       <div className="max-w-4xl mx-auto py-12 px-6">
         <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
-        <p className="text-sm text-gray-400 mb-2">
-          {post.author && `by ${post.author}`} • {post.date} • {post.readTime}
+        <p className="text-lg text-gray-400 mb-2">
+          {post.author && `by ${post.author}`} • {new Date(post.date).toDateString()} • {post.readTime}
         </p>
         {post.tags?.length > 0 && (
           <div className="mt-4">
