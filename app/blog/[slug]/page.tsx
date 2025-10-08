@@ -55,7 +55,7 @@ const components: PortableTextComponents = {
       <em className="italic">{children}</em>
     ),
     code: ({ children }: { children?: React.ReactNode }) => (
-      <code className="bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono">
+      <code className="bg-gray-800 px-1.5 py-0.5 rounded text-xs font-mono">
         {children}
       </code>
     ),
@@ -87,36 +87,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const post = await client.fetch(postBySlugQuery, { slug })
 
-  console.log(post)
-
   if (!post) return <p>Post not found</p>
 
   return (
-    <article className="min-h-screen max-w-4xl mx-auto py-12 px-6">
-      <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
-      <p className="text-sm text-gray-400 mb-2">
-        {post.author && `by ${post.author}`} • {post.date} • {post.readTime}
-      </p>
-      {post.tags?.length > 0 && (
-        <div className="mt-4">
-          <strong>Tags:</strong> {post.tags.join(', ')}
-        </div>
-      )}
-      {post.mainImage?.asset?.url && (
-        <div className="mb-6">
-          <Image
-            src={post.mainImage.asset.url}
-            alt={post.mainImage.alt || post.title}
-            width={800}
-            height={400}
-            className="rounded-lg"
-          />
-        </div>
-      )}
+    <article className="min-h-screen bg-black/70  ">
+      <div className="max-w-4xl mx-auto py-12 px-6">
+        <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
+        <p className="text-sm text-gray-400 mb-2">
+          {post.author && `by ${post.author}`} • {post.date} • {post.readTime}
+        </p>
+        {post.tags?.length > 0 && (
+          <div className="mt-4">
+            <strong>Tags:</strong> {post.tags.join(', ')}
+          </div>
+        )}
+        {post.mainImage?.asset?.url && (
+          <div className="mb-6">
+            <Image
+              src={post.mainImage.asset.url}
+              alt={post.mainImage.alt || post.title}
+              width={800}
+              height={400}
+              className="rounded-lg"
+            />
+          </div>
+        )}
 
-      <div className="mt-8">
-        <PortableText value={post.body} components={components} />
-      </div>
+        <div className="mt-8">
+          <PortableText value={post.body} components={components} />
+        </div>
+      </div >
     </article>
   )
 }

@@ -124,6 +124,9 @@ export const postType = defineType({
               {title: 'SQL', value: 'sql'},
               {title: 'Go', value: 'go'},
               {title: 'Rust', value: 'rust'},
+              {title: 'C++', value: 'cpp'},
+              {title: 'C', value: 'c'},
+              {title: 'Assembly', value: 'x86asm'}
             ],
             withFilename: true,
           },

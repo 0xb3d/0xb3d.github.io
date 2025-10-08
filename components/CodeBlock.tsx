@@ -1,7 +1,7 @@
 'use client'
 
 import hljs from 'highlight.js'
-import 'highlight.js/styles/vs2015.css'
+import 'highlight.js/styles/ir-black.css'
 
 // for different hightlight themes
 {/*
@@ -35,7 +35,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
   return (
     <div className="my-6 not-prose">
       {filename && (
-        <div className="bg-gray-800 px-4 py-2 rounded-t-lg text-sm text-gray-300 font-mono border-b border-gray-700">
+        <div className="bg-[#37353e] px-2 py-1 rounded-t-lg text-xs text-gray-300 font-mono border-b border-gray-600">
           {filename}
         </div>
       )}
