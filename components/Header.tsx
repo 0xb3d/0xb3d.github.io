@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <>
             {/* Header */}
-            <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-green-800 shadow-lg">
+            <header className="sticky top-0 z-40 bg-[#040404] border-b border-green-800 shadow-lg">
                 <div className="container mx-auto px-6 py-3">
                     <div className="flex justify-between items-center">
                         <Link

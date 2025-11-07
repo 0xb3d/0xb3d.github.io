@@ -29,7 +29,8 @@
 :root {
   --primary: #00ff00;
   --secondary: #00cc00;
-  --background: #0a0a0a;
+  /* --background: #0a0a0a; */
+  --background: #161618;
   --card-bg: #111111;
   --text: #e0e0e0;
   --accent: #ff5555;
@@ -49,12 +50,14 @@ html {
 body {
   background-color: var(--background);
   color: var(--text);
-  font-family: 'Courier New', monospace;
+  /* font-family: 'Courier New', monospace; */
+  font-family: monospace;
+  font-size: larger;
   background-image:
     linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
-  line-height: 1.6;
+  line-height: 1.0;
 }
 
 /* Custom scrollbar */
@@ -68,8 +71,8 @@ body {
 
 ::-webkit-scrollbar-thumb {
   /* background: var(--primary); */
-  background: rgb(55, 123, 59);
-  border-radius: 5px;
+  background: rgb(99, 99, 99);
+  border-radius: 8px;
 }
 
 /* Typing animation */

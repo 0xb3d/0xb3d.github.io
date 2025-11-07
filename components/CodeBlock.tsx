@@ -1,7 +1,7 @@
 'use client'
 
 import hljs from 'highlight.js'
-import 'highlight.js/styles/ir-black.css'
+import 'highlight.js/styles/sunburst.css'
 
 // for different hightlight themes
 {/*
@@ -12,6 +12,7 @@ import 'highlight.js/styles/ir-black.css'
     nord.css 
     tokyo-night-dark.css 
     night-owl.css   
+    ir-black.css
 */}
 
 import { useEffect, useRef } from 'react'
@@ -39,7 +40,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
           {filename}
         </div>
       )}
-      <pre className={`!m-0 ${filename ? 'rounded-b-lg' : 'rounded-lg'} overflow-x-auto`}>
+      <pre className={`!m-0 ${filename ? 'rounded-b-lg' : 'rounded-lg'} overflow-x-auto text-sm`}>
         <code ref={codeRef} className={`language-${language} !block`}>
           {code}
         </code>
