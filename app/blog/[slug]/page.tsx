@@ -1,34 +1,78 @@
+import React from 'react'
 import { client } from '@/sanity/lib/client'
 import { postBySlugQuery } from '@/sanity/lib/queries'
 import Image from 'next/image'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { CodeBlock } from '@/components/CodeBlock'
+import { extractHeadings } from '@/utils/extractHeadings'
+import { TableOfContents } from '@/components/TableOfContents'
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
+}
+
+/**
+ * Small helper to extract plain text from React children and generate a slug-like id.
+ * Keeps IDs stable if block value has a _key it will be used instead.
+ */
+function getTextFromChildren(children: any): string {
+  if (children == null) return ''
+  if (typeof children === 'string' || typeof children === 'number') return String(children)
+  if (Array.isArray(children)) return children.map(getTextFromChildren).join('')
+  if (typeof children === 'object' && 'props' in children) return getTextFromChildren(children.props.children)
+  return ''
+}
+
+function generateId(children: any) {
+  const text = getTextFromChildren(children)
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // remove punctuation
+    .replace(/\s+/g, '-') // space -> dash
+    .slice(0, 80) // limit length
 }
 
 const components: PortableTextComponents = {
   block: {
-    h1: ({ children }: { children?: React.ReactNode }) => (
-      <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>
-    ),
-    h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 className="text-3xl font-bold mt-8 mb-4">{children}</h2>
-    ),
-    h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="text-2xl font-bold mt-6 mb-3">{children}</h3>
-    ),
-    h4: ({ children }: { children?: React.ReactNode }) => (
-      <h4 className="text-xl font-bold mt-6 mb-3">{children}</h4>
-    ),
+    // heading renderers create an id for linking / TOC
+    h1: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      return (
+        <h1 id={id} className="text-4xl font-bold mt-8 mb-4 scroll-mt-24">
+          {children}
+        </h1>
+      )
+    },
+    h2: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      return (
+        <h2 id={id} className="text-3xl font-bold mt-8 mb-4 scroll-mt-24">
+          {children}
+        </h2>
+      )
+    },
+    h3: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      return (
+        <h3 id={id} className="text-2xl font-bold mt-6 mb-3 scroll-mt-24">
+          {children}
+        </h3>
+      )
+    },
+    h4: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      return (
+        <h4 id={id} className="text-xl font-bold mt-6 mb-3 scroll-mt-24">
+          {children}
+        </h4>
+      )
+    },
     normal: ({ children }: { children?: React.ReactNode }) => (
       <p className="mb-4 leading-7">{children}</p>
     ),
     blockquote: ({ children }: { children?: React.ReactNode }) => (
-      <blockquote className="border-l-4 border-gray-500 pl-4 italic my-4">
-        {children}
-      </blockquote>
+      <blockquote className="border-l-4 border-gray-500 pl-4 italic my-4">{children}</blockquote>
     ),
   },
   list: {
@@ -40,83 +84,109 @@ const components: PortableTextComponents = {
     ),
   },
   listItem: {
-    bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="ml-4">{children}</li>
-    ),
-    number: ({ children }: { children?: React.ReactNode }) => (
-      <li className="ml-4">{children}</li>
-    ),
+    bullet: ({ children }: { children?: React.ReactNode }) => <li className="ml-4">{children}</li>,
+    number: ({ children }: { children?: React.ReactNode }) => <li className="ml-4">{children}</li>,
   },
   marks: {
-    strong: ({ children }: { children?: React.ReactNode }) => (
-      <strong className="font-bold">{children}</strong>
-    ),
-    em: ({ children }: { children?: React.ReactNode }) => (
-      <em className="italic">{children}</em>
-    ),
+    strong: ({ children }: { children?: React.ReactNode }) => <strong className="font-bold">{children}</strong>,
+    em: ({ children }: { children?: React.ReactNode }) => <em className="italic">{children}</em>,
     code: ({ children }: { children?: React.ReactNode }) => (
-      <code className="bg-gray-800 px-1.5 py-0.5 rounded text-xs font-mono">
-        {children}
-      </code>
+      <code className="bg-gray-800 px-1.5 py-0.5 rounded text-xs font-mono">{children}</code>
     ),
-    link: ({ children, value }: { children?: React.ReactNode; value?: { href: string } }) => (
-      <a href={value?.href} className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
-    ),
+    link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => {
+      const href = value?.href || '#'
+      const isInternal = href && (href.startsWith('/') || href.startsWith('#'))
+      return (
+        <a
+          href={href}
+          className="text-blue-400 hover:underline"
+          {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {children}
+        </a>
+      )
+    },
   },
   types: {
-    image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => (
-      <div className="my-6">
-        <Image
-          src={value.asset.url}
-          alt={value.alt || ''}
-          width={800}
-          height={400}
-          className="rounded-lg"
-        />
-      </div>
-    ),
+    image: ({ value }: { value: { asset?: { url?: string }; alt?: string } }) => {
+      if (!value?.asset?.url) return null
+      return (
+        <div className="my-6">
+          <Image
+            src={value.asset.url}
+            alt={value.alt || ''}
+            width={800}
+            height={400}
+            className="rounded-lg"
+          />
+        </div>
+      )
+    },
     code: ({ value }: { value: { code: string; language?: string; filename?: string } }) => (
       <CodeBlock code={value.code} language={value.language} filename={value.filename} />
-    )
+    ),
   },
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params
+  const { slug } = params
   const post = await client.fetch(postBySlugQuery, { slug })
 
-  if (!post) return <p>Post not found</p>
+  if (!post) {
+    return (
+      <article className="min-h-screen bg-black/70">
+        <div className="max-w-4xl mx-auto py-12 px-6 font-bold text-3xl">Post not found</div>
+      </article>
+    )
+  }
+
+  const body = post.body ?? []
+  const headings = extractHeadings(body) // expected shape: [{id, title, level}, ...]
+  const showTOC = headings.length >= 3
 
   return (
-    <article className="min-h-screen bg-black/70  ">
-      <div className="max-w-4xl mx-auto py-12 px-6">
-        <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
-        <p className="text-lg text-gray-400 mb-2">
-          {post.author && `by ${post.author}`} • {new Date(post.date).toDateString()} • {post.readTime}
-        </p>
-        {post.tags?.length > 0 && (
-          <div className="mt-4">
-            <strong>Tags:</strong> {post.tags.join(', ')}
-          </div>
-        )}
-        {post.mainImage?.asset?.url && (
-          <div className="mb-6">
-            <Image
-              src={post.mainImage.asset.url}
-              alt={post.mainImage.alt || post.title}
-              width={800}
-              height={400}
-              className="rounded-lg"
-            />
-          </div>
-        )}
+    <article className="min-h-screen bg-black/70">
+      <div className="max-w-6xl mx-auto py-12 px-6">
+        {/* Grid: main content + optional TOC on xl+ */}
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_20rem] gap-x-8">
+          <main>
+            <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
+            <p className="text-lg text-gray-400 mb-2">
+              {post.author && `by ${post.author}`} • {post.date ? new Date(post.date).toDateString() : ''} • {post.readTime}
+            </p>
 
-        <div className="mt-8">
-          <PortableText value={post.body} components={components} />
+            {post.tags?.length > 0 && (
+              <div className="mt-4">
+                <strong>Tags:</strong> {post.tags.join(', ')}
+              </div>
+            )}
+
+            {post.mainImage?.asset?.url && (
+              <div className="mb-6">
+                <Image
+                  src={post.mainImage.asset.url}
+                  alt={post.mainImage.alt || post.title}
+                  width={1200}
+                  height={600}
+                  className="rounded-lg"
+                />
+              </div>
+            )}
+
+            <div className="mt-8 prose prose-invert max-w-none">
+              <PortableText value={body} components={components} />
+            </div>
+          </main>
+
+          {showTOC && (
+            <aside className="hidden xl:block">
+              <div className="sticky top-24">
+                <TableOfContents headings={headings} />
+              </div>
+            </aside>
+          )}
         </div>
-      </div >
+      </div>
     </article>
   )
 }
