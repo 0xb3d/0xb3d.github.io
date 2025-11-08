@@ -37,7 +37,7 @@ const components: PortableTextComponents = {
   block: {
     // heading renderers create an id for linking / TOC
     h1: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
-      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      const id = `${generateId(children)}`
       return (
         <h1 id={id} className="text-4xl font-bold mt-8 mb-4 scroll-mt-24">
           {children}
@@ -45,7 +45,7 @@ const components: PortableTextComponents = {
       )
     },
     h2: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
-      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      const id = `${generateId(children)}`
       return (
         <h2 id={id} className="text-3xl font-bold mt-8 mb-4 scroll-mt-24">
           {children}
@@ -53,7 +53,7 @@ const components: PortableTextComponents = {
       )
     },
     h3: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
-      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      const id = `${generateId(children)}`
       return (
         <h3 id={id} className="text-2xl font-bold mt-6 mb-3 scroll-mt-24">
           {children}
@@ -61,7 +61,7 @@ const components: PortableTextComponents = {
       )
     },
     h4: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
-      const id = value?._key ? `heading-${value._key}` : `heading-${generateId(children)}`
+      const id = `${generateId(children)}`
       return (
         <h4 id={id} className="text-xl font-bold mt-6 mb-3 scroll-mt-24">
           {children}
@@ -129,7 +129,7 @@ const components: PortableTextComponents = {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = params
+  const { slug } = await params
   const post = await client.fetch(postBySlugQuery, { slug })
 
   if (!post) {
@@ -186,6 +186,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </aside>
           )}
         </div>
+        
+        {/* Collapsible TOC on mobile
+        {showTOC && (
+          <div className="xl:hidden mt-12 border-t border-gray-700 pt-4">
+            <details className="group">
+              <summary className="cursor-pointer text-lg font-semibold text-gray-200 flex justify-between items-center">
+                Table of Contents
+                <span className="transition-transform group-open:rotate-180">▾</span>
+              </summary>
+              <div className="mt-3">
+                <TableOfContents headings={headings} />
+              </div>
+            </details>
+          </div>
+        )} */}
       </div>
     </article>
   )
