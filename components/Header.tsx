@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import { useState } from "react";
+import { ThemeSwitcher } from "./ui/shadcn-io/theme-switcher";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Header() {
                             <span className="status-led"></span>
                             GRIMLABS
                         </Link>
-
+                        <ThemeSwitcher/>
                         <nav className="hidden md:flex space-x-6">
                             <Link
                                 href="/#about"

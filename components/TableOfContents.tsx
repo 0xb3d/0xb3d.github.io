@@ -74,7 +74,7 @@ export function TableOfContents({ headings }: TOCProps) {
     <nav className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-xl border border-neutral-800 bg-neutral-950/40 p-4 backdrop-blur-md shadow-sm">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full text-left font-semibold text-lg mb-2 hover:text-blue-400 transition-colors"
+        className="flex items-center justify-between w-full text-left font-semibold text-lg mb-2 text-green-400 transition-colors"
       >
         <span>Table of Contents</span>
         {open ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
@@ -98,8 +98,8 @@ export function TableOfContents({ headings }: TOCProps) {
                   className={`
                     block w-full text-left transition-colors rounded-md px-1
                     ${isActive
-                      ? 'text-blue-400 font-medium bg-blue-400/10'
-                      : 'text-gray-400 hover:text-gray-300'}
+                      ? 'text-green-300 font-medium bg-green-200/10'
+                      : 'text-gray-300 hover:text-gray-400'}
                   `}
                 >
                   {text}

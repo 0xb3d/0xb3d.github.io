@@ -1,64 +1,45 @@
 @import "tailwindcss";
 
-/* Theme Variables */
-@theme inline {
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+} */
+
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
-/* Light Mode (Default) */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+/* body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+/* Hacker theme styles */
 :root {
-  /* Hacker theme colors - Light Mode */
-  --primary: #00aa00;
-  --secondary: #008800;
-  --background: #f5f5f5;
-  --card-bg: #ffffff;
-  --text: #1a1a1a;
-  --accent: #cc0000;
-  --muted-foreground: oklch(0.556 0 0);
-  --foreground: oklch(0.145 0 0);
-  
-  /* Grid overlay */
-  --grid-color: rgba(0, 0, 0, 0.03);
-  
-  /* Border colors */
-  --border-primary: #cccccc;
-  --border-hover: #cc0000;
-  
-  /* Shadows */
-  --shadow-primary: rgba(0, 170, 0, 0.2);
-  --shadow-hover: rgba(0, 170, 0, 0.4);
-  --shadow-accent: rgba(204, 0, 0, 0.3);
-}
-
-/* Dark Mode */
-.dark {
-  /* Hacker theme colors - Dark Mode */
   --primary: #00ff00;
   --secondary: #00cc00;
+  /* --background: #0a0a0a; */
   --background: #161618;
   --card-bg: #111111;
   --text: #e0e0e0;
   --accent: #ff5555;
   --muted-foreground: oklch(0.556 0 0);
   --foreground: oklch(0.145 0 0);
-  
-  /* Grid overlay */
-  --grid-color: rgba(0, 255, 0, 0.03);
-  
-  /* Border colors */
-  --border-primary: #00ff00;
-  --border-hover: #ff5555;
-  
-  /* Shadows */
-  --shadow-primary: rgba(0, 255, 0, 0.3);
-  --shadow-hover: rgba(0, 255, 0, 0.5);
-  --shadow-accent: rgba(255, 85, 85, 0.4);
 }
 
-/* Custom Font */
+
+
 @font-face {
   font-family: 'MR Robot';
   src: url('/fonts/MR-Robot.ttf') format('truetype');
@@ -66,7 +47,6 @@
   font-style: normal;
 }
 
-/* Base Styles */
 html {
   scroll-behavior: smooth;
 }
@@ -74,17 +54,17 @@ html {
 body {
   background-color: var(--background);
   color: var(--text);
+  /* font-family: 'Courier New', monospace; */
   font-family: monospace;
   font-size: larger;
   background-image:
-    linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
   line-height: 1.0;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -94,23 +74,32 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
+  /* background: var(--primary); */
   background: rgb(99, 99, 99);
   border-radius: 8px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(120, 120, 120);
-}
-
-/* Animations */
+/* Typing animation */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--primary) }
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: var(--primary)
+  }
 }
 
 .typing-animation {
@@ -122,13 +111,31 @@ body {
     blink-caret .75s step-end infinite;
 }
 
+/* Glitch effect */
 @keyframes glitch {
-  0% { transform: translate(0) }
-  20% { transform: translate(-2px, 2px) }
-  40% { transform: translate(-2px, -2px) }
-  60% { transform: translate(2px, 2px) }
-  80% { transform: translate(2px, -2px) }
-  100% { transform: translate(0) }
+  0% {
+    transform: translate(0)
+  }
+
+  20% {
+    transform: translate(-2px, 2px)
+  }
+
+  40% {
+    transform: translate(-2px, -2px)
+  }
+
+  60% {
+    transform: translate(2px, 2px)
+  }
+
+  80% {
+    transform: translate(2px, -2px)
+  }
+
+  100% {
+    transform: translate(0)
+  }
 }
 
 .glitch:hover {
@@ -138,13 +145,7 @@ body {
     -2px 0 cyan;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-
-/* Matrix Rain Effect */
+/* Matrix rain effect */
 .matrix-rain {
   position: fixed;
   top: 0;
@@ -156,16 +157,15 @@ body {
   pointer-events: none;
 }
 
-/* Terminal Box */
+/* Terminal box styling */
 .terminal-box {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-primary);
-  box-shadow: 0 0 10px var(--shadow-primary);
+  background-color: rgba(10, 10, 10, 0.8);
+  /* border: 1px solid var(--primary); */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
   border-radius: 5px;
   padding: 1.5rem;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 .terminal-box::before {
@@ -175,51 +175,68 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  /* background: linear-gradient(90deg, var(--primary), var(--accent)); */
 }
 
-/* Binary Code Decoration */
+/* Binary code decoration */
 .binary-code {
   position: absolute;
-  color: var(--grid-color);
+  color: rgba(0, 255, 0, 0.1);
   font-size: 0.8rem;
   user-select: none;
 }
 
-/* Hacker Card */
+/* Hacker card styling */
 .hacker-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-primary);
+  /* border: 1px solid var(--primary); */
+  border: 1px solid rgb(100,100,100);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .hacker-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 5px 15px var(--shadow-hover);
+  /* transform: translateY(-5px); */
+  /* box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3); */
+  border-color: var(--accent);
 }
 
-/* Input Field */
+/* .hacker-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+} */
+
+/* .hacker-card:hover::after {
+  transform: scaleX(1);
+} */
+
+/* Input field styling */
 .hacker-input {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-primary);
-  color: var(--text);
+  background-color: rgba(20, 20, 20, 0.8);
+  border: 1px solid var(--primary);
+  color: var(--primary);
   padding: 0.75rem;
   font-family: 'Courier New', monospace;
-  transition: all 0.3s ease;
 }
 
 .hacker-input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 5px var(--shadow-accent);
+  box-shadow: 0 0 5px rgba(255, 85, 85, 0.5);
 }
 
-/* Button */
+/* Button styling */
 .hacker-btn {
   background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: white;
+  color: black;
   font-weight: bold;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -232,7 +249,7 @@ body {
 .hacker-btn:hover {
   background: linear-gradient(45deg, var(--accent), #ff0000);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px var(--shadow-accent);
+  box-shadow: 0 5px 15px rgba(255, 85, 85, 0.4);
 }
 
 .hacker-btn::before {
@@ -263,13 +280,23 @@ body {
   animation: pulse 1s infinite;
 }
 
-/* Responsive Adjustments */
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .terminal-box {
     padding: 1rem;
-  }
-  
-  body {
-    font-size: medium;
   }
 }
