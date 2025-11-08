@@ -40,7 +40,7 @@ export function TableOfContents({ headings }: TOCProps) {
           }
         })
       },
-      { rootMargin: '-20% 0px -80% 0px' }
+      { rootMargin: '-20% 0px -70% 0px' }
     )
 
     headings.forEach(({ id }) => {

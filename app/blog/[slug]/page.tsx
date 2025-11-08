@@ -146,9 +146,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="min-h-screen bg-black/70">
-      <div className="max-w-6xl mx-auto py-12 px-6">
+      <div className="max-w-7xl mx-auto py-12 px-4">
         {/* Grid: main content + optional TOC on xl+ */}
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_20rem] gap-x-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_20rem] gap-x-8">
           <main>
             <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
             <p className="text-lg text-gray-400 mb-2">
@@ -179,7 +179,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </main>
 
           {showTOC && (
-            <aside className="hidden xl:block">
+            <aside className="hidden lg:block">
               <div className="sticky top-24">
                 <TableOfContents headings={headings} />
               </div>
@@ -187,9 +187,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
         </div>
         
-        {/* Collapsible TOC on mobile
+        {/* Collapsible TOC on mobile */}
         {showTOC && (
-          <div className="xl:hidden mt-12 border-t border-gray-700 pt-4">
+          <div className="lg:hidden mt-12 border-t border-gray-700 pt-4">
             <details className="group">
               <summary className="cursor-pointer text-lg font-semibold text-gray-200 flex justify-between items-center">
                 Table of Contents
@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </details>
           </div>
-        )} */}
+        )}
       </div>
     </article>
   )
