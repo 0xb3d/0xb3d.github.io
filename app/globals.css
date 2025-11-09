@@ -1,40 +1,77 @@
 @import "tailwindcss";
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-} */
-
-/* @theme inline {
+/* Theme Variables */
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
-/* body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
-/* Hacker theme styles */
-:root {
-  --primary: #00ff00;
-  --secondary: #00cc00;
-  --background: #0a0a0a;
-  --card-bg: #111111;
-  --text: #e0e0e0;
-  --accent: #ff5555;
 }
 
+/* Light Mode (Default) */
+:root {
+  /* Hacker theme colors - Light Mode */
+  --primary: #111111;
+  --secondary: #cacaca;
+  --background: #f5f5f5;
+  --card-bg: #ffffff;
+  --text: #1a1a1a;
+  /* --accent: #cc0000; */
+  --accent: oklch(0.145, 0, 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  /* logo color */ 
+  --logo-color: oklch(36.002% 0.00004 271.152);
+  /* Grid overlay */
+  --grid-color: rgba(0, 0, 0, 0.05);
+  
+  /* Border colors */
+  --border-primary: #cccccc;
+  --border-hover: #6d6c6c;
+  
+  /* Shadows */
+  --shadow-primary: rgba(0, 170, 0, 0.2);
+  --shadow-hover: rgba(68, 70, 68, 0.4);
+  --shadow-accent: rgba(204, 0, 0, 0.3);
+
+  /* led color */
+  --led-color: #ff6c6c;
+}
+
+/* Dark Mode */
+.dark {
+  /* Hacker theme colors - Dark Mode */
+  --primary: #ff6c6c;
+  --secondary: #ce4d4d5e;
+  --background: #161618;
+  --card-bg: #111111;
+  --text: #f0f0f0;
+  --accent: #ff4444;
+  --muted-foreground: oklch(0.708 0 0);
+  --foreground: oklch(1 0 0);
+
+  /* logo color */
+  --logo-color: #ff4444;
+  
+  /* Grid overlay */
+  --grid-color: rgba(82, 66, 66, 0.2);
+  
+  /* Border colors */
+  /* --border-primary: rgba(0, 110, 0, 0.6); */
+  --border-primary: rgba(200,200,200,0.3);
+  --border-hover: #ff5555;
+  
+  /* Shadows */
+  --shadow-primary: rgba(25, 25, 25, 0.2);
+  --shadow-hover: rgba(100, 100, 100, 0.5);
+  --shadow-accent: rgba(255, 85, 85, 0.4);
+
+  /* led color */
+  --led-color: #ff6c6c;
+}
+
+/* Custom Font */
 @font-face {
   font-family: 'MR Robot';
   src: url('/fonts/MR-Robot.ttf') format('truetype');
@@ -42,6 +79,7 @@
   font-style: normal;
 }
 
+/* Base Styles */
 html {
   scroll-behavior: smooth;
 }
@@ -49,17 +87,20 @@ html {
 body {
   background-color: var(--background);
   color: var(--text);
-  font-family: 'Courier New', monospace;
+  font-family: monospace;
+  font-size: large;
   background-image:
-    linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 20px 20px;
-  line-height: 1.6;
+  line-height: 1.0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  height:5px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -67,32 +108,42 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  /* background: var(--primary); */
-  background: rgb(55, 123, 59);
-  border-radius: 5px;
+  background: rgb(99, 99, 99);
+  border-radius: 8px;
 }
 
-/* Typing animation */
-@keyframes typing {
-  from {
-    width: 0
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(120, 120, 120);
+}
 
-  to {
-    width: 100%
-  }
+/* Thin scrollbar for code blocks - WebKit browsers (Chrome, Safari, Edge) */
+/* pre::-webkit-scrollbar {
+  height: 4px;
+  width: 2px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 3px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+} */
+
+/* Animations */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
 @keyframes blink-caret {
-
-  from,
-  to {
-    border-color: transparent
-  }
-
-  50% {
-    border-color: var(--primary)
-  }
+  from, to { border-color: transparent }
+  50% { border-color: var(--primary) }
 }
 
 .typing-animation {
@@ -104,31 +155,13 @@ body {
     blink-caret .75s step-end infinite;
 }
 
-/* Glitch effect */
 @keyframes glitch {
-  0% {
-    transform: translate(0)
-  }
-
-  20% {
-    transform: translate(-2px, 2px)
-  }
-
-  40% {
-    transform: translate(-2px, -2px)
-  }
-
-  60% {
-    transform: translate(2px, 2px)
-  }
-
-  80% {
-    transform: translate(2px, -2px)
-  }
-
-  100% {
-    transform: translate(0)
-  }
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
 }
 
 .glitch:hover {
@@ -138,7 +171,13 @@ body {
     -2px 0 cyan;
 }
 
-/* Matrix rain effect */
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* Matrix Rain Effect */
 .matrix-rain {
   position: fixed;
   top: 0;
@@ -150,115 +189,90 @@ body {
   pointer-events: none;
 }
 
-/* Terminal box styling */
+/* Terminal Box */
 .terminal-box {
-  background-color: rgba(10, 10, 10, 0.8);
-  /* border: 1px solid var(--primary); */
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 0 10px var(--muted-foreground);
   border-radius: 5px;
   padding: 1.5rem;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-.terminal-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  /* background: linear-gradient(90deg, var(--primary), var(--accent)); */
-}
 
-/* Binary code decoration */
+
+/* Binary Code Decoration */
 .binary-code {
   position: absolute;
-  color: rgba(0, 255, 0, 0.1);
+  color: var(--grid-color);
   font-size: 0.8rem;
   user-select: none;
 }
 
-/* Hacker card styling */
+/* Hacker Card */
 .hacker-card {
   background-color: var(--card-bg);
-  /* border: 1px solid var(--primary); */
-  border: 1px solid rgb(100,100,100);
+  border: 1px solid var(--border-primary);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .hacker-card:hover {
-  /* transform: translateY(-5px); */
-  /* box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3); */
-  border-color: var(--accent);
+  border-color: var(--border-hover);
+  box-shadow: 0 5px 15px var(--shadow-hover);
 }
 
-/* .hacker-card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-} */
-
-/* .hacker-card:hover::after {
-  transform: scaleX(1);
-} */
-
-/* Input field styling */
+/* Input Field */
 .hacker-input {
-  background-color: rgba(20, 20, 20, 0.8);
-  border: 1px solid var(--primary);
-  color: var(--primary);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  color: var(--text);
   padding: 0.75rem;
   font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
 }
 
 .hacker-input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 5px rgba(255, 85, 85, 0.5);
+  box-shadow: 0 0 5px var(--shadow-accent);
 }
 
-/* Button styling */
-.hacker-btn {
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: black;
+/* Button */
+/* .hacker-btn {
+  background: var(--background);
+  color: var(--foreground);
   font-weight: bold;
-  border: none;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
 }
 
 .hacker-btn:hover {
-  background: linear-gradient(45deg, var(--accent), #ff0000);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 85, 85, 0.4);
+  background: var(--foreground);
+  color: var(--background);
+} */
+
+/* Button */
+.hacker-btn {
+  @apply font-bold px-4 py-3 cursor-pointer transition-all duration-300 relative 
+         border border-[var(--border-primary)] rounded-lg;
+  background: var(--background);
+  color: var(--foreground);
 }
 
-.hacker-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: all 0.5s ease;
+.hacker-btn:hover {
+  background: var(--foreground);
+  color: var(--background);
 }
 
-.hacker-btn:hover::before {
-  left: 100%;
-}
+
 
 /* Status LED */
 .status-led {
@@ -266,30 +280,20 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: var(--primary);
-  box-shadow: 0 0 5px var(--primary);
+  background-color: var(--led-color);
+  box-shadow: 0 0 5px var(--led-color);
   margin-right: 8px;
   margin-bottom: 4px;
   animation: pulse 1s infinite;
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.5;
-  }
-}
-
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .terminal-box {
     padding: 1rem;
+  }
+  
+  body {
+    font-size: medium;
   }
 }

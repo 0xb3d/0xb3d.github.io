@@ -1,56 +1,65 @@
 'use client';
 import Link from "next/link";
 import { useState } from "react";
+import { ThemeSwitcher } from "./ui/shadcn-io/theme-switcher";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
-    
+
     return (
         <>
             {/* Header */}
-            <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-green-800 shadow-lg">
+            <header className="sticky top-0 z-40 border-b  shadow-lg transition-colors"
+                style={{
+                    backgroundColor: 'var(--background)',
+                    borderColor: 'var(--border-primary)'
+                }}>
                 <div className="container mx-auto px-6 py-3">
                     <div className="flex justify-between items-center">
                         <Link
                             href="/"
-                            className="text-3xl text-red-500 hover:text-accent transition-colors glitch flex items-center"
-                            style={{ fontFamily: "'MR Robot', monospace" }}
+                            className="font-mono text-2xl hover:text-accent transition-colors glitch flex items-center"
+                            style={{
+                                fontFamily: "MR Robot, monospace",
+                                color: 'var(--logo-color)'
+                            }}
                         >
                             <span className="status-led"></span>
                             GRIMLABS
                         </Link>
-
+                        <ThemeSwitcher />
                         <nav className="hidden md:flex space-x-6">
                             <Link
                                 href="/#about"
-                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
-                                <span className="text-accent">[</span>
-                                about
-                                <span className="text-accent">]</span>
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] transition-colors"
+                            >
+                                <i className="fas fa-circle-info mr-2"></i>
+                                About
                             </Link>
 
                             <Link
                                 href="/projects"
-                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
-                                <span className="text-accent">[</span>
-                                projects
-                                <span className="text-accent">]</span>
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] transition-colors"
+                            >
+                                <i className="fas fa-folder-open mr-2"></i>
+                                Projects
                             </Link>
-                            
+
                             <Link
                                 href="/blog"
-                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
-                                <span className="text-accent">[</span>
-                                blog
-                                <span className="text-accent">]</span>
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] font-bold transition-colors"
+                            >
+                                <i className="fas fa-file-code mr-2"></i>
+                                Blog
                             </Link>
                         </nav>
 
                         <button
                             onClick={() => setMenuOpen((prev) => !prev)}
-                            className="md:hidden text-green-500 hover:text-accent"
+                            className="md:hidden transition-colors text-[var(--foreground)]"
+
                         >
-                            <i className="fas fa-terminal text-2xl" />
+                            <i className="fas fa-bars text-2xl" />
                         </button>
                     </div>
 
@@ -60,23 +69,23 @@ export default function Header() {
                             <Link
                                 href="/#about"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
+                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-user-secret mr-2"></i>About
+                                <i className="fas fa-circle-info mr-2"></i>About
                             </Link>
                             <Link
                                 href="/projects"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
+                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-project-diagram mr-2"></i>Projects
+                                <i className="fas fa-folder-open mr-2"></i>Projects
                             </Link>
                             <Link
                                 href="/blog"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
+                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-blog mr-2"></i>Blog
+                                <i className="fas fa-file-code mr-2"></i>Blog
                             </Link>
                         </div>
                     )}
