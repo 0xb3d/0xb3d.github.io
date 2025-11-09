@@ -159,7 +159,7 @@ const components: PortableTextComponents = {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params
+  const { slug } = params
   const post = await client.fetch(postBySlugQuery, { slug })
 
   if (!post) {
