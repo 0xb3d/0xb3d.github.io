@@ -104,10 +104,10 @@ export function TableOfContents({ headings }: TOCProps) {
                   onClick={() => handleClick(id)}
                   onMouseEnter={() => setHoveredId(id)}
                   onMouseLeave={() => setHoveredId(null)}
-                  className="block w-full text-left transition-colors rounded-md px-1"
+                  className="block w-full text-left transition-colors rounded-md px-1 py-1"
                   style={{
                     color: isActive ? 'var(--text)' : (isHovered ? 'var(--primary)' : 'var(--text)'),
-                    backgroundColor: isActive ? 'var(--shadow-primary)' : 'transparent',
+                    backgroundColor: isActive ? 'var(--secondary)' : 'transparent',
                     fontWeight: isActive ? '500' : 'normal'
                   }}
                 >

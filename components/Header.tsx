@@ -5,67 +5,61 @@ import { ThemeSwitcher } from "./ui/shadcn-io/theme-switcher";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
-    
+
     return (
         <>
             {/* Header */}
-            <header className="sticky top-0 z-40 border-b shadow-lg transition-colors" 
-                    style={{ 
-                        backgroundColor: 'var(--background)',
-                        borderColor: 'var(--border-primary)'
-                    }}>
+            <header className="sticky top-0 z-40 border-b  shadow-lg transition-colors"
+                style={{
+                    backgroundColor: 'var(--background)',
+                    borderColor: 'var(--border-primary)'
+                }}>
                 <div className="container mx-auto px-6 py-3">
                     <div className="flex justify-between items-center">
                         <Link
                             href="/"
-                            className="text-3xl hover:text-accent transition-colors glitch flex items-center"
-                            style={{ 
-                                fontFamily: "'MR Robot', monospace",
-                                color: 'var(--accent)'
+                            className="font-mono text-2xl hover:text-accent transition-colors glitch flex items-center"
+                            style={{
+                                fontFamily: "MR Robot, monospace",
+                                color: 'var(--logo-color)'
                             }}
                         >
                             <span className="status-led"></span>
                             GRIMLABS
                         </Link>
-                        <ThemeSwitcher/>
+                        <ThemeSwitcher />
                         <nav className="hidden md:flex space-x-6">
                             <Link
                                 href="/#about"
-                                className="hover:underline transition-colors"
-                                style={{ color: 'var(--text)'}}
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] transition-colors"
                             >
-                                <span style={{ color: 'var(--text)' }}>[</span>
-                                about
-                                <span style={{ color: 'var(--text)' }}>]</span>
+                                <i className="fas fa-circle-info mr-2"></i>
+                                About
                             </Link>
 
                             <Link
                                 href="/projects"
-                                className="hover:underline transition-colors"
-                                style={{ color: 'var(--text)' }}
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] transition-colors"
                             >
-                                <span style={{ color: 'var(--text)' }}>[</span>
-                                projects
-                                <span style={{ color: 'var(--text)' }}>]</span>
+                                <i className="fas fa-folder-open mr-2"></i>
+                                Projects
                             </Link>
-                            
+
                             <Link
                                 href="/blog"
-                                className="hover:underline transition-colors"
-                                style={{ color: 'var(--text)' }}
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] font-bold transition-colors"
                             >
-                                <span style={{ color: 'var(--text)' }}>[</span>
-                                blog
-                                <span style={{ color: 'var(--text)' }}>]</span>
+                                <i className="fas fa-file-code mr-2"></i>
+                                Blog
                             </Link>
                         </nav>
 
                         <button
                             onClick={() => setMenuOpen((prev) => !prev)}
-                            className="md:hidden transition-colors"
-                            style={{ color: 'var(--primary)' }}
+                            className="md:hidden transition-colors text-[var(--foreground)]"
+
                         >
-                            <i className="fas fa-terminal text-2xl" />
+                            <i className="fas fa-bars text-2xl" />
                         </button>
                     </div>
 
@@ -75,35 +69,23 @@ export default function Header() {
                             <Link
                                 href="/#about"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 transition-colors border-b"
-                                style={{ 
-                                    color: 'var(--primary)',
-                                    borderColor: 'var(--border-primary)'
-                                }}
+                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-user-secret mr-2"></i>About
+                                <i className="fas fa-circle-info mr-2"></i>About
                             </Link>
                             <Link
                                 href="/projects"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 transition-colors border-b"
-                                style={{ 
-                                    color: 'var(--primary)',
-                                    borderColor: 'var(--border-primary)'
-                                }}
+                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-project-diagram mr-2"></i>Projects
+                                <i className="fas fa-folder-open mr-2"></i>Projects
                             </Link>
                             <Link
                                 href="/blog"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 transition-colors border-b"
-                                style={{ 
-                                    color: 'var(--primary)',
-                                    borderColor: 'var(--border-primary)'
-                                }}
+                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-blog mr-2"></i>Blog
+                                <i className="fas fa-file-code mr-2"></i>Blog
                             </Link>
                         </div>
                     )}

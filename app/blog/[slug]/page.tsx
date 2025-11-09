@@ -179,23 +179,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const showTOC = headings.length >= 3
 
   return (
-    <article className="min-h-screen transition-colors"
-      style={{ backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
+    <article className="min-h-screen transition-colors">
       <div className="max-w-7xl mx-auto py-12 px-4">
         {/* Grid: main content + optional TOC on xl+ */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_20rem] gap-x-8">
           <main>
-            <h1 className="text-5xl font-bold mb-4"
+            <h1 className="text-4xl font-bold mb-2"
               style={{ color: 'var(--text)' }}>
               {post.title}
             </h1>
-            <p className="text-lg mb-2"
+            <p className="text-small mb-2"
               style={{ color: 'var(--muted-foreground)' }}>
-              {post.author && `by ${post.author}`} • {post.date ? new Date(post.date).toDateString() : ''} • {post.readTime}
+              {post.date ? new Date(post.date).toDateString() : ''} • {post.readTime}
             </p>
+            <p className='text-small mb-1 font-bold text-[var(--foreground)]'>{post.author && `By ${post.author}`}</p>
 
             {post.tags?.length > 0 && (
-              <div className="mt-4" style={{ color: 'var(--text)' }}>
+              <div className="mt-2" style={{ color: 'var(--muted-foreground)' }}>
                 <strong>Tags:</strong> {post.tags.join(', ')}
               </div>
             )}
@@ -213,7 +213,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             )}
             <hr
               style={{
-                border: 'none',
                 borderTop: '1px solid var(--muted-foreground)',
                 margin: '1rem 0'
               }}
@@ -233,21 +232,44 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {/* Collapsible TOC on mobile */}
-        {showTOC && (
-          <div className="lg:hidden mt-12 border-t pt-4"
+        {/* {showTOC && (
+          <div className="lg:hidden border-t pt-4"
             style={{ borderColor: 'var(--border-primary)' }}>
-            <details className="group">
-              <summary className="cursor-pointer text-lg font-semibold flex justify-between items-center"
-                style={{ color: 'var(--text)' }}>
-                Table of Contents
-                <span className="transition-transform group-open:rotate-180">▾</span>
-              </summary>
               <div className="mt-3">
                 <TableOfContents headings={headings} />
               </div>
-            </details>
+          </div>
+        )} */}
+
+
+        {/* 
+        {showTOC && (
+          <div className="lg:hidden fixed right-0 top-1/2 -translate-y-1/2 z-40 [&:focus-within]:group">
+            <div
+              className="p-3 rounded-l-lg cursor-pointer"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                border: '1px solid var(--border-primary)',
+                color: 'var(--text)'
+              }}
+            >
+              <span className='text-base mr-2 font-bold'>TOC</span>
+              <i className="fas fa-list"></i>
+              
+            </div>
+
+            <div
+              className="absolute right-full top-0 mr-2 p-4 rounded-lg max-w-xs shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                border: '1px solid var(--border-primary)'
+              }}
+            >
+              <TableOfContents headings={headings} />
+            </div>
           </div>
         )}
+         */}
       </div>
     </article>
   )

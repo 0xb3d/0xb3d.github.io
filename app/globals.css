@@ -11,51 +11,64 @@
 /* Light Mode (Default) */
 :root {
   /* Hacker theme colors - Light Mode */
-  --primary: #00aa00;
-  --secondary: #008800;
+  --primary: #111111;
+  --secondary: #cacaca;
   --background: #f5f5f5;
   --card-bg: #ffffff;
   --text: #1a1a1a;
-  --accent: #cc0000;
+  /* --accent: #cc0000; */
+  --accent: oklch(0.145, 0, 0);
   --muted-foreground: oklch(0.556 0 0);
   --foreground: oklch(0.145 0 0);
-  
+
+  /* logo color */ 
+  --logo-color: oklch(36.002% 0.00004 271.152);
   /* Grid overlay */
-  --grid-color: rgba(0, 0, 0, 0.03);
+  --grid-color: rgba(0, 0, 0, 0.05);
   
   /* Border colors */
   --border-primary: #cccccc;
-  --border-hover: #cc0000;
+  --border-hover: #6d6c6c;
   
   /* Shadows */
   --shadow-primary: rgba(0, 170, 0, 0.2);
-  --shadow-hover: rgba(0, 170, 0, 0.4);
+  --shadow-hover: rgba(68, 70, 68, 0.4);
   --shadow-accent: rgba(204, 0, 0, 0.3);
+
+  /* led color */
+  --led-color: #ff6c6c;
 }
 
 /* Dark Mode */
 .dark {
   /* Hacker theme colors - Dark Mode */
-  --primary: #00ff00;
-  --secondary: #00cc00;
+  --primary: #ff6c6c;
+  --secondary: #ce4d4d5e;
   --background: #161618;
   --card-bg: #111111;
   --text: #f0f0f0;
   --accent: #ff4444;
   --muted-foreground: oklch(0.708 0 0);
   --foreground: oklch(1 0 0);
+
+  /* logo color */
+  --logo-color: #ff4444;
   
   /* Grid overlay */
-  --grid-color: rgba(255, 255, 255, 0.03);
+  --grid-color: rgba(82, 66, 66, 0.2);
   
   /* Border colors */
-  --border-primary: rgba(0, 110, 0, 0.6);
+  /* --border-primary: rgba(0, 110, 0, 0.6); */
+  --border-primary: rgba(200,200,200,0.3);
   --border-hover: #ff5555;
   
   /* Shadows */
-  --shadow-primary: rgba(0, 255, 0, 0.2);
-  --shadow-hover: rgba(0, 255, 0, 0.5);
+  --shadow-primary: rgba(25, 25, 25, 0.2);
+  --shadow-hover: rgba(100, 100, 100, 0.5);
   --shadow-accent: rgba(255, 85, 85, 0.4);
+
+  /* led color */
+  --led-color: #ff6c6c;
 }
 
 /* Custom Font */
@@ -86,7 +99,8 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  height:5px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -101,6 +115,25 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(120, 120, 120);
 }
+
+/* Thin scrollbar for code blocks - WebKit browsers (Chrome, Safari, Edge) */
+/* pre::-webkit-scrollbar {
+  height: 4px;
+  width: 2px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 3px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+} */
 
 /* Animations */
 @keyframes typing {
@@ -160,7 +193,7 @@ body {
 .terminal-box {
   background-color: var(--card-bg);
   border: 1px solid var(--border-primary);
-  box-shadow: 0 0 10px var(--shadow-primary);
+  box-shadow: 0 0 10px var(--muted-foreground);
   border-radius: 5px;
   padding: 1.5rem;
   position: relative;
@@ -168,15 +201,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.terminal-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-}
+
 
 /* Binary Code Decoration */
 .binary-code {
@@ -217,38 +242,37 @@ body {
 }
 
 /* Button */
-.hacker-btn {
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: var(--background);
+/* .hacker-btn {
+  background: var(--background);
+  color: var(--foreground);
   font-weight: bold;
-  border: none;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
 }
 
 .hacker-btn:hover {
-  background: linear-gradient(45deg, var(--accent), #ff0000);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px var(--shadow-accent);
+  background: var(--foreground);
+  color: var(--background);
+} */
+
+/* Button */
+.hacker-btn {
+  @apply font-bold px-4 py-3 cursor-pointer transition-all duration-300 relative 
+         border border-[var(--border-primary)] rounded-lg;
+  background: var(--background);
+  color: var(--foreground);
 }
 
-.hacker-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: all 0.5s ease;
+.hacker-btn:hover {
+  background: var(--foreground);
+  color: var(--background);
 }
 
-.hacker-btn:hover::before {
-  left: 100%;
-}
+
 
 /* Status LED */
 .status-led {
@@ -256,8 +280,8 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: var(--primary);
-  box-shadow: 0 0 5px var(--primary);
+  background-color: var(--led-color);
+  box-shadow: 0 0 5px var(--led-color);
   margin-right: 8px;
   margin-bottom: 4px;
   animation: pulse 1s infinite;

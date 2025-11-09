@@ -6,7 +6,7 @@ export default function BlogSection() {
     <section id="blog" 
              className="py-16 px-6 border-t transition-colors"
              style={{ 
-               backgroundColor: 'rgba(0, 0, 0, 0.1)',
+               backgroundColor: 'rgba(0, 0, 0, 0.05)',
                borderColor: 'var(--border-primary)'
              }}>
       <div className="container mx-auto max-w-4xl">

@@ -24,7 +24,7 @@ export default function About() {
                                          borderColor: 'var(--border-primary)'
                                      }}>
                                     <i className="fas fa-user-secret text-6xl" 
-                                       style={{ color: 'var(--primary)' }}></i>
+                                       style={{ color: 'var(--foreground)' }}></i>
                                     <div className="absolute inset-0 rounded-full border-2 animate-spin-slow"
                                          style={{ borderColor: 'var(--border-primary)', opacity: 0.3 }}></div>
                                 </div>
@@ -33,9 +33,9 @@ export default function About() {
                             <div className="md:w-2/3">
                                 {aboutParagraphs.map((text, index) => (
                                     <p key={index} 
-                                       className={`text-lg ${index === aboutParagraphs.length - 1 ? 'mb-6' : 'mb-4'}`}
-                                       style={{ color: 'var(--text)' }}>
-                                        <span style={{ color: 'var(--primary)' }}>$</span> {text}
+                                       className={`text-lg italic ${index === aboutParagraphs.length - 1 ? 'mb-6' : 'mb-4'}`}
+                                       style={{ color: 'var(--foreground)' }}>
+                                        <span style={{ color: 'var(--muted-foreground)' }}>$</span> {text}
                                     </p>
                                 ))}
                             </div>
@@ -48,7 +48,7 @@ export default function About() {
             <section id="skills" 
                      className="py-16 px-6 border-t transition-colors"
                      style={{ 
-                         backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                         backgroundColor: 'rgba(0, 0, 0, 0.05)',
                          borderColor: 'var(--border-primary)'
                      }}>
                 <div className="container mx-auto max-w-4xl">
@@ -60,72 +60,72 @@ export default function About() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Technical Skills */}
-                            <div className="hacker-card p-6">
+                            <div className="hacker-card p-6 rounded-xl">
                                 <h3 className="text-xl font-bold mb-4 flex items-center"
                                     style={{ color: 'var(--text)' }}>
                                     <i className="fas fa-terminal mr-2"></i> Technical Skills
                                 </h3>
                                 <ul className="space-y-3" style={{ color: 'var(--text)' }}>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>Penetration Testing (Web/Network/Mobile)</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>Vulnerability Assessment & Management</span>
                                     </li>
                                 </ul>
                             </div>
 
                             {/* Tools & Technologies */}
-                            <div className="hacker-card p-6">
+                            <div className="hacker-card p-6 rounded-xl">
                                 <h3 className="text-xl font-bold mb-4 flex items-center"
                                     style={{ color: 'var(--text)' }}>
                                     <i className="fas fa-tools mr-2"></i> Tools & Technologies
                                 </h3>
                                 <ul className="space-y-3" style={{ color: 'var(--text)' }}>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>Burp Suite, Metasploit, Nmap</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>Kali Linux, Parrot OS</span>
                                     </li>
                                 </ul>
                             </div>
 
                             {/* Methodologies */}
-                            <div className="hacker-card p-6">
+                            <div className="hacker-card p-6 rounded-xl">
                                 <h3 className="text-xl font-bold mb-4 flex items-center"
                                     style={{ color: 'var(--text)' }}>
                                     <i className="fas fa-project-diagram mr-2"></i> Methodologies
                                 </h3>
                                 <ul className="space-y-3" style={{ color: 'var(--text)' }}>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>OWASP Testing Guide</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>MITRE ATT&CK Framework</span>
                                     </li>
                                 </ul>
                             </div>
 
                             {/* Specializations */}
-                            <div className="hacker-card p-6">
+                            <div className="hacker-card p-6 rounded-xl">
                                 <h3 className="text-xl font-bold mb-4 flex items-center"
                                     style={{ color: 'var(--text)' }}>
                                     <i className="fas fa-star mr-2"></i> Specializations
                                 </h3>
                                 <ul className="space-y-3" style={{ color: 'var(--text)' }}>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>Web Application Security</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--accent)' }}>■</span>
+                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
                                         <span>API Security Testing</span>
                                     </li>
                                 </ul>
