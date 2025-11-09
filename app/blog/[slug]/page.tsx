@@ -9,7 +9,7 @@ import { extractHeadings } from '@/utils/extractHeadings'
 import { TableOfContents } from '@/components/TableOfContents'
 
 interface BlogPostPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }> // Changed from { slug: string }
 }
 
 /**
@@ -159,7 +159,7 @@ const components: PortableTextComponents = {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = params
+  const { slug } = await params
   const post = await client.fetch(postBySlugQuery, { slug })
 
   if (!post) {
