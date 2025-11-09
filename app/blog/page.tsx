@@ -1,6 +1,8 @@
 // app/blog/page.tsx
 import BlogPageServer from "@/components/BlogPageServer"
 
+export const revalidate = 120
+
 export default function Blog() {
   return (
     <section id="blog" 

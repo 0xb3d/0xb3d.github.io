@@ -1,5 +1,7 @@
 import ProjectsPageServer from "@/components/ProjectsPageServer";
 
+export const revalidate = 120
+
 export default function Projects() {
     return (
         <section id="projects" 

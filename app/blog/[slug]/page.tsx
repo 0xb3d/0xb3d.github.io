@@ -8,6 +8,8 @@ import { CodeBlock } from '@/components/CodeBlock'
 import { extractHeadings } from '@/utils/extractHeadings'
 import { TableOfContents } from '@/components/TableOfContents'
 
+export const revalidate = 120
+
 interface BlogPostPageProps {
   params: Promise<{ slug: string }> // Changed from { slug: string }
 }
