@@ -36,7 +36,7 @@ function generateId(children: any) {
 const components: PortableTextComponents = {
   block: {
     // heading renderers create an id for linking / TOC
-    h1: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+    h1: ({ children }: { children?: React.ReactNode }) => {
       const id = `${generateId(children)}`
       return (
         <h1 id={id}
@@ -46,7 +46,7 @@ const components: PortableTextComponents = {
         </h1>
       )
     },
-    h2: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+    h2: ({ children }: { children?: React.ReactNode }) => {
       const id = `${generateId(children)}`
       return (
         <h2 id={id}
@@ -56,7 +56,7 @@ const components: PortableTextComponents = {
         </h2>
       )
     },
-    h3: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+    h3: ({ children }: { children?: React.ReactNode }) => {
       const id = `${generateId(children)}`
       return (
         <h3 id={id}
@@ -66,7 +66,7 @@ const components: PortableTextComponents = {
         </h3>
       )
     },
-    h4: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
+    h4: ({ children }: { children?: React.ReactNode }) => {
       const id = `${generateId(children)}`
       return (
         <h4 id={id}
