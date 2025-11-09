@@ -9,13 +9,20 @@ export default function Header() {
     return (
         <>
             {/* Header */}
-            <header className="sticky top-0 z-40 bg-[#040404] border-b border-green-800 shadow-lg">
+            <header className="sticky top-0 z-40 border-b shadow-lg transition-colors" 
+                    style={{ 
+                        backgroundColor: 'var(--background)',
+                        borderColor: 'var(--border-primary)'
+                    }}>
                 <div className="container mx-auto px-6 py-3">
                     <div className="flex justify-between items-center">
                         <Link
                             href="/"
-                            className="text-3xl text-red-500 hover:text-accent transition-colors glitch flex items-center"
-                            style={{ fontFamily: "'MR Robot', monospace" }}
+                            className="text-3xl hover:text-accent transition-colors glitch flex items-center"
+                            style={{ 
+                                fontFamily: "'MR Robot', monospace",
+                                color: 'var(--accent)'
+                            }}
                         >
                             <span className="status-led"></span>
                             GRIMLABS
@@ -24,32 +31,39 @@ export default function Header() {
                         <nav className="hidden md:flex space-x-6">
                             <Link
                                 href="/#about"
-                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
-                                <span className="text-accent">[</span>
+                                className="hover:underline transition-colors"
+                                style={{ color: 'var(--text)'}}
+                            >
+                                <span style={{ color: 'var(--text)' }}>[</span>
                                 about
-                                <span className="text-accent">]</span>
+                                <span style={{ color: 'var(--text)' }}>]</span>
                             </Link>
 
                             <Link
                                 href="/projects"
-                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
-                                <span className="text-accent">[</span>
+                                className="hover:underline transition-colors"
+                                style={{ color: 'var(--text)' }}
+                            >
+                                <span style={{ color: 'var(--text)' }}>[</span>
                                 projects
-                                <span className="text-accent">]</span>
+                                <span style={{ color: 'var(--text)' }}>]</span>
                             </Link>
                             
                             <Link
                                 href="/blog"
-                                className="hover:text-red-400 text-gray-200 hover:text-accent transition-colors hover:underline">
-                                <span className="text-accent">[</span>
+                                className="hover:underline transition-colors"
+                                style={{ color: 'var(--text)' }}
+                            >
+                                <span style={{ color: 'var(--text)' }}>[</span>
                                 blog
-                                <span className="text-accent">]</span>
+                                <span style={{ color: 'var(--text)' }}>]</span>
                             </Link>
                         </nav>
 
                         <button
                             onClick={() => setMenuOpen((prev) => !prev)}
-                            className="md:hidden text-green-500 hover:text-accent"
+                            className="md:hidden transition-colors"
+                            style={{ color: 'var(--primary)' }}
                         >
                             <i className="fas fa-terminal text-2xl" />
                         </button>
@@ -61,21 +75,33 @@ export default function Header() {
                             <Link
                                 href="/#about"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
+                                className="block py-2 transition-colors border-b"
+                                style={{ 
+                                    color: 'var(--primary)',
+                                    borderColor: 'var(--border-primary)'
+                                }}
                             >
                                 <i className="fas fa-user-secret mr-2"></i>About
                             </Link>
                             <Link
                                 href="/projects"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
+                                className="block py-2 transition-colors border-b"
+                                style={{ 
+                                    color: 'var(--primary)',
+                                    borderColor: 'var(--border-primary)'
+                                }}
                             >
                                 <i className="fas fa-project-diagram mr-2"></i>Projects
                             </Link>
                             <Link
                                 href="/blog"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-green-500 hover:text-accent transition-colors border-b border-green-500/30"
+                                className="block py-2 transition-colors border-b"
+                                style={{ 
+                                    color: 'var(--primary)',
+                                    borderColor: 'var(--border-primary)'
+                                }}
                             >
                                 <i className="fas fa-blog mr-2"></i>Blog
                             </Link>

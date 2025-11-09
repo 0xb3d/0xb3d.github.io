@@ -16,6 +16,7 @@ interface TOCProps {
 export function TableOfContents({ headings }: TOCProps) {
   const [activeId, setActiveId] = useState('')
   const [open, setOpen] = useState(true)
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
   const tocRef = useRef<HTMLUListElement | null>(null)
   const activeLinkRef = useRef<HTMLButtonElement | null>(null)
 
@@ -71,10 +72,15 @@ export function TableOfContents({ headings }: TOCProps) {
   }
 
   return (
-    <nav className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-xl border border-neutral-800 bg-neutral-950/40 p-4 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-xl border p-4 backdrop-blur-md shadow-sm transition-colors"
+         style={{ 
+           borderColor: 'var(--border-primary)',
+           backgroundColor: 'var(--card-bg)'
+         }}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full text-left font-semibold text-lg mb-2 text-green-400 transition-colors"
+        className="flex items-center justify-between w-full text-left font-semibold text-lg mb-2 transition-colors"
+        style={{ color: 'var(--primary)' }}
       >
         <span>Table of Contents</span>
         {open ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
@@ -84,6 +90,7 @@ export function TableOfContents({ headings }: TOCProps) {
         <ul ref={tocRef} className="space-y-2 text-sm mt-3 max-h-[70vh] overflow-y-auto pr-2">
           {headings.map(({ id, text, level }) => {
             const isActive = activeId === id
+            const isHovered = hoveredId === id
             return (
               <li
                 key={id}
@@ -95,12 +102,14 @@ export function TableOfContents({ headings }: TOCProps) {
                 <button
                   ref={isActive ? activeLinkRef : null}
                   onClick={() => handleClick(id)}
-                  className={`
-                    block w-full text-left transition-colors rounded-md px-1
-                    ${isActive
-                      ? 'text-green-300 font-medium bg-green-200/10'
-                      : 'text-gray-300 hover:text-gray-400'}
-                  `}
+                  onMouseEnter={() => setHoveredId(id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  className="block w-full text-left transition-colors rounded-md px-1"
+                  style={{
+                    color: isActive ? 'var(--text)' : (isHovered ? 'var(--primary)' : 'var(--text)'),
+                    backgroundColor: isActive ? 'var(--shadow-primary)' : 'transparent',
+                    fontWeight: isActive ? '500' : 'normal'
+                  }}
                 >
                   {text}
                 </button>

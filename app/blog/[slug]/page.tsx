@@ -39,7 +39,9 @@ const components: PortableTextComponents = {
     h1: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
       const id = `${generateId(children)}`
       return (
-        <h1 id={id} className="text-4xl font-bold mt-8 mb-4 scroll-mt-24">
+        <h1 id={id}
+          className="text-4xl font-bold mt-8 mb-4 scroll-mt-24"
+          style={{ color: 'var(--text)' }}>
           {children}
         </h1>
       )
@@ -47,7 +49,9 @@ const components: PortableTextComponents = {
     h2: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
       const id = `${generateId(children)}`
       return (
-        <h2 id={id} className="text-3xl font-bold mt-8 mb-4 scroll-mt-24">
+        <h2 id={id}
+          className="text-3xl font-bold mt-8 mb-4 scroll-mt-24"
+          style={{ color: 'var(--text)' }}>
           {children}
         </h2>
       )
@@ -55,7 +59,9 @@ const components: PortableTextComponents = {
     h3: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
       const id = `${generateId(children)}`
       return (
-        <h3 id={id} className="text-2xl font-bold mt-6 mb-3 scroll-mt-24">
+        <h3 id={id}
+          className="text-2xl font-bold mt-6 mb-3 scroll-mt-24"
+          style={{ color: 'var(--text)' }}>
           {children}
         </h3>
       )
@@ -63,35 +69,57 @@ const components: PortableTextComponents = {
     h4: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
       const id = `${generateId(children)}`
       return (
-        <h4 id={id} className="text-xl font-bold mt-6 mb-3 scroll-mt-24">
+        <h4 id={id}
+          className="text-xl font-bold mt-6 mb-3 scroll-mt-24"
+          style={{ color: 'var(--text)' }}>
           {children}
         </h4>
       )
     },
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-4 leading-7">{children}</p>
+      <p className="mb-4 leading-7" style={{ color: 'var(--text)' }}>{children}</p>
     ),
     blockquote: ({ children }: { children?: React.ReactNode }) => (
-      <blockquote className="border-l-4 border-gray-500 pl-4 italic my-4">{children}</blockquote>
+      <blockquote className="border-l-4 pl-4 italic my-4"
+        style={{ borderColor: 'var(--border-primary)' }}>
+        {children}
+      </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <ul className="list-disc list-inside mb-4 space-y-2">{children}</ul>
+      <ul className="list-disc list-inside mb-4 space-y-2"
+        style={{ color: 'var(--text)' }}>
+        {children}
+      </ul>
     ),
     number: ({ children }: { children?: React.ReactNode }) => (
-      <ol className="list-decimal list-inside mb-4 space-y-2">{children}</ol>
+      <ol className="list-decimal list-inside mb-4 space-y-2"
+        style={{ color: 'var(--text)' }}>
+        {children}
+      </ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: { children?: React.ReactNode }) => <li className="ml-4">{children}</li>,
-    number: ({ children }: { children?: React.ReactNode }) => <li className="ml-4">{children}</li>,
+    bullet: ({ children }: { children?: React.ReactNode }) =>
+      <li className="ml-4">{children}</li>,
+    number: ({ children }: { children?: React.ReactNode }) =>
+      <li className="ml-4">{children}</li>,
   },
   marks: {
-    strong: ({ children }: { children?: React.ReactNode }) => <strong className="font-bold">{children}</strong>,
-    em: ({ children }: { children?: React.ReactNode }) => <em className="italic">{children}</em>,
+    strong: ({ children }: { children?: React.ReactNode }) =>
+      <strong className="font-bold">{children}</strong>,
+    em: ({ children }: { children?: React.ReactNode }) =>
+      <em className="italic">{children}</em>,
     code: ({ children }: { children?: React.ReactNode }) => (
-      <code className="bg-gray-800 px-1.5 py-0.5 rounded text-xs font-mono">{children}</code>
+      <code className="px-1.5 py-0.5 rounded text-xs font-mono"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          color: 'var(--primary)',
+          border: '1px solid var(--border-primary)'
+        }}>
+        {children}
+      </code>
     ),
     link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => {
       const href = value?.href || '#'
@@ -99,7 +127,8 @@ const components: PortableTextComponents = {
       return (
         <a
           href={href}
-          className="text-blue-400 hover:underline"
+          className="hover:underline"
+          style={{ color: 'var(--primary)' }}
           {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
           {children}
@@ -134,8 +163,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   if (!post) {
     return (
-      <article className="min-h-screen bg-black/70">
-        <div className="max-w-4xl mx-auto py-12 px-6 font-bold text-3xl">Post not found</div>
+      <article className="min-h-screen transition-colors"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}>
+        <div className="max-w-4xl mx-auto py-12 px-6 font-bold text-3xl"
+          style={{ color: 'var(--text)' }}>
+          Post not found
+        </div>
       </article>
     )
   }
@@ -145,18 +178,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const showTOC = headings.length >= 3
 
   return (
-    <article className="min-h-screen bg-black/70">
+    <article className="min-h-screen transition-colors"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
       <div className="max-w-7xl mx-auto py-12 px-4">
         {/* Grid: main content + optional TOC on xl+ */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_20rem] gap-x-8">
           <main>
-            <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
-            <p className="text-lg text-gray-400 mb-2">
+            <h1 className="text-5xl font-bold mb-4"
+              style={{ color: 'var(--text)' }}>
+              {post.title}
+            </h1>
+            <p className="text-lg mb-2"
+              style={{ color: 'var(--muted-foreground)' }}>
               {post.author && `by ${post.author}`} • {post.date ? new Date(post.date).toDateString() : ''} • {post.readTime}
             </p>
 
             {post.tags?.length > 0 && (
-              <div className="mt-4">
+              <div className="mt-4" style={{ color: 'var(--text)' }}>
                 <strong>Tags:</strong> {post.tags.join(', ')}
               </div>
             )}
@@ -172,8 +210,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 />
               </div>
             )}
-
-            <div className="mt-8 prose prose-invert max-w-none">
+            <hr
+              style={{
+                border: 'none',
+                borderTop: '1px solid var(--muted-foreground)',
+                margin: '1rem 0'
+              }}
+            />
+            <div className="mt-8 text-base prose prose-invert max-w-none">
               <PortableText value={body} components={components} />
             </div>
           </main>
@@ -186,12 +230,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </aside>
           )}
         </div>
-        
+
         {/* Collapsible TOC on mobile */}
         {showTOC && (
-          <div className="lg:hidden mt-12 border-t border-gray-700 pt-4">
+          <div className="lg:hidden mt-12 border-t pt-4"
+            style={{ borderColor: 'var(--border-primary)' }}>
             <details className="group">
-              <summary className="cursor-pointer text-lg font-semibold text-gray-200 flex justify-between items-center">
+              <summary className="cursor-pointer text-lg font-semibold flex justify-between items-center"
+                style={{ color: 'var(--text)' }}>
                 Table of Contents
                 <span className="transition-transform group-open:rotate-180">▾</span>
               </summary>

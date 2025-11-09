@@ -40,20 +40,20 @@
   --secondary: #00cc00;
   --background: #161618;
   --card-bg: #111111;
-  --text: #e0e0e0;
-  --accent: #ff5555;
-  --muted-foreground: oklch(0.556 0 0);
-  --foreground: oklch(0.145 0 0);
+  --text: #f0f0f0;
+  --accent: #ff4444;
+  --muted-foreground: oklch(0.708 0 0);
+  --foreground: oklch(1 0 0);
   
   /* Grid overlay */
-  --grid-color: rgba(0, 255, 0, 0.03);
+  --grid-color: rgba(255, 255, 255, 0.03);
   
   /* Border colors */
-  --border-primary: #00ff00;
+  --border-primary: rgba(0, 110, 0, 0.6);
   --border-hover: #ff5555;
   
   /* Shadows */
-  --shadow-primary: rgba(0, 255, 0, 0.3);
+  --shadow-primary: rgba(0, 255, 0, 0.2);
   --shadow-hover: rgba(0, 255, 0, 0.5);
   --shadow-accent: rgba(255, 85, 85, 0.4);
 }
@@ -75,7 +75,7 @@ body {
   background-color: var(--background);
   color: var(--text);
   font-family: monospace;
-  font-size: larger;
+  font-size: large;
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
@@ -219,7 +219,7 @@ body {
 /* Button */
 .hacker-btn {
   background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: white;
+  color: var(--background);
   font-weight: bold;
   border: none;
   padding: 0.75rem 1.5rem;
