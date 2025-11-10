@@ -1,78 +1,58 @@
 'use client';
-import { Monitor, Moon, Sun } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Moon, Sun } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
-
-const themes = [
-  {
-    key: 'system',
-    icon: Monitor,
-    label: 'System theme',
-  },
-  {
-    key: 'light',
-    icon: Sun,
-    label: 'Light theme',
-  },
-  {
-    key: 'dark',
-    icon: Moon,
-    label: 'Dark theme',
-  },
-];
 
 export type ThemeSwitcherProps = {
   className?: string;
 };
 
 export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  };
 
   if (!mounted) {
     return null;
   }
 
+  const isDark = resolvedTheme === 'dark';
+
   return (
-    <div
+    <button
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
       className={cn(
-        'relative isolate flex h-8 rounded-full bg-background p-1 ring-1 ring-border',
+        'relative h-8 w-8 rounded-full bg-background ring-1 ring-border hover:bg-secondary transition-colors',
         className
       )}
+      onClick={toggleTheme}
+      type="button"
     >
-      {themes.map(({ key, icon: Icon, label }) => {
-        const isActive = theme === key;
-        return (
-          <button
-            aria-label={label}
-            className="relative h-6 w-6 rounded-full"
-            key={key}
-            onClick={() => setTheme(key)}
-            type="button"
-          >
-            {isActive && (
-              <motion.div
-                className="absolute inset-0 rounded-full bg-secondary"
-                layoutId="activeTheme"
-                transition={{ type: 'spring', duration: 0.5 }}
-              />
-            )}
-            <Icon
-              className={cn(
-                'relative z-10 m-auto h-4 w-4',
-                isActive ? 'text-foreground' : 'text-muted-foreground'
-              )}
-            />
-          </button>
-        );
-      })}
-    </div>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={isDark ? 'sun' : 'moon'}
+          initial={{ scale: 0, rotate: -90 }}
+          animate={{ scale: 1, rotate: 0 }}
+          exit={{ scale: 0, rotate: 90 }}
+          transition={{ duration: 0.2 }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          {isDark ? (
+            <Sun className="h-4 w-4 text-foreground" />
+          ) : (
+            <Moon className="h-4 w-4 text-foreground" />
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </button>
   );
 };
