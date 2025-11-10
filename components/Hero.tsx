@@ -40,7 +40,7 @@ export default function Hero() {
                         <div className="hacker-card p-4 rounded-xl text-center">
                             <div className="text-3xl mb-2"
                                 style={{ color: 'var(--foreground)' }}>
-                                <i className="fas fa-lock"></i>
+                                <i className="fas fa-microchip mr-2"></i>
                             </div>
                             <div className="font-bold text-base"
                                 style={{ color: 'var(--muted-foreground)' }}>
@@ -50,7 +50,7 @@ export default function Hero() {
                         <div className="hacker-card p-4 rounded-xl text-center">
                             <div className="text-3xl mb-2"
                                 style={{ color: 'var(--foreground)' }}>
-                                <i className="fas fa-bug"></i>
+                                 <i className="fas fa-brain mr-2"></i>
                             </div>
                             <div className="font-bold text-base"
                                 style={{ color: 'var(--muted-foreground)' }}>
