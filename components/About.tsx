@@ -46,94 +46,108 @@ export default function About() {
 
             {/* Skills Section */}
             <section id="skills" 
-                     className="py-16 px-6 border-t transition-colors"
-                     style={{ 
-                         backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                         borderColor: 'var(--border-primary)'
-                     }}>
-                <div className="container mx-auto max-w-4xl">
-                    <div className="">
-                        <h2 className="text-2xl md:text-3xl font-bold mb-8"
-                            style={{ color: 'var(--text)' }}>
-                            <span style={{ color: 'var(--accent)' }}></span> /skillset
-                        </h2>
+         className="py-16 px-6 border-t transition-colors"
+         style={{ 
+             backgroundColor: 'rgba(0, 0, 0, 0.05)',
+             borderColor: 'var(--border-primary)'
+         }}>
+    <div className="container mx-auto max-w-4xl">
+        <h2 className="text-2xl md:text-3xl font-bold mb-8"
+            style={{ color: 'var(--text)' }}>
+            <span style={{ color: 'var(--accent)' }}></span> /skills
+        </h2>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Technical Skills */}
-                            <div className="hacker-card p-6 rounded-xl">
-                                <h3 className="text-xl font-bold mb-4 flex items-center"
-                                    style={{ color: 'var(--text)' }}>
-                                    <i className="fas fa-terminal mr-2"></i> Technical Skills
-                                </h3>
-                                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>Penetration Testing (Web/Network/Mobile)</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>Vulnerability Assessment & Management</span>
-                                    </li>
-                                </ul>
-                            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Security */}
+            <div className="hacker-card p-6 rounded-xl">
+                <h3 className="text-xl font-bold mb-4 flex items-center"
+                    style={{ color: 'var(--text)' }}>
+                    <i className="fas fa-shield-alt mr-2"></i> Security
+                </h3>
+                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Web application pentesting</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Network security assessment</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Vulnerability research</span>
+                    </li>
+                </ul>
+            </div>
 
-                            {/* Tools & Technologies */}
-                            <div className="hacker-card p-6 rounded-xl">
-                                <h3 className="text-xl font-bold mb-4 flex items-center"
-                                    style={{ color: 'var(--text)' }}>
-                                    <i className="fas fa-tools mr-2"></i> Tools & Technologies
-                                </h3>
-                                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>Burp Suite, Metasploit, Nmap</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>Kali Linux, Parrot OS</span>
-                                    </li>
-                                </ul>
-                            </div>
+            {/* Development */}
+            <div className="hacker-card p-6 rounded-xl">
+                <h3 className="text-xl font-bold mb-4 flex items-center"
+                    style={{ color: 'var(--text)' }}>
+                    <i className="fas fa-code mr-2"></i> Development
+                </h3>
+                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Full-stack web development</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>API design & implementation</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Cloud infrastructure</span>
+                    </li>
+                </ul>
+            </div>
 
-                            {/* Methodologies */}
-                            <div className="hacker-card p-6 rounded-xl">
-                                <h3 className="text-xl font-bold mb-4 flex items-center"
-                                    style={{ color: 'var(--text)' }}>
-                                    <i className="fas fa-project-diagram mr-2"></i> Methodologies
-                                </h3>
-                                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>OWASP Testing Guide</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>MITRE ATT&CK Framework</span>
-                                    </li>
-                                </ul>
-                            </div>
+            {/* AI/ML */}
+            <div className="hacker-card p-6 rounded-xl">
+                <h3 className="text-xl font-bold mb-4 flex items-center"
+                    style={{ color: 'var(--text)' }}>
+                    <i className="fas fa-brain mr-2"></i> AI/ML
+                </h3>
+                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Model development & training</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>ML system deployment</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Data pipeline engineering</span>
+                    </li>
+                </ul>
+            </div>
 
-                            {/* Specializations */}
-                            <div className="hacker-card p-6 rounded-xl">
-                                <h3 className="text-xl font-bold mb-4 flex items-center"
-                                    style={{ color: 'var(--text)' }}>
-                                    <i className="fas fa-star mr-2"></i> Specializations
-                                </h3>
-                                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>Web Application Security</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                        <span>API Security Testing</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* Embedded */}
+            <div className="hacker-card p-6 rounded-xl">
+                <h3 className="text-xl font-bold mb-4 flex items-center"
+                    style={{ color: 'var(--text)' }}>
+                    <i className="fas fa-microchip mr-2"></i> Embedded
+                </h3>
+                <ul className="space-y-3" style={{ color: 'var(--text)' }}>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Firmware development</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Hardware security</span>
+                    </li>
+                    <li className="flex items-start">
+                        <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
+                        <span>Low-level systems programming</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
         </>
     )
 }

@@ -4,21 +4,25 @@ export default function Hero() {
             <section className="pt-5 pb-50 px-6 border-b relative min-h-screen flex items-center justify-center overflow-hidden transition-colors"
                 style={{ borderColor: 'var(--border-primary)' }}>
                 <div className="container mx-auto max-w-4xl relative z-10">
-                    <div className="">
-                        <div className="mb-6 text-[var(--muted-foreground)]">
+                    <div className="mb-3 space-y-2 text-[var(--muted-foreground)]">
+                        <div className="">
                             <span style={{ color: 'var(--foreground)' }}>$</span> whoami
                         </div>
+
                         <h1
-                            className="text-[3.5rem] md:text-[6rem] lg:text-[9rem] mb-4"
+                            className="text-[3.5rem] md:text-[6rem] lg:text-[9rem] mb-1"
                             style={{
                                 fontFamily: "MR Robot,monospace",
                                 color: 'var(--logo-color)'
                             }}>
                             GRIMLABS
                         </h1>
+                        <div className="text-sm font-mono font-bold mb-2 tracking-wider" style={{ color: 'var(--muted-foreground)' }}>
+                            <span className="text-[var(--logo-color)]">→</span> by obed.gyamfi
+                        </div>
                         <div className="text-base md:text-lg mb-8 text-[var(--text)]"
                         >
-                            A solo research lab exploring AI/ML, Cybersecurity, and Embedded systems.
+                            An independent research lab focused on AI/ML, Cybersecurity, Embedded Systems, and scalable web architectures.
                         </div>
                     </div>
 
