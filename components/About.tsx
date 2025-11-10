@@ -2,7 +2,7 @@ export default function About() {
     const aboutParagraphs = [
         "I'm a fullstack developer specializing in web and mobile app security, as well as network penetration testing.",
         "With a background in Electrical and Electronic Engineering, I design circuits and write embedded software when I'm not ethically breaking into systems.",
-        "I also contribute to open-source security tools, write technical blogs, and share insights at security conferences worldwide.",
+        "I also contribute to open-source security tools and write technical blogs.",
     ];
     return (
         <>
