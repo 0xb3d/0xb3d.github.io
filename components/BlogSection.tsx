@@ -4,7 +4,7 @@ import BlogPageServer from "./BlogPageServer";
 export default function BlogSection() {
   return (
     <section id="blog" 
-             className="py-16 px-6 border-t transition-colors"
+             className="py-16 px-6 border-t border-b transition-colors"
              style={{ 
                backgroundColor: 'rgba(0, 0, 0, 0.05)',
                borderColor: 'var(--border-primary)'

@@ -28,20 +28,20 @@ export default function Header() {
                             GRIMLABS
                         </Link>
                         <ThemeSwitcher />
-                        <nav className="hidden md:flex space-x-6">
+                        <nav className="hidden md:flex space-x-16">
                             <Link
                                 href="/#about"
-                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] transition-colors"
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] font-bold transition-colors"
                             >
-                                <i className="fas fa-circle-info mr-2"></i>
+                                {/* <i className="fas fa-circle-info mr-2"></i> */}
                                 About
                             </Link>
 
                             <Link
                                 href="/projects"
-                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] transition-colors"
+                                className="text-[var(--muted-foreground)] hover:[color:var(--accent)] font-bold transition-colors"
                             >
-                                <i className="fas fa-folder-open mr-2"></i>
+                                {/* <i className="fas fa-folder-open mr-2"></i> */}
                                 Projects
                             </Link>
 
@@ -49,7 +49,7 @@ export default function Header() {
                                 href="/blog"
                                 className="text-[var(--muted-foreground)] hover:[color:var(--accent)] font-bold transition-colors"
                             >
-                                <i className="fas fa-file-code mr-2"></i>
+                                {/* <i className="fas fa-file-code mr-2"></i> */}
                                 Blog
                             </Link>
                         </nav>
@@ -69,23 +69,26 @@ export default function Header() {
                             <Link
                                 href="/#about"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
+                                className="block py-2 transition-colors font-bold text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-circle-info mr-2"></i>About
+                                {/* <i className="fas fa-circle-info mr-2"></i> */}
+                                About
                             </Link>
                             <Link
                                 href="/projects"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
+                                className="block py-2 transition-colors font-bold text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-folder-open mr-2"></i>Projects
+                                {/* <i className="fas fa-folder-open mr-2"></i> */}
+                                Projects
                             </Link>
                             <Link
                                 href="/blog"
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 transition-colors text-[var(--muted-foreground)]"
+                                className="block py-2 transition-colors font-bold text-[var(--muted-foreground)]"
                             >
-                                <i className="fas fa-file-code mr-2"></i>Blog
+                                {/* <i className="fas fa-file-code mr-2"></i> */}
+                                Blog
                             </Link>
                         </div>
                     )}

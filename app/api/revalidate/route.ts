@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     revalidatePath('/blog')
     revalidatePath('/blog/[slug]', 'page') // If you have individual post pages
     revalidatePath('/projects')
-    revalidatePath('/') // If homepage shows blog posts
+    revalidatePath('/', 'page') // If homepage shows blog posts
     
     return Response.json({ 
       revalidated: true, 
