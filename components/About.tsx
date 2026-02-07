@@ -1,42 +1,267 @@
+'use client';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ABOUT + DOMAINS + SKILLS — Renaissance Polymath Aesthetic
+   CSS vars: --accent, --muted-foreground, --border-primary, --foreground,
+             --background, --card-bg, --accent-dim, --anatomy-stroke
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Schematic Portrait SVG ─── */
+function SchematicPortrait() {
+    return (
+        <div className="relative w-full max-w-[280px] aspect-square">
+            {/* Outer frame */}
+            <div
+                className="absolute inset-0"
+                style={{ border: '1px solid var(--border-primary)' }}
+            />
+            <div
+                className="absolute inset-3"
+                style={{ border: '1px dashed var(--border-primary)', opacity: 0.5 }}
+            />
+
+            {/* Corner measurement ticks */}
+            {['top-0 left-0', 'top-0 right-0', 'bottom-0 left-0', 'bottom-0 right-0'].map((pos, i) => (
+                <div key={i} className={`absolute ${pos} w-4 h-4`}>
+                    <div
+                        className={`absolute ${pos} w-full h-px`}
+                        style={{ background: 'var(--accent)' }}
+                    />
+                    <div
+                        className={`absolute ${pos} h-full w-px`}
+                        style={{ background: 'var(--accent)' }}
+                    />
+                </div>
+            ))}
+
+            {/* SVG Schematic Figure */}
+            <svg
+                className="w-full h-full p-10 opacity-70"
+                viewBox="0 0 200 200"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                {/* Grid */}
+                <defs>
+                    <pattern id="aboutGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--border-primary)" strokeWidth="0.3" />
+                    </pattern>
+                </defs>
+                <rect width="200" height="200" fill="url(#aboutGrid)" />
+
+                {/* Central IC chip */}
+                <rect x="70" y="50" width="60" height="40" stroke="var(--muted-foreground)" strokeWidth="1" fill="none" />
+                <rect x="75" y="55" width="50" height="30" stroke="var(--border-primary)" strokeWidth="0.5" fill="none" />
+
+                {/* IC pins — left */}
+                {[58, 65, 72, 79].map((y) => (
+                    <line key={`l${y}`} x1="70" y1={y} x2="55" y2={y} stroke="var(--muted-foreground)" strokeWidth="0.5" />
+                ))}
+                {/* IC pins — right */}
+                {[58, 65, 72, 79].map((y) => (
+                    <line key={`r${y}`} x1="130" y1={y} x2="145" y2={y} stroke="var(--muted-foreground)" strokeWidth="0.5" />
+                ))}
+
+                {/* Spine / data bus */}
+                <line x1="100" y1="90" x2="100" y2="140" stroke="var(--accent)" strokeWidth="1" />
+                <line x1="95" y1="90" x2="95" y2="130" stroke="var(--border-primary)" strokeWidth="0.5" />
+                <line x1="105" y1="90" x2="105" y2="130" stroke="var(--border-primary)" strokeWidth="0.5" />
+
+                {/* Arms / peripheral buses */}
+                <line x1="55" y1="100" x2="85" y2="100" stroke="var(--muted-foreground)" strokeWidth="0.5" />
+                <line x1="115" y1="100" x2="145" y2="100" stroke="var(--muted-foreground)" strokeWidth="0.5" />
+
+                {/* I/O nodes */}
+                <circle cx="50" cy="100" r="4" stroke="var(--muted-foreground)" strokeWidth="0.5" fill="none" />
+                <circle cx="50" cy="100" r="1.5" fill="var(--accent)" opacity="0.4" />
+                <circle cx="150" cy="100" r="4" stroke="var(--muted-foreground)" strokeWidth="0.5" fill="none" />
+                <circle cx="150" cy="100" r="1.5" fill="var(--accent)" opacity="0.4" />
+
+                {/* Legs / ground planes */}
+                <line x1="90" y1="140" x2="80" y2="165" stroke="var(--muted-foreground)" strokeWidth="0.5" />
+                <line x1="110" y1="140" x2="120" y2="165" stroke="var(--muted-foreground)" strokeWidth="0.5" />
+
+                {/* Ground symbols */}
+                <path d="M 75 168 L 85 168 M 77 171 L 83 171 M 79 174 L 81 174" stroke="var(--muted-foreground)" strokeWidth="0.5" fill="none" />
+                <path d="M 115 168 L 125 168 M 117 171 L 123 171 M 119 174 L 121 174" stroke="var(--muted-foreground)" strokeWidth="0.5" fill="none" />
+
+                {/* Annotation */}
+                <text x="100" y="195" textAnchor="middle" fill="var(--border-primary)" fontSize="6" fontFamily="monospace">
+                    UNIT: HUMAN
+                </text>
+            </svg>
+
+            {/* Figure label */}
+            <div
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[4px] uppercase whitespace-nowrap"
+                style={{ color: 'var(--muted-foreground)' }}
+            >
+                Fig. 01
+            </div>
+        </div>
+    );
+}
+
+/* ─── Main Component ─── */
 export default function About() {
     const aboutParagraphs = [
         "I'm a fullstack developer specializing in web and mobile app security, as well as network penetration testing.",
         "With a background in Electrical and Electronic Engineering, I design circuits and write embedded software when I'm not ethically breaking into systems.",
         "I also contribute to open-source security tools and write technical blogs.",
     ];
+
+    const stats = [
+        { label: 'DOMAINS', value: '04' },
+        { label: 'YEARS', value: '1+' },
+        { label: 'PROJECTS', value: '1+' },
+    ];
+
+    const domains = [
+        {
+            number: '01',
+            name: 'Cybersecurity',
+            desc: 'Vulnerability research, penetration testing, binary analysis across network, web, and embedded attack surfaces.',
+        },
+        {
+            number: '02',
+            name: 'Embedded Systems',
+            desc: 'Firmware development, PCB design, hardware hacking, circuit analysis, and microcontroller programming.',
+        },
+        {
+            number: '03',
+            name: 'AI & Computation',
+            desc: 'Machine learning, computational theory, mathematical foundations, and applied algorithm design.',
+        },
+        {
+            number: '04',
+            name: 'Full-Stack & Web3',
+            desc: 'Scalable architectures, smart contract development, DeFi protocols, and modern web platforms.',
+        },
+    ];
+
+    const skills = [
+        {
+            title: 'Security',
+            items: [
+                'Web application pentesting',
+                'Network security assessment',
+                'Vulnerability research',
+                'Binary exploitation',
+                'Reverse engineering',
+                'OSINT',
+            ],
+        },
+        {
+            title: 'Development',
+            items: [
+                'Full-stack web (React / Next.js)',
+                'API design & implementation',
+                'Cloud infrastructure',
+                'TypeScript / Python / Go',
+                'Docker / Linux admin',
+                'Git workflows',
+            ],
+        },
+        {
+            title: 'AI / ML',
+            items: [
+                'Model development & training',
+                'ML system deployment',
+                'Data pipeline engineering',
+                'Computational theory',
+                'Applied mathematics',
+                'Algorithm design',
+            ],
+        },
+        {
+            title: 'Hardware',
+            items: [
+                'Firmware development',
+                'PCB design (KiCad)',
+                'Circuit analysis',
+                'JTAG / SWD debugging',
+                'Embedded Linux',
+                'RF basics',
+            ],
+        },
+    ];
+
     return (
         <>
-            <section id="about"
-                className="py-16 px-6 backdrop-blur-sm transition-colors"
-                style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}>
-                <div className="container mx-auto max-w-4xl">
-                    <div className="">
-                        <h2 className="text-2xl md:text-3xl font-bold mb-6"
-                            style={{ color: 'var(--text)' }}>
-                            <span style={{ color: 'var(--accent)' }}></span> /about
-                        </h2>
+            {/* ═══════════ ABOUT ═══════════ */}
+            <section id="about" className="relative py-36 px-6 md:px-10">
+                <div className="container mx-auto max-w-6xl">
+                    {/* Section header */}
+                    <div className="section-marker mb-4">001 — About</div>
+                    <h2
+                        className="mb-16"
+                        style={{
+                            fontSize: 'clamp(32px, 4vw, 56px)',
+                            fontWeight: 300,
+                            lineHeight: 1.1,
+                            letterSpacing: '-1px',
+                            color: 'var(--foreground)',
+                        }}
+                    >
+                        Profile
+                    </h2>
 
-                        <div className="flex flex-col md:flex-row items-center gap-8">
-                            <div className="md:w-1/3 flex justify-center">
-                                <div className="w-48 h-48 rounded-full flex items-center justify-center overflow-hidden border-4 relative"
-                                    style={{
-                                        backgroundColor: 'var(--card-bg)',
-                                        borderColor: 'var(--border-primary)'
-                                    }}>
-                                    <i className="fas fa-user-secret text-6xl"
-                                        style={{ color: 'var(--foreground)' }}></i>
-                                    <div className="absolute inset-0 rounded-full border-2 animate-spin-slow"
-                                        style={{ borderColor: 'var(--border-primary)', opacity: 0.3 }}></div>
-                                </div>
+                    {/* Content grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
+                        {/* Left — Schematic Portrait */}
+                        <div className="lg:col-span-4 flex justify-center lg:justify-start pt-4">
+                            <SchematicPortrait />
+                        </div>
+
+                        {/* Center — Bio */}
+                        <div className="lg:col-span-5">
+                            <div className="space-y-5">
+                                {aboutParagraphs.map((text, index) => (
+                                    <p
+                                        key={index}
+                                        style={{
+                                            fontSize: '13px',
+                                            lineHeight: 1.9,
+                                            fontWeight: 300,
+                                            color: index === 0
+                                                ? 'var(--foreground)'
+                                                : 'var(--muted-foreground)',
+                                        }}
+                                    >
+                                        {text}
+                                    </p>
+                                ))}
                             </div>
 
-                            <div className="md:w-2/3">
-                                {aboutParagraphs.map((text, index) => (
-                                    <p key={index}
-                                        className={`text-lg italic ${index === aboutParagraphs.length - 1 ? 'mb-6' : 'mb-4'}`}
-                                        style={{ color: 'var(--foreground)' }}>
-                                        <span style={{ color: 'var(--muted-foreground)' }}>$</span> {text}
-                                    </p>
+                            <div className="red-line mt-10" />
+                        </div>
+
+                        {/* Right — Stats */}
+                        <div className="lg:col-span-3">
+                            <div
+                                className="lg:border-l lg:pl-12 space-y-10"
+                                style={{ borderColor: 'var(--border-primary)' }}
+                            >
+                                {stats.map((stat, i) => (
+                                    <div key={i}>
+                                        <div
+                                            className="text-[10px] tracking-[4px] uppercase mb-2"
+                                            style={{ color: 'var(--accent)' }}
+                                        >
+                                            {stat.label}
+                                        </div>
+                                        <div
+                                            className=""
+                                            style={{
+                                                fontSize: '40px',
+                                                fontWeight: 300,
+                                                lineHeight: 1,
+                                                color: 'var(--foreground)',
+                                            }}
+                                        >
+                                            {stat.value}
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -44,110 +269,128 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Skills Section */}
-            <section id="skills"
-                className="py-16 px-6 border-t border-b transition-colors"
-                style={{
-                    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                    borderColor: 'var(--border-primary)'
-                }}>
-                <div className="container mx-auto max-w-4xl">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-8"
-                        style={{ color: 'var(--text)' }}>
-                        <span style={{ color: 'var(--accent)' }}></span> /skills
+            {/* ═══════════ RESEARCH DOMAINS ═══════════ */}
+            <section
+                id="domains"
+                className="relative py-36 px-6 md:px-10"
+            >
+                <div className="container mx-auto max-w-6xl">
+                    {/* Section header */}
+                    <div className="section-marker mb-4">002 — Domains</div>
+                    <h2
+                        className=" mb-16"
+                        style={{
+                            fontSize: 'clamp(32px, 4vw, 56px)',
+                            fontWeight: 300,
+                            lineHeight: 1.1,
+                            letterSpacing: '-1px',
+                            color: 'var(--foreground)',
+                        }}
+                    >
+                        Research<br />Domains
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Security */}
-                        <div className="hacker-card p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-4 flex items-center"
-                                style={{ color: 'var(--text)' }}>
-                                <i className="fas fa-shield-alt mr-2"></i> Security
-                            </h3>
-                            <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Web application pentesting</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Network security assessment</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Vulnerability research</span>
-                                </li>
-                            </ul>
-                        </div>
+                    {/* Domain cards — 1px gap grid */}
+                    <div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                        style={{
+                            gap: '1px',
+                            background: 'var(--border-primary)',
+                        }}
+                    >
+                        {domains.map((d) => (
+                            <div
+                                key={d.number}
+                                className="grim-card p-8 cursor-crosshair"
+                                style={{ background: 'var(--background)' }}
+                            >
+                                <div className="domain-number mb-3">{d.number}</div>
+                                <h3
+                                    className="mb-3"
+                                    style={{
+                                        fontSize: '20px',
+                                        fontWeight: 400,
+                                        color: 'var(--foreground)',
+                                        letterSpacing: '0.3px',
+                                    }}
+                                >
+                                    {d.name}
+                                </h3>
+                                <p
+                                    style={{
+                                        fontSize: '12px',
+                                        color: 'var(--muted-foreground)',
+                                        lineHeight: 1.8,
+                                        fontWeight: 300,
+                                    }}
+                                >
+                                    {d.desc}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-                        {/* Development */}
-                        <div className="hacker-card p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-4 flex items-center"
-                                style={{ color: 'var(--text)' }}>
-                                <i className="fas fa-code mr-2"></i> Development
-                            </h3>
-                            <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Full-stack web development</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>API design & implementation</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Cloud infrastructure</span>
-                                </li>
-                            </ul>
-                        </div>
+            {/* ═══════════ TECHNICAL CARTOGRAPHY (SKILLS) ═══════════ */}
+            <section
+                id="skills"
+                className="relative py-36 px-6 md:px-10 border-t"
+                style={{ borderColor: 'var(--border-primary)' }}
+            >
+                <div className="container mx-auto max-w-6xl">
+                    {/* Section header */}
+                    <div className="section-marker mb-4">003 — Knowledge</div>
+                    <h2
+                        className="mb-16"
+                        style={{
+                            fontSize: 'clamp(32px, 4vw, 56px)',
+                            fontWeight: 300,
+                            lineHeight: 1.1,
+                            letterSpacing: '-1px',
+                            color: 'var(--foreground)',
+                        }}
+                    >
+                        Technical<br />Cartography
+                    </h2>
 
-                        {/* AI/ML */}
-                        <div className="hacker-card p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-4 flex items-center"
-                                style={{ color: 'var(--text)' }}>
-                                <i className="fas fa-brain mr-2"></i> AI/ML
-                            </h3>
-                            <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Model development & training</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>ML system deployment</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Data pipeline engineering</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Embedded */}
-                        <div className="hacker-card p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-4 flex items-center"
-                                style={{ color: 'var(--text)' }}>
-                                <i className="fas fa-microchip mr-2"></i> Embedded
-                            </h3>
-                            <ul className="space-y-3" style={{ color: 'var(--text)' }}>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Firmware development</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Hardware security</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="mr-2" style={{ color: 'var(--muted-foreground)' }}>■</span>
-                                    <span>Low-level systems programming</span>
-                                </li>
-                            </ul>
-                        </div>
+                    {/* Skills grid — clean 4-column list */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                        {skills.map((skill, index) => (
+                            <div key={index}>
+                                <div
+                                    className="text-[14px] font-bold tracking-[4px] uppercase mb-5"
+                                    style={{ color: 'var(--accent)'}}
+                                >
+                                    {skill.title}
+                                </div>
+                                <ul className="list-none p-0 m-0">
+                                    {skill.items.map((item, i) => (
+                                        <li
+                                            key={i}
+                                            className="py-[6px] transition-colors duration-300 cursor-default"
+                                            style={{
+                                                fontSize: '13px',
+                                                fontWeight: 300,
+                                                color: 'var(--muted-foreground)',
+                                                borderBottom: '1px solid var(--border-primary)',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.color = 'var(--foreground)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.color = 'var(--muted-foreground)';
+                                            }}
+                                        >
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
         </>
-    )
+    );
 }

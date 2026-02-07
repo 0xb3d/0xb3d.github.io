@@ -130,6 +130,16 @@ export const projectType = defineType({
       type: 'number',
       description: 'Lower numbers appear first',
     }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      },
+      description: 'e.g., security, electronics, web, physics, ai/ml',
+    }),
   ],
   orderings: [
     {

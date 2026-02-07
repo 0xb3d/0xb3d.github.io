@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 /* ─── LIGHT MODE ─── */
@@ -17,20 +17,20 @@
   --primary: #0a0a0a;
   --secondary: #d4d0cb;
   --background: #f5f2ed;
-  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-bg: #eeebe5;
   --text: #1a1a1a;
   --accent: #b91c1c;
   --accent-dim: rgba(185, 28, 28, 0.08);
   --accent-glow: rgba(185, 28, 28, 0.2);
-  --muted-foreground: #5c5855;
+  --muted-foreground: #78736c;
   --foreground: #0a0a0a;
 
   --logo-color: #0a0a0a;
 
-  --grid-color: rgba(0, 0, 0, 0.06);
-  --trace-color: rgba(0, 0, 0, 0.1);
+  --grid-color: rgba(0, 0, 0, 0.035);
+  --trace-color: rgba(0, 0, 0, 0.06);
 
-  --border-primary: rgba(0, 0, 0, 0.12);
+  --border-primary: rgba(0, 0, 0, 0.1);
   --border-hover: var(--accent);
 
   --shadow-primary: rgba(0, 0, 0, 0.04);
@@ -39,41 +39,33 @@
 
   --led-color: var(--accent);
 
-  --anatomy-stroke: rgba(0, 0, 0, 0.372);
-  --anatomy-stroke-strong: rgba(0, 0, 0, 0.2);
-  --chem-text: rgba(0, 0, 0, 0.08);
+  --anatomy-stroke: rgba(0, 0, 0, 0.08);
+  --anatomy-stroke-strong: rgba(0, 0, 0, 0.14);
+  --chem-text: rgba(0, 0, 0, 0.06);
 
-  /* Renaissance semantic aliases */
-  --black: #0a0a0a;
-  --white: #1a1a1a;
-  --white-dim: rgba(0, 0, 0, 0.55);
-  --red: #b91c1c;
-  --trace-line: rgba(0, 0, 0, 0.12);
-  --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
-
-    /* Custom crosshair — dark for light backgrounds */
+  /* Custom crosshair — dark for light backgrounds */
   --cursor-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cline x1='12' y1='2' x2='12' y2='10' stroke='%230a0a0a' stroke-width='1.2'/%3E%3Cline x1='12' y1='14' x2='12' y2='22' stroke='%230a0a0a' stroke-width='1.2'/%3E%3Cline x1='2' y1='12' x2='10' y2='12' stroke='%230a0a0a' stroke-width='1.2'/%3E%3Cline x1='14' y1='12' x2='22' y2='12' stroke='%230a0a0a' stroke-width='1.2'/%3E%3C/svg%3E");
 }
 
 /* ─── DARK MODE ─── */
 .dark {
-  --primary: #f0ece7;
+  --primary: #e8e4df;
   --secondary: #1a1917;
   --background: #0a0a0a;
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --text: #f0ece7;
+  --card-bg: #111110;
+  --text: #e8e4df;
   --accent: #dc2626;
   --accent-dim: rgba(220, 38, 38, 0.1);
   --accent-glow: rgba(220, 38, 38, 0.3);
-  --muted-foreground: #a8a29e;
-  --foreground: #f0ece7;
+  --muted-foreground: #8a857e;
+  --foreground: #e8e4df;
 
   --logo-color: #dc2626;
 
-  --grid-color: rgba(255, 255, 255, 0.04);
-  --trace-color: rgba(255, 255, 255, 0.06);
+  --grid-color: rgba(232, 228, 223, 0.025);
+  --trace-color: rgba(232, 228, 223, 0.04);
 
-  --border-primary: rgba(255, 255, 255, 0.1);
+  --border-primary: rgba(232, 228, 223, 0.08);
   --border-hover: var(--accent);
 
   --shadow-primary: rgba(0, 0, 0, 0.3);
@@ -82,20 +74,11 @@
 
   --led-color: #dc2626;
 
-  --anatomy-stroke: rgba(255, 255, 255, 0.27);
-  --anatomy-stroke-strong: rgba(255, 255, 255, 0.15);
-  --chem-text: rgba(255, 255, 255, 0.06);
+  --anatomy-stroke: rgba(232, 228, 223, 0.06);
+  --anatomy-stroke-strong: rgba(232, 228, 223, 0.12);
+  --chem-text: rgba(232, 228, 223, 0.05);
 
-  /* Renaissance semantic aliases */
-  --black: #0a0a0a;
-  --white: #f0ece7;
-  --white-dim: rgba(255, 255, 255, 0.5);
-  --red: #dc2626;
-  --trace-line: rgba(255, 255, 255, 0.1);
-  --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 
-    /* Custom crosshair — light for dark backgrounds */
-  --cursor-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cline x1='12' y1='2' x2='12' y2='10' stroke='%23e8e4df' stroke-width='1.2'/%3E%3Cline x1='12' y1='14' x2='12' y2='22' stroke='%23e8e4df' stroke-width='1.2'/%3E%3Cline x1='2' y1='12' x2='10' y2='12' stroke='%23e8e4df' stroke-width='1.2'/%3E%3Cline x1='14' y1='12' x2='22' y2='12' stroke='%23e8e4df' stroke-width='1.2'/%3E%3C/svg%3E");
 }
 
 /* ─── FONTS ─── */
@@ -116,16 +99,16 @@ html {
 body {
   background-color: var(--background);
   color: var(--text);
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  font-size: 16px;
-  font-weight: 450;
+  font-family: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 300;
   line-height: 1.7;
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 80px 80px;
   transition: background-color 0.4s ease, color 0.4s ease;
-  cursor: var(--cursor-svg) 14 14, crosshair;
+  cursor: var(--cursor-svg) 12 12, crosshair;
 }
 
 ::selection {
@@ -158,20 +141,16 @@ body {
 }
 
 .font-mono-body {
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-}
-
-.font-sans-body {
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', 'Geist Mono', monospace;
 }
 
 /* ─── SECTION MARKER ─── */
 .section-marker {
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--accent);
-  font-weight: 700;
+  font-weight: 400;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -225,9 +204,9 @@ body {
 
 /* ─── BUTTONS ─── */
 .grim-btn {
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  font-size: 12px;
-  font-weight: 500;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
   padding: 12px 28px;
@@ -246,9 +225,9 @@ body {
 }
 
 .grim-btn-filled {
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  font-size: 12px;
-  font-weight: 500;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
   padding: 12px 28px;
@@ -270,9 +249,9 @@ body {
   border: 1px solid var(--border-primary);
   color: var(--text);
   padding: 12px 16px;
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  font-size: 14px;
-  font-weight: 450;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 300;
   transition: all 0.3s ease;
 }
 
@@ -352,10 +331,10 @@ body {
 
 /* ─── DOMAIN CARD NUMBER ─── */
 .domain-number {
-  font-size: 12px;
+  font-size: 10px;
   color: var(--accent);
   letter-spacing: 3px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* ─── PROJECT ROW HOVER ─── */
@@ -377,7 +356,6 @@ body {
   padding: 4px 10px;
   border: 1px solid var(--border-primary);
   transition: all 0.3s;
-  font-weight: 500;
 }
 
 .project-row:hover .tag-pill {
@@ -397,15 +375,14 @@ body {
 
 /* ─── PGP KEY BOX ─── */
 .pgp-box {
-  font-size: 12px;
+  font-size: 10px;
   color: var(--muted-foreground);
   padding: 20px;
   border: 1px solid var(--border-primary);
   letter-spacing: 1px;
   line-height: 1.8;
   position: relative;
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  font-weight: 450;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 .pgp-box::before {
@@ -418,18 +395,12 @@ body {
   font-size: 9px;
   letter-spacing: 3px;
   color: var(--accent);
-  font-weight: 500;
-}
-
-/* ─── TRANSPARENT SECTIONS (allow grid to show through) ─── */
-section {
-  background: transparent !important;
 }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   body {
-    font-size: 15px;
+    font-size: 13px;
     background-size: 40px 40px;
   }
 }

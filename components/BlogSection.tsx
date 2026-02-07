@@ -3,24 +3,39 @@ import BlogPageServer from "./BlogPageServer";
 
 export default function BlogSection() {
   return (
-    <section id="blog" 
-             className="py-16 px-6 border-t border-b transition-colors"
-             style={{ 
-               backgroundColor: 'rgba(0, 0, 0, 0.05)',
-               borderColor: 'var(--border-primary)'
-             }}>
-      <div className="container mx-auto max-w-4xl">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8"
-            style={{ color: 'var(--text)' }}>
-          <span style={{ color: 'var(--accent)' }}></span> /blog
+    <section
+      id="blog"
+      className="relative py-36 px-10"
+    >
+      <div className="container mx-auto max-w-[1200px]">
+        {/* Section header */}
+        <div className="section-marker mb-4">004 — Writings</div>
+        <h2
+          className="mb-16"
+          style={{
+            fontSize: 'clamp(32px, 4vw, 56px)',
+            fontWeight: 300,
+            lineHeight: 1.1,
+            letterSpacing: '-1px',
+            color: 'var(--foreground)',
+          }}
+        >
+          Research<br />Notes
         </h2>
-        
-        {/* Show only 3 posts on homepage */}
-        <BlogPageServer limit={3} />
 
-        <div className="text-center mt-12">
-          <Link href="/blog" className="hacker-btn text-lg">
-            <i className="fas fa-book-open mr-2"></i>View All Articles
+        {/* Blog posts grid */}
+        <BlogPageServer limit={4} />
+
+        {/* View all link */}
+        <div className="mt-16 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-4 text-[11px] tracking-[3px] uppercase transition-colors duration-300 hover:text-[var(--red)]"
+            style={{ color: 'var(--white-dim)' }}
+          >
+            <span className="w-8 h-px" style={{ background: 'var(--trace-line)' }} />
+            View All Articles
+            <span className="w-8 h-px" style={{ background: 'var(--trace-line)' }} />
           </Link>
         </div>
       </div>

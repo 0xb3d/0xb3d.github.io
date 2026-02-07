@@ -1,7 +1,7 @@
 // components/BlogPageClient.tsx
-'use client'
+'use client';
 
-import Link from "next/link"
+import Link from "next/link";
 
 type Blog = {
   _id: string;
@@ -14,43 +14,82 @@ type Blog = {
   tags?: string[];
 };
 
-export default function BlogPage({ blogs }: { blogs: Blog[] }) {
+function formatDate(date: string | Date): string {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = d.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+  return `${year} — ${month}`;
+}
+
+export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
   return (
-    <div className="space-y-8">
+    <div
+      className="grid grid-cols-1 md:grid-cols-2"
+      style={{ background: '', gap: '1px' }}
+    >
       {blogs.map((blog) => (
-        <div key={blog._id} className="hacker-card p-6 rounded-lg">
-          <div className="flex items-center text-sm mb-3 font-mono"
-            style={{ color: 'var(--muted-foreground)' }}>
-            <span>{new Date(blog.date).toDateString()}</span>
-            <span className="mx-2" style={{ color: 'var(--muted-foreground)' }}>|</span>
-            <span>{blog.category}</span>
-            <span className="mx-2" style={{ color: 'var(--muted-foreground)' }}>|</span>
-            <span>{blog.readTime}</span>
+        <Link
+          key={blog._id}
+          href={blog.link}
+          className="group relative block p-12 transition-all duration-400 cursor-crosshair"
+          style={{ background: 'var(--background)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(244, 128, 128, 0.35)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'var(--background)';
+          }}
+        >
+          {/* Date + Category */}
+          <div
+            className="text-[10px] tracking-[2px] uppercase mb-4"
+            style={{ color: 'var(--muted-foreground)' }}
+          >
+            {formatDate(blog.date)} — <span style={{ color: 'var(--accent)' }}>{blog.category}</span>
           </div>
-          <h3 className="text-xl font-bold mb-3"
-            style={{ color: 'var(--text)' }}>
-            <Link href={blog.link}
-              className="hover:text-accent transition-colors"
-              style={{ color: 'var(--text)' }}>
-              {blog.title}
-            </Link>
+
+          {/* Title */}
+          <h3
+            className="text-[22px] leading-[1.3] mb-3 transition-colors duration-300"
+            style={{ color: 'var(--foreground)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--accent)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--foreground)';
+            }}
+          >
+            {blog.title}
           </h3>
-          <p className="mb-4"
-            style={{ color: 'var(--text)' }}>
+
+          {/* Description */}
+          <p
+            className="text-[12px] leading-[1.8] pr-8"
+            style={{ color: 'var(--muted-foreground)', fontWeight: 300 }}
+          >
             {blog.description}
           </p>
-          <div className="flex items-center gap-22">
-            <Link href={blog.link}
-              className="font-mono border rounded-lg px-4 py-1 hover:text-[var(--background)] hover:bg-[var(--foreground)] text-sm transition-colors">
-              Read
-            </Link>
-            <span className="text-sm font-mono flex-1 sm:flex-initial sm:text-right"
-              style={{ color: 'var(--muted-foreground)' }}>
-              {blog.tags?.map((tag: string) => `#${tag}`).join(" ")}
-            </span>
-          </div>
-        </div>
+
+          {/* Arrow */}
+          <span
+            className="absolute bottom-12 right-12 text-[18px] transition-all duration-400 group-hover:translate-x-1 group-hover:-translate-y-1"
+            style={{ color: 'var(--border-primary)' }}
+            ref={(el) => {
+              if (!el) return;
+              const parent = el.closest('.group');
+              if (!parent) return;
+              parent.addEventListener('mouseenter', () => {
+                el.style.color = 'var(--accent)';
+              });
+              parent.addEventListener('mouseleave', () => {
+                el.style.color = 'var(--border-primary)';
+              });
+            }}
+          >
+            ↗
+          </span>
+        </Link>
       ))}
     </div>
-  )
+  );
 }
