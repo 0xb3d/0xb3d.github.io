@@ -116,7 +116,7 @@ export default function Hero() {
                                 color: 'var(--text)',
                             }}
                         >
-                            ZFT
+                            GRIM
                             <br />
                             <span style={{ color: 'var(--red)' }}>LABS</span>
                         </h1>

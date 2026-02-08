@@ -30,7 +30,7 @@ export default function Header() {
                             className="text-[20px] tracking-[4px] uppercase"
                             style={{ color: 'var(--foreground)', fontFamily: 'var(--font-jetbrains)', fontWeight: 700 }}
                         >
-                            ZFT LABS
+                            GRIM LABS
                         </span>
                     </Link>
 

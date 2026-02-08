@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import PolymathDecorations from "@/components/PolyMathDecorations";
+import GridOverlay from "@/components/GridOverlay";  // ← Add import
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -23,8 +24,8 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "ZFTLABS", 
-  description: "ZFTLabs Research Website",
+  title: "GRIMLABS", 
+  description: "GRIMLABS — a public, long-term independent research and tinkering lab. Exploring, building, and documenting experimental projects in engineering, technology, and scientific inquiry.",
 };
 
 export default function RootLayout({
@@ -38,12 +39,19 @@ export default function RootLayout({
         className={`${jetbrainsMono.variable} ${cormorantGaramond.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header />
+          {/* Grid first (lowest z-index) */}
+          <GridOverlay pattern="hybrid" gridSize={40} cornerEmphasis={true} />
+          {/* <GridOverlay pattern="dots" dotSize={2} /> */}
+          {/* <GridOverlay pattern="blueprint" /> */}
+          
+          {/* Then decorations */}
           <PolymathDecorations
             fixed={true}
             density='medium'
-            opacityMultiplier={0.5}
+            opacityMultiplier={0.4}
           />
+          
+          <Header />
           {children}
           <Footer />
         </ThemeProvider>

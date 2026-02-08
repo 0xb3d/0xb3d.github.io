@@ -104,11 +104,12 @@ function SchematicPortrait() {
 
 /* ─── Main Component ─── */
 export default function About() {
+
     const aboutParagraphs = [
-        "I'm a fullstack developer specializing in web and mobile app security, as well as network penetration testing.",
-        "With a background in Electrical and Electronic Engineering, I design circuits and write embedded software when I'm not ethically breaking into systems.",
-        "I also contribute to open-source security tools and write technical blogs.",
-    ];
+        "Grim Labs is a public, independent research and engineering lab dedicated to building, testing, and refining ideas over the long term.", 
+        "We explore innovative solutions across technology and science, documenting our work openly to engage collaborators and share insights with the broader community.",
+        "Our goal is to make research and experimentation accessible, meaningful, and impactful for everyone involved.",
+    ]
 
     const stats = [
         { label: 'DOMAINS', value: '04' },
