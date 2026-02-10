@@ -41,8 +41,6 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {/* Grid first (lowest z-index) */}
           <GridOverlay pattern="hybrid" gridSize={40} cornerEmphasis={true} />
-          {/* <GridOverlay pattern="dots" dotSize={2} /> */}
-          {/* <GridOverlay pattern="blueprint" /> */}
           
           {/* Then decorations */}
           <PolymathDecorations

@@ -1,5 +1,5 @@
 // app/api/revalidate/route.ts
-import { revalidatePath } from 'next/cache'
+import { revalidateTag, revalidatePath } from 'next/cache'
 import { NextRequest } from 'next/server'
 
 export async function POST(request: NextRequest) {
@@ -10,10 +10,18 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    revalidatePath('/blog')
-    revalidatePath('/blog/[slug]', 'page') // If you have individual post pages
-    revalidatePath('/projects')
-    revalidatePath('/', 'page') // If homepage shows blog posts
+
+    // revalidate by tag 
+    // revalidateTag('posts')
+    // revalidateTag('projects')
+    // revalidateTag('sanity')
+
+    // revalidate paths
+    // revalidatePath('/blog')
+    // revalidatePath('/blog/[slug]', 'page') // If you have individual post pages
+    // revalidatePath('/projects')
+    // revalidatePath('/', 'page') // If homepage shows blog postsa
+    revalidatePath('/', 'layout')
     
     return Response.json({ 
       revalidated: true, 

@@ -6,6 +6,8 @@ import BlogSection from "@/components/BlogSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import About from "@/components/About";
 
+export const revalidate = 10
+
 export default function Home() {
   return (
     <>
