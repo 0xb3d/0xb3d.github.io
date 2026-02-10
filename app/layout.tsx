@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${jetbrainsMono.variable} ${cormorantGaramond.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="System" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {/* Grid first (lowest z-index) */}
           <GridOverlay pattern="hybrid" gridSize={40} cornerEmphasis={true} />
           
