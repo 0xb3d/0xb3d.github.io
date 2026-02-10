@@ -119,7 +119,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
   }
 
   return (
-    <div className="my-8 not-prose relative group">
+    <div className="my-8 not-prose relative group max-w-full overflow-hidden">
       {/* Override any conflicting hljs background styles */}
       <style jsx global>{`
         .hljs {
@@ -222,7 +222,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
 
       {/* ─── Code Area ─── */}
       <div 
-        className="relative"
+        className="relative overflow-hidden"
         style={{
           background: 'var(--card-bg)',
         }}
@@ -248,7 +248,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
 
         {/* Code content */}
         <pre 
-          className="!m-0 overflow-x-auto text-[13px] leading-[1.7] py-4 sm:pl-16 pl-4 pr-4"
+          className="!m-0 overflow-x-auto text-[13px] leading-[1.7] py-4 sm:pl-16 pl-4 pr-4 max-w-full"
           style={{
             background: 'transparent',
           }}
