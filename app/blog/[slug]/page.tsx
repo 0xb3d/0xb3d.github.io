@@ -278,14 +278,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           HEADER
          ═══════════════════════════════════════════════════════════════ */}
       <header 
-        className="relative pt-18 pb-8 px-6 md:px-10 lg:px-18"
+        className="relative pt-24 pb-16 px-6 md:px-10 lg:px-16"
         style={{ borderBottom: '1px solid var(--trace-line)' }}
       >
         <div className="max-w-[1400px] mx-auto">
           {/* Back link */}
           <Link 
             href="/blog" 
-            className="inline-flex items-center gap-3 text-[10px] tracking-[3px] uppercase mb-14 hover:text-[var(--text)] transition-colors" 
+            className="inline-flex items-center gap-3 text-[10px] tracking-[3px] uppercase mb-16 hover:text-[var(--text)] transition-colors" 
             style={{ color: 'var(--white-dim)' }}
           >
             <span>←</span>
@@ -314,7 +314,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Title */}
           <h1 
-            className="text-[clamp(32px,6vw,54px)] leading-[1.1] tracking-[-1px] mb-8 max-w-[900px]" 
+            className="text-[clamp(32px,6vw,56px)] leading-[1.1] tracking-[-1px] mb-10 max-w-[900px]" 
             style={{ color: 'var(--text)' }}
           >
             {post.title}
@@ -352,7 +352,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Red accent line */}
-          <div className="w-20 h-px mt-8" style={{ background: 'var(--red)' }} />
+          <div className="w-20 h-px mt-12" style={{ background: 'var(--red)' }} />
         </div>
       </header>
 
