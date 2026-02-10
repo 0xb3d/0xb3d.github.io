@@ -278,14 +278,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           HEADER
          ═══════════════════════════════════════════════════════════════ */}
       <header 
-        className="relative pt-24 pb-16 px-6 md:px-10 lg:px-16"
+        className="relative pt-18 pb-8 px-6 md:px-10 lg:px-18"
         style={{ borderBottom: '1px solid var(--trace-line)' }}
       >
         <div className="max-w-[1400px] mx-auto">
           {/* Back link */}
           <Link 
             href="/blog" 
-            className="inline-flex items-center gap-3 text-[10px] tracking-[3px] uppercase mb-16 hover:text-[var(--text)] transition-colors" 
+            className="inline-flex items-center gap-3 text-[10px] tracking-[3px] uppercase mb-14 hover:text-[var(--text)] transition-colors" 
             style={{ color: 'var(--white-dim)' }}
           >
             <span>←</span>
@@ -314,7 +314,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Title */}
           <h1 
-            className="text-[clamp(32px,6vw,56px)] leading-[1.1] tracking-[-1px] mb-10 max-w-[900px]" 
+            className="text-[clamp(32px,6vw,54px)] leading-[1.1] tracking-[-1px] mb-8 max-w-[900px]" 
             style={{ color: 'var(--text)' }}
           >
             {post.title}
@@ -352,14 +352,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Red accent line */}
-          <div className="w-20 h-px mt-12" style={{ background: 'var(--red)' }} />
+          <div className="w-20 h-px mt-8" style={{ background: 'var(--red)' }} />
         </div>
       </header>
 
       {/* ═══════════════════════════════════════════════════════════════
           MAIN CONTENT AREA
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="max-w-[1600px] mx-auto py-16">
+      <div className="max-w-[1600px] mx-auto py-12">
         {/* Asymmetric padding: less on left for TOC, more on right */}
         <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-8 lg:gap-12 pl-4 lg:pl-6 pr-6 md:pr-10 lg:pr-16">
           
