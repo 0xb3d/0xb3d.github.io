@@ -223,7 +223,7 @@ export default function About() {
                                         style={{
                                             fontSize: '13px',
                                             lineHeight: 1.9,
-                                            fontWeight: 300,
+                                            fontWeight: 400,
                                             color: index === 0
                                                 ? 'var(--foreground)'
                                                 : 'var(--muted-foreground)',

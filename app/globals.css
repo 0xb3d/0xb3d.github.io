@@ -14,16 +14,16 @@
 
 /* ─── LIGHT MODE ─── */
 :root {
-  --primary: #0a0a0a;
+  --primary: #000000;
   --secondary: #d4d0cb;
-  --background: #f5f2ed;
+  --background: #f5f2edf9;
   --card-bg: rgba(0, 0, 0, 0.02);
-  --text: #1a1a1a;
+  --text: #000000;
   --accent: #b91c1c;
   --accent-dim: rgba(185, 28, 28, 0.08);
   --accent-glow: rgba(185, 28, 28, 0.2);
-  --muted-foreground: #5c5855;
-  --foreground: #0a0a0a;
+  --muted-foreground: #000000;
+  --foreground: #000000;
 
   --logo-color: #0a0a0a;
 
@@ -46,7 +46,7 @@
   /* Renaissance semantic aliases */
   --black: #0a0a0a;
   --white: #1a1a1a;
-  --white-dim: rgba(0, 0, 0, 0.55);
+  --white-dim: rgba(0, 0, 0, 0.8);
   --red: #b91c1c;
   --trace-line: rgba(0, 0, 0, 0.12);
   --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
