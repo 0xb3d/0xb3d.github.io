@@ -57,16 +57,16 @@
 
 /* ─── DARK MODE ─── */
 .dark {
-  --primary: #f0ece7;
+  --primary: #ffffff;
   --secondary: #1a1917;
   --background: #0a0a0a;
   --card-bg: rgba(255, 255, 255, 0.02);
-  --text: #f0ece7;
+  --text: #ffffff;
   --accent: #dc2626;
   --accent-dim: rgba(220, 38, 38, 0.1);
   --accent-glow: rgba(220, 38, 38, 0.3);
-  --muted-foreground: #a8a29e;
-  --foreground: #f0ece7;
+  --muted-foreground: #ffffff;
+  --foreground: #ffffff;
 
   --logo-color: #dc2626;
 
