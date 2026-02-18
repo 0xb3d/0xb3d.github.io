@@ -48,7 +48,7 @@
   --white: #1a1a1a;
   --white-dim: rgba(0, 0, 0, 0.8);
   --red: #b91c1c;
-  --trace-line: rgba(0, 0, 0, 0.12);
+  --trace-line: rgba(0, 0, 0, 0.22);
   --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 
     /* Custom crosshair — dark for light backgrounds */
@@ -91,7 +91,7 @@
   --white: #f0ece7;
   --white-dim: rgba(255, 255, 255, 0.5);
   --red: #dc2626;
-  --trace-line: rgba(255, 255, 255, 0.1);
+  --trace-line: rgba(255, 255, 255, 0.22);
   --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 
     /* Custom crosshair — light for dark backgrounds */

@@ -221,7 +221,7 @@ export default function About() {
                                     <p
                                         key={index}
                                         style={{
-                                            fontSize: '13px',
+                                            fontSize: '16px',
                                             lineHeight: 1.9,
                                             fontWeight: 400,
                                             color: index === 0
@@ -319,7 +319,7 @@ export default function About() {
                                 </h3>
                                 <p
                                     style={{
-                                        fontSize: '12px',
+                                        fontSize: '14px',
                                         color: 'var(--muted-foreground)',
                                         lineHeight: 1.8,
                                         fontWeight: 300,
@@ -371,7 +371,7 @@ export default function About() {
                                             key={i}
                                             className="py-[6px] transition-colors duration-300 cursor-default"
                                             style={{
-                                                fontSize: '13px',
+                                                fontSize: '14px',
                                                 fontWeight: 300,
                                                 color: 'var(--muted-foreground)',
                                                 borderBottom: '1px solid var(--border-primary)',

@@ -185,7 +185,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
           {/* Line count */}
           <span 
             className="text-[9px] tracking-[2px] uppercase hidden sm:block"
-            style={{ color: 'var(--trace-line)' }}
+            style={{ color: 'var(--text)' }}
           >
             {lineCount} {lineCount === 1 ? 'line' : 'lines'}
           </span>
@@ -292,7 +292,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
         {/* Decorative hash */}
         <span 
           className="text-[8px] tracking-[3px] uppercase"
-          style={{ color: 'var(--trace-line)' }}
+          style={{ color: 'var(--text)' }}
         >
           {`// ${language.toUpperCase()}`}
         </span>
@@ -300,7 +300,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
         {/* Encoding indicator */}
         <span 
           className="text-[8px] tracking-[2px] uppercase"
-          style={{ color: 'var(--trace-line)' }}
+          style={{ color: 'var(--text)' }}
         >
           UTF-8
         </span>

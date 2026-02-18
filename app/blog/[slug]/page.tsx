@@ -110,7 +110,7 @@ const components: PortableTextComponents = {
     },
     normal: ({ children }: { children?: React.ReactNode }) => (
       <p 
-        className="mb-7 text-[14px] md:text-[14px] leading-[2] font-light"
+        className="mb-7 text-[14px] md:text-[16px] leading-[2] font-light"
         style={{ color: 'var(--text)' }}
       >
         {children}
@@ -143,7 +143,7 @@ const components: PortableTextComponents = {
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start gap-4 text-[13px] md:text-[13px] leading-[1.9]">
+      <li className="flex items-start gap-4 text-[14px] md:text-[14px] leading-[1.9]">
         <span className="mt-2.5 w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--red)' }} />
         <span>{children}</span>
       </li>

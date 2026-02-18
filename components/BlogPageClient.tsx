@@ -64,7 +64,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
 
           {/* Description */}
           <p
-            className="text-[12px] leading-[1.8] pr-8"
+            className="text-[14px] leading-[1.8] pr-8"
             style={{ color: 'var(--muted-foreground)', fontWeight: 300 }}
           >
             {blog.description}

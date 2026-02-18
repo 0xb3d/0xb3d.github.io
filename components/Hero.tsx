@@ -132,7 +132,7 @@ export default function Hero() {
                         </div>
 
                         <p
-                            className="hero-fade fade-in max-w-[480px] text-[13px] leading-[1.9]"
+                            className="hero-fade fade-in max-w-[480px] text-[16px] leading-[1.9]"
                             style={{ color: 'var(--white-dim)' }}
                         >
                             Security research, embedded systems, and applied computation.
