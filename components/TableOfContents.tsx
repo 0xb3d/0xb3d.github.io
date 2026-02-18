@@ -40,13 +40,29 @@ export function TableOfContents({ headings }: TOCProps) {
   }, [headings])
 
   // Auto-scroll the TOC itself when the active heading changes
+  // useEffect(() => {
+  //   if (activeLinkRef.current && tocRef.current) {
+  //     activeLinkRef.current.scrollIntoView({
+  //       block: 'nearest',
+  //       inline: 'nearest',
+  //       behavior: 'smooth',
+  //     })
+  //   }
+  // }, [activeId])
+
   useEffect(() => {
-    if (activeLinkRef.current && tocRef.current) {
-      activeLinkRef.current.scrollIntoView({
-        block: 'nearest',
-        inline: 'nearest',
-        behavior: 'smooth',
-      })
+    const container = tocRef.current
+    const activeEl = activeLinkRef.current 
+
+    if (!container || !activeEl) return 
+
+    const containerRect = container.getBoundingClientRect()
+    const activeRect = activeEl.getBoundingClientRect()
+
+    if (activeRect.top < containerRect.top) {
+      container.scrollTop -= (containerRect.bottom) 
+    } else if (activeRect.bottom > containerRect.bottom) {
+      container.scrollTop += (activeRect.bottom - containerRect.bottom)
     }
   }, [activeId])
 

@@ -361,7 +361,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
          ═══════════════════════════════════════════════════════════════ */}
       <div className="max-w-[1600px] mx-auto py-12">
         {/* Asymmetric padding: less on left for TOC, more on right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-8 lg:gap-12 pl-4 lg:pl-6 pr-6 md:pr-10 lg:pr-16 overflow-hidden max-w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-8 lg:gap-12 pl-4 lg:pl-6 pr-6 md:pr-10 lg:pr-16 max-w-full">
           
           {/* ─── Left Sidebar: TOC ─── */}
           {showTOC && (
