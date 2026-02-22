@@ -87,16 +87,12 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
     link.rel = 'stylesheet'
     link.setAttribute('data-hljs-theme', 'true')
 
-    // Theme options that fit the Renaissance/technical aesthetic:
-    // Dark: 'tokyo-night-dark', 'nord', 'github-dark-dimmed', 'ir-black', 'hybrid'
-    // Light: 'github', 'stackoverflow-light', 'vs', 'xcode'
-    
+    // Themes served from /public/hljs/ to avoid external CDN dependency.
+    // To update: copy from node_modules/highlight.js/styles/ to public/hljs/
     if (resolvedTheme === 'dark') {
-      // tokyo-night-dark has muted colors that work well with the red accents
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css'
+      link.href = '/hljs/tokyo-night-dark.min.css'
     } else {
-      // github light is clean and readable
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css'
+      link.href = '/hljs/github.min.css'
     }
 
     document.head.appendChild(link)
