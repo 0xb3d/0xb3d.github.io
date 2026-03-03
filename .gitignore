@@ -44,3 +44,4 @@ next-env.d.ts
 *.un~
 *~
 *.swp
+package-lock.json
