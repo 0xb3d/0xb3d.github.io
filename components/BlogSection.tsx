@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BlogPageServer from "./BlogPageServer";
+import LatestPostPreview from "./LatestPostPreview";
 
 export default function BlogSection() {
   return (
@@ -23,8 +23,8 @@ export default function BlogSection() {
           Research<br />Notes
         </h2>
 
-        {/* Blog posts grid */}
-        <BlogPageServer limit={4} />
+        {/* Latest post preview */}
+        <LatestPostPreview />
 
         {/* View all link */}
         <div className="mt-16 text-center">

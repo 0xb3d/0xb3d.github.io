@@ -28,9 +28,10 @@ export default function Header() {
                         <span className="status-led" />
                         <span
                             className="text-[20px] tracking-[4px] uppercase"
-                            style={{ color: 'var(--foreground)', fontFamily: 'var(--font-jetbrains)', fontWeight: 700 }}
+                            style={{ fontFamily: 'var(--font-jetbrains)', fontWeight: 700 }}
                         >
-                            GRIM LABS
+                            <span style={{ color: 'var(--foreground)' }}>GRIM </span>
+                            <span style={{ color: 'var(--accent)' }}>LABS</span>
                         </span>
                     </Link>
 
