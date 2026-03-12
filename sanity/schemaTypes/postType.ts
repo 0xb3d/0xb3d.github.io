@@ -94,6 +94,19 @@ export const postType = defineType({
                   },
                 ],
               },
+              {
+                name: 'inlineLatex',
+                type: 'object',
+                title: 'Inline Math',
+                fields: [
+                  {
+                    name: 'body',
+                    type: 'string',
+                    title: 'LaTeX expression',
+                    description: 'e.g. E = mc^2 or \\frac{a}{b}',
+                  },
+                ],
+              },
             ],
           },
         }),
@@ -107,6 +120,31 @@ export const postType = defineType({
               title: 'Alternative text',
             },
           ],
+        }),
+        defineArrayMember({
+          type: 'object',
+          name: 'latex',
+          title: 'LaTeX / Math',
+          fields: [
+            defineField({
+              name: 'body',
+              type: 'text',
+              title: 'LaTeX Expression',
+              description: 'Write raw LaTeX — e.g. \\frac{a}{b}, \\sum_{i=0}^{n}, E = mc^2',
+            }),
+            defineField({
+              name: 'inline',
+              type: 'boolean',
+              title: 'Inline (vs display block)',
+              initialValue: false,
+            }),
+          ],
+          preview: {
+            select: { title: 'body' },
+            prepare: ({ title }: { title?: string }) => ({
+              title: title ?? 'LaTeX block',
+            }),
+          },
         }),
         defineArrayMember({
           type: 'code',

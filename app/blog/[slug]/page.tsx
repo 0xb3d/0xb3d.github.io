@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { CodeBlock } from '@/components/CodeBlock'
+import { LatexBlock } from '@/components/LatexBlock'
 import { extractHeadings } from '@/utils/extractHeadings'
 import { TableOfContents } from '@/components/TableOfContents'
 
@@ -178,7 +179,7 @@ const components: PortableTextComponents = {
         <a
           href={href}
           className="transition-colors duration-300 hover:text-[var(--red)]"
-          style={{ 
+          style={{
             color: 'var(--text)',
             textDecoration: 'underline',
             textDecorationColor: 'var(--red)',
@@ -190,6 +191,9 @@ const components: PortableTextComponents = {
         </a>
       )
     },
+    inlineLatex: ({ value }: { value?: { body?: string } }) => (
+      <LatexBlock body={value?.body ?? ''} inline={true} />
+    ),
   },
   types: {
     image: ({ value }: { value: { asset?: { url?: string }; alt?: string; caption?: string } }) => {
@@ -225,6 +229,9 @@ const components: PortableTextComponents = {
       <div className="my-10">
         <CodeBlock code={value.code} language={value.language} filename={value.filename} />
       </div>
+    ),
+    latex: ({ value }: { value: { body: string; inline?: boolean } }) => (
+      <LatexBlock body={value.body} inline={value.inline} />
     ),
   },
 }
