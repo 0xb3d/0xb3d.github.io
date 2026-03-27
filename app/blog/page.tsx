@@ -14,7 +14,7 @@ export default function Blog() {
       <div className="container mx-auto max-w-4xl">
 
         {/* Section header */}
-        <div className="section-marker mb-4">004 — Writings</div>
+        <div className="section-marker mb-4">005 — Writings</div>
         <h2
           className="mb-16"
           style={{

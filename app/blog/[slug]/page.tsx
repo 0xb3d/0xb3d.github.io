@@ -284,7 +284,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* ═══════════════════════════════════════════════════════════════
           HEADER
          ═══════════════════════════════════════════════════════════════ */}
-      <header 
+      <header
         className="relative pt-24 pb-16 px-6 md:px-10 lg:px-16"
         style={{ borderBottom: '1px solid var(--trace-line)' }}
       >

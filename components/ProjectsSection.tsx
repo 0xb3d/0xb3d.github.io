@@ -5,13 +5,13 @@ export default function ProjectsSection() {
     return (
         <section
             id="projects"
-            className="relative py-36 px-10"
+            className="relative py-36 px-4 md:px-10"
         >
             <div className="container mx-auto max-w-[1200px]">
                 {/* Section header */}
                 <div className="section-marker mb-4">004 — Projects</div>
                 <h2
-                    className="mb-16"
+                    className="mb-4"
                     style={{
                         fontSize: 'clamp(32px, 4vw, 56px)',
                         fontWeight: 300,
@@ -22,6 +22,13 @@ export default function ProjectsSection() {
                 >
                     Selected<br />Works
                 </h2>
+
+                {/* Tagline */}
+                <p className="mb-10 text-[11px] tracking-[2px]  uppercase"
+                   style={{ color: 'var(--white-dim)', maxWidth: '820px' }}
+                >
+                    - Selected builds from the lab.
+                </p>
 
                 {/* Projects list */}
                 <ProjectsPageServer limit={6} />

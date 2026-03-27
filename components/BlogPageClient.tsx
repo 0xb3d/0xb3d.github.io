@@ -234,48 +234,58 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                   <Link
                     key={post._id}
                     href={post.link}
-                    className="group flex items-start justify-between py-4 transition-all duration-200 cursor-crosshair"
-                    style={{
-                      borderBottom: '1px solid var(--border-primary)',
-                      color: 'var(--foreground)',
-                    }}
+                    className="group flex items-stretch cursor-crosshair transition-all duration-200"
+                    style={{ borderBottom: '1px solid var(--border-primary)' }}
                     onMouseEnter={e => {
-                      (e.currentTarget as HTMLElement).style.background = 'rgba(185, 28, 28, 0.08)';
-                      (e.currentTarget as HTMLElement).style.paddingLeft = '8px';
-                      (e.currentTarget as HTMLElement).style.paddingRight = '8px';
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = 'rgba(185, 28, 28, 0.06)';
+                      (el.querySelector('.accent-bar') as HTMLElement | null)?.style.setProperty('background', 'var(--accent)');
                     }}
                     onMouseLeave={e => {
-                      (e.currentTarget as HTMLElement).style.background = 'transparent';
-                      (e.currentTarget as HTMLElement).style.paddingLeft = '0';
-                      (e.currentTarget as HTMLElement).style.paddingRight = '0';
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = 'transparent';
+                      (el.querySelector('.accent-bar') as HTMLElement | null)?.style.setProperty('background', 'var(--border-primary)');
                     }}
                   >
-                    {/* Left: date + title */}
-                    <div className="flex items-start gap-3 min-w-0 mr-6">
-                      <span
-                        className="text-[11px] tracking-[1px] shrink-0 tabular-nums pt-[2px]"
-                        style={{ color: 'var(--muted-foreground)', minWidth: '48px' }}
-                      >
-                        {formatRowDate(post.date)}
-                      </span>
-                      <span className="text-[13px] shrink-0 pt-[2px]" style={{ color: 'var(--muted-foreground)', margin: '0 2px' }}>—</span>
-                      <span
-                        className="text-[15px] leading-[1.4] break-words transition-colors duration-200 group-hover:text-[var(--accent)]"
-                        style={{ color: 'var(--foreground)', wordBreak: 'break-word' }}
-                      >
-                        {post.title}
-                      </span>
-                    </div>
+                    {/* Left accent bar */}
+                    <div
+                      className="accent-bar w-[2px] flex-shrink-0 transition-colors duration-200"
+                      style={{ background: 'var(--border-primary)' }}
+                    />
 
-                    {/* Right: read time + arrow */}
-                    <div className="flex items-start gap-3 shrink-0 pt-[2px]">
-                      {post.readTime && (
-                        <span className="text-[10px] tracking-[1px] tabular-nums" style={{ color: 'var(--muted-foreground)' }}>
-                          {post.readTime}
+                    {/* Content */}
+                    <div className="flex-1 flex items-start justify-between gap-4 py-4 px-4 min-w-0">
+                      {/* Stacked: meta + title */}
+                      <div className="flex flex-col gap-1 min-w-0">
+                        <div
+                          className="flex items-center gap-3 text-[10px] tracking-[2px] uppercase"
+                          style={{ color: 'var(--muted-foreground)' }}
+                        >
+                          <span className="tabular-nums">{formatRowDate(post.date)}</span>
+                          {post.readTime && (
+                            <>
+                              <span style={{ color: 'var(--border-primary)' }}>·</span>
+                              <span>{post.readTime}</span>
+                            </>
+                          )}
+                          {post.category && (
+                            <>
+                              <span style={{ color: 'var(--border-primary)' }}>·</span>
+                              <span style={{ color: 'var(--accent)' }}>{post.category}</span>
+                            </>
+                          )}
+                        </div>
+                        <span
+                          className="text-[15px] leading-[1.4] transition-colors duration-200 group-hover:text-[var(--accent)]"
+                          style={{ color: 'var(--foreground)' }}
+                        >
+                          {post.title}
                         </span>
-                      )}
+                      </div>
+
+                      {/* Arrow */}
                       <span
-                        className="text-[14px] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
+                        className="text-[14px] shrink-0 pt-5 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
                         style={{ color: 'var(--muted-foreground)' }}
                       >
                         ↗

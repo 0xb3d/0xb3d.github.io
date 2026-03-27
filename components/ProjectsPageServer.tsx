@@ -14,13 +14,17 @@ interface Project {
   tech: string[];
   github?: string;
   external?: string;
+  status ?: 'in-progress' | 'completed' | 'archived' | 'planning';
+  featured ?: boolean;
+  tags ?: string[];
+  thumbnail?: { asset: {url: string }; alt?: string};
 }
 
-export default async function ProjectsServer({limit}: {limit?: number}) {
+export default async function ProjectsServer({limit, showFilters}: {limit?: number; showFilters?: boolean}) {
   const projects: Project[] = await client.fetch(allProjectsQuery);
 
   // optionally limit to 3 for homepage preview
-  const sliced = projects.slice(0, limit)
+  const sliced = limit !== undefined ? projects.slice(0, limit) : projects;
 
-  return <ProjectsPageClient projects={sliced} />;
+  return <ProjectsPageClient projects={sliced} showFilters={showFilters} />;
 }

@@ -65,7 +65,11 @@ const projectFields = groq`
   github,
   external,
   order,
-  _createdAt
+  _createdAt,
+  status,
+  featured,
+  tags,
+  "thumbnail": images[0]{ asset->{ url }, alt }
 `
 
 // Get all projects with complete info for the cards

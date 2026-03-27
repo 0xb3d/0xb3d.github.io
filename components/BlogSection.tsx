@@ -5,11 +5,11 @@ export default function BlogSection() {
   return (
     <section
       id="blog"
-      className="relative py-36 px-10"
+      className="relative py-36 px-4 md:px-10"
     >
       <div className="container mx-auto max-w-[1200px]">
         {/* Section header */}
-        <div className="section-marker mb-4">004 — Writings</div>
+        <div className="section-marker mb-4">005 — Writings</div>
         <h2
           className="mb-16"
           style={{

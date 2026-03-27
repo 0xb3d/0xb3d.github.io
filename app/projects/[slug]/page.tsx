@@ -4,6 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { CodeBlock } from '@/components/CodeBlock'
+import { LatexBlock } from '@/components/LatexBlock'
+import { TableOfContents } from '@/components/TableOfContents'
+import { extractHeadings } from '@/utils/extractHeadings'
 
 export const revalidate = 120
 
@@ -12,8 +15,12 @@ interface ProjectPageProps {
 }
 
 const projectBySlugQuery = `*[_type == "project" && slug.current == $slug][0]{
-  _id, title, slug, description, icon, tech, tags, github, external, featured, status, startDate, endDate, content,
+  _id, title, slug, description, icon, tech, tags, github, external, featured, status, startDate, endDate, content, order,
   images[]{ asset->{ url }, alt, caption }
+}`
+
+const allProjectsForNavQuery = `*[_type == "project"] | order(order asc, _createdAt desc) {
+  title, slug, status, order
 }`
 
 function getTextFromChildren(children: any): string {
@@ -31,15 +38,15 @@ function generateId(children: any) {
 const components: PortableTextComponents = {
   block: {
     h1: ({ children }: { children?: React.ReactNode }) => (
-      <h1 id={generateId(children)} className="text-[28px] md:text-[32px] mt-12 mb-6 scroll-mt-24" style={{ color: 'var(--text)' }}>{children}</h1>
+      <h1 id={generateId(children)} className="text-[28px] md:text-[32px] mt-12 mb-6 scroll-mt-24 font-normal" style={{ color: 'var(--text)' }}>{children}</h1>
     ),
     h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 id={generateId(children)} className="text-[24px] mt-10 mb-5 scroll-mt-24 flex items-center gap-4" style={{ color: 'var(--text)' }}>
+      <h2 id={generateId(children)} className="text-[22px] mt-10 mb-5 scroll-mt-24 flex items-center gap-4 font-normal" style={{ color: 'var(--text)' }}>
         <span className="w-8 h-px flex-shrink-0" style={{ background: 'var(--red)' }} />{children}
       </h2>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 id={generateId(children)} className="text-[20px] mt-8 mb-4 scroll-mt-24" style={{ color: 'var(--text)' }}>{children}</h3>
+      <h3 id={generateId(children)} className="text-[18px] mt-8 mb-4 scroll-mt-24 font-normal" style={{ color: 'var(--text)' }}>{children}</h3>
     ),
     h4: ({ children }: { children?: React.ReactNode }) => (
       <h4 id={generateId(children)} className="text-[10px] tracking-[4px] uppercase mt-6 mb-3 scroll-mt-24" style={{ color: 'var(--red)' }}>{children}</h4>
@@ -77,6 +84,9 @@ const components: PortableTextComponents = {
           {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{children}</a>
       )
     },
+    inlineLatex: ({ value }: { value?: { body?: string } }) => (
+      <LatexBlock body={value?.body ?? ''} inline={true} />
+    ),
   },
   types: {
     image: ({ value }: { value: { asset?: { url?: string }; alt?: string; caption?: string } }) => {
@@ -90,12 +100,19 @@ const components: PortableTextComponents = {
             <div className="absolute bottom-0 right-0 w-4 h-px" style={{ background: 'var(--red)' }} />
             <div className="absolute bottom-0 right-0 h-4 w-px" style={{ background: 'var(--red)' }} />
           </div>
-          {(value.alt || value.caption) && <figcaption className="mt-3 text-[10px] tracking-[2px] uppercase text-center" style={{ color: 'var(--white-dim)' }}>{value.caption || value.alt}</figcaption>}
+          {(value.alt || value.caption) && (
+            <figcaption className="mt-3 text-[10px] tracking-[2px] uppercase text-center" style={{ color: 'var(--white-dim)' }}>
+              {value.caption || value.alt}
+            </figcaption>
+          )}
         </figure>
       )
     },
     code: ({ value }: { value: { code: string; language?: string; filename?: string } }) => (
       <div className="my-8"><CodeBlock code={value.code} language={value.language} filename={value.filename} /></div>
+    ),
+    latex: ({ value }: { value: { body: string; inline?: boolean } }) => (
+      <LatexBlock body={value.body} inline={value.inline} />
     ),
   },
 }
@@ -104,19 +121,22 @@ function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
 }
 
-function getStatusDisplay(status: string): { label: string; color: string } {
-  const map: Record<string, { label: string; color: string }> = {
-    'in-progress': { label: 'In Progress', color: 'var(--red)' },
-    'completed': { label: 'Completed', color: 'var(--text)' },
-    'archived': { label: 'Archived', color: 'var(--white-dim)' },
-    'planning': { label: 'Planning', color: 'var(--white-dim)' },
+function getStatusDisplay(status: string): { label: string; color: string; active: boolean } {
+  const map: Record<string, { label: string; color: string; active: boolean }> = {
+    'in-progress': { label: 'In Progress', color: 'var(--red)', active: true },
+    'completed':   { label: 'Completed',   color: 'var(--text)', active: false },
+    'archived':    { label: 'Archived',    color: 'var(--white-dim)', active: false },
+    'planning':    { label: 'Planning',    color: 'var(--white-dim)', active: true },
   }
-  return map[status] || { label: status, color: 'var(--white-dim)' }
+  return map[status] || { label: status, color: 'var(--white-dim)', active: false }
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
-  const project = await client.fetch(projectBySlugQuery, { slug })
+  const [project, allProjects] = await Promise.all([
+    client.fetch(projectBySlugQuery, { slug }),
+    client.fetch(allProjectsForNavQuery),
+  ])
 
   if (!project) {
     return (
@@ -132,125 +152,281 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const statusDisplay = getStatusDisplay(project.status)
   const hasContent = project.content?.length > 0
   const hasImages = project.images?.length > 0
+  const headings = hasContent ? extractHeadings(project.content) : []
+  const showToc = headings.length >= 3
+
+  // Prev / next navigation
+  const currentIdx = allProjects.findIndex((p: any) => p.slug?.current === slug)
+  const prevProject = currentIdx > 0 ? allProjects[currentIdx - 1] : null
+  const nextProject = currentIdx < allProjects.length - 1 ? allProjects[currentIdx + 1] : null
 
   return (
     <article className="min-h-screen relative">
-      {/* Header */}
+      {/* ── Header ─────────────────────────────────────────────────── */}
       <header className="relative py-20 px-10" style={{ borderBottom: '1px solid var(--trace-line)' }}>
         <div className="max-w-[900px] mx-auto">
-          {/* Back */}
-          <Link href="/projects" className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase mb-12 hover:text-[var(--text)]" style={{ color: 'var(--white-dim)' }}>
-            <span>←</span><span>Back to projects</span>
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase mb-12 hover:text-[var(--text)]"
+            style={{ color: 'var(--white-dim)' }}
+          >
+            <span>←</span><span>All projects</span>
           </Link>
 
-          {/* Status + Dates */}
-          <div className="text-[10px] tracking-[3px] uppercase mb-6" style={{ color: 'var(--white-dim)' }}>
+          {/* Status + dates */}
+          <div className="flex items-center gap-3 mb-6 text-[10px] tracking-[3px] uppercase">
+            {statusDisplay.active && (
+              <span className="status-led" aria-label="active" />
+            )}
             <span style={{ color: statusDisplay.color }}>{statusDisplay.label}</span>
-            {project.startDate && <> — {formatDate(project.startDate)}{project.endDate ? ` → ${formatDate(project.endDate)}` : ' → Present'}</>}
+            {project.startDate && (
+              <span style={{ color: 'var(--white-dim)' }}>
+                — {formatDate(project.startDate)}{project.endDate ? ` → ${formatDate(project.endDate)}` : ' → Present'}
+              </span>
+            )}
           </div>
 
-          {/* Icon + Title */}
-          <div className="flex items-start gap-6 mb-6">
-            <div className="w-16 h-16 flex items-center justify-center flex-shrink-0" style={{ border: '1px solid var(--trace-line)', background: 'var(--card-bg)' }}>
-              <i className={`${project.icon} text-2xl`} style={{ color: 'var(--white-dim)' }} />
-            </div>
-            <h1 className="text-[clamp(28px,5vw,48px)] leading-[1.1] tracking-[-1px]" style={{ color: 'var(--text)' }}>{project.title}</h1>
-          </div>
+          {/* Title */}
+          <h1
+            className="mb-6"
+            style={{
+              fontSize: 'clamp(32px, 5vw, 64px)',
+              fontWeight: 300,
+              letterSpacing: '-1.5px',
+              lineHeight: 1.05,
+              color: 'var(--text)',
+            }}
+          >
+            {project.title}
+          </h1>
 
           {/* Description */}
-          <p className="text-[14px] leading-[1.9] max-w-[700px] mb-8" style={{ color: 'var(--white-dim)' }}>{project.description}</p>
-
-          {/* Tech */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {project.tech?.map((tech: string, i: number) => (
-              <span key={i} className="text-[9px] tracking-[2px] uppercase px-3 py-1.5" style={{ color: 'var(--white-dim)', border: '1px solid var(--trace-line)' }}>{tech}</span>
-            ))}
-          </div>
+          <p className="text-[14px] leading-[1.9] max-w-[680px] mb-8" style={{ color: 'var(--white-dim)' }}>
+            {project.description}
+          </p>
 
           {/* Tags */}
           {project.tags?.length > 0 && (
-            <div className="flex items-center gap-3 mb-8">
-              <span className="text-[10px] tracking-[2px] uppercase" style={{ color: 'var(--trace-line)' }}>Tags:</span>
-              {project.tags.map((tag: string, i: number) => <span key={i} className="text-[10px]" style={{ color: 'var(--white-dim)' }}>#{tag}</span>)}
+            <div className="flex flex-wrap items-center gap-2 mb-8">
+              {project.tags.map((tag: string, i: number) => (
+                <span
+                  key={i}
+                  className="text-[9px] tracking-[2px] uppercase px-2.5 py-1"
+                  style={{ color: 'var(--white-dim)', border: '1px solid var(--trace-line)' }}
+                >
+                  #{tag}
+                </span>
+              ))}
             </div>
           )}
 
           {/* Links */}
           <div className="flex flex-wrap items-center gap-6">
             {project.github && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-[11px] tracking-[3px] uppercase hover:text-[var(--text)]" style={{ color: 'var(--white-dim)' }}>
-                <i className="fab fa-github text-base" /><span>View Source</span><span className="group-hover:translate-x-1 transition-transform">→</span>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 text-[11px] tracking-[3px] uppercase hover:text-[var(--text)]"
+                style={{ color: 'var(--white-dim)' }}
+              >
+                <i className="fab fa-github text-base" />
+                <span>Source</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
               </a>
             )}
             {project.external && (
-              <a href={project.external} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-[11px] tracking-[3px] uppercase hover:text-[var(--red)]" style={{ color: 'var(--white-dim)' }}>
-                <span>Live Demo</span><span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+              <a
+                href={project.external}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 text-[11px] tracking-[3px] uppercase hover:text-[var(--red)]"
+                style={{ color: 'var(--white-dim)' }}
+              >
+                <span>Live</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
               </a>
             )}
           </div>
 
-          {/* Red line */}
           <div className="w-16 h-px mt-10" style={{ background: 'var(--red)' }} />
         </div>
       </header>
 
-      {/* Content */}
-      <div className="max-w-[900px] mx-auto py-16 px-10">
-        {/* Gallery */}
-        {hasImages && (
-          <section className="mb-16">
-            <h2 className="text-[10px] tracking-[4px] uppercase mb-6 flex items-center gap-4" style={{ color: 'var(--red)' }}>
-              <span className="w-8 h-px" style={{ background: 'var(--red)' }} />Gallery
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {project.images.map((image: any, i: number) => (
-                <figure key={i}>
-                  <div className="relative" style={{ border: '1px solid var(--trace-line)' }}>
-                    <Image src={image.asset.url} alt={image.alt || `${project.title} ${i + 1}`} width={600} height={400} className="w-full" />
-                    <div className="absolute top-0 left-0 w-4 h-px" style={{ background: 'var(--red)' }} />
-                    <div className="absolute top-0 left-0 h-4 w-px" style={{ background: 'var(--red)' }} />
-                    <div className="absolute bottom-0 right-0 w-4 h-px" style={{ background: 'var(--red)' }} />
-                    <div className="absolute bottom-0 right-0 h-4 w-px" style={{ background: 'var(--red)' }} />
+      {/* ── Content ─────────────────────────────────────────────────── */}
+      <div className="max-w-[1200px] mx-auto py-16 px-10">
+        {hasContent || hasImages ? (
+          <div className={showToc ? 'grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-16 max-w-full' : ''}>
+            {/* TOC sidebar */}
+            {showToc && (
+              <aside className="hidden lg:block">
+                <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+                  <TableOfContents headings={headings} />
+                </div>
+              </aside>
+            )}
+
+            {/* Main content */}
+            <div className="overflow-hidden w-full min-w-0">
+              {/* Gallery */}
+              {hasImages && (
+                <section className="mb-16">
+                  <h2 className="text-[10px] tracking-[4px] uppercase mb-6 flex items-center gap-4" style={{ color: 'var(--red)' }}>
+                    <span className="w-8 h-px" style={{ background: 'var(--red)' }} />Gallery
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {project.images.map((image: any, i: number) => image?.asset?.url ? (
+                      <figure key={i}>
+                        <div className="relative" style={{ border: '1px solid var(--trace-line)' }}>
+                          <Image
+                            src={image.asset.url}
+                            alt={image.alt || `${project.title} ${i + 1}`}
+                            width={600}
+                            height={400}
+                            className="w-full"
+                          />
+                          <div className="absolute top-0 left-0 w-4 h-px" style={{ background: 'var(--red)' }} />
+                          <div className="absolute top-0 left-0 h-4 w-px" style={{ background: 'var(--red)' }} />
+                          <div className="absolute bottom-0 right-0 w-4 h-px" style={{ background: 'var(--red)' }} />
+                          <div className="absolute bottom-0 right-0 h-4 w-px" style={{ background: 'var(--red)' }} />
+                        </div>
+                        {image.caption && (
+                          <figcaption className="mt-2 text-[10px] tracking-[2px] uppercase" style={{ color: 'var(--white-dim)' }}>
+                            {image.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    ) : null)}
                   </div>
-                  {image.caption && <figcaption className="mt-2 text-[10px] tracking-[2px] uppercase" style={{ color: 'var(--white-dim)' }}>{image.caption}</figcaption>}
-                </figure>
-              ))}
+                </section>
+              )}
+
+              {/* Body content */}
+              {hasContent && (
+                <div className="max-w-[800px]">
+                  <PortableText value={project.content} components={components} />
+                </div>
+              )}
+
+              {/* End marker */}
+              <div className="mt-16 flex items-center gap-4">
+                <div className="w-12 h-px" style={{ background: 'var(--red)' }} />
+                <span className="text-[10px] tracking-[3px] uppercase" style={{ color: 'var(--white-dim)' }}>End</span>
+                <div className="w-12 h-px" style={{ background: 'var(--red)' }} />
+              </div>
             </div>
-          </section>
-        )}
-
-        {/* Details */}
-        {hasContent && (
-          <section>
-            <h2 className="text-[10px] tracking-[4px] uppercase mb-8 flex items-center gap-4" style={{ color: 'var(--red)' }}>
-              <span className="w-8 h-px" style={{ background: 'var(--red)' }} />Details
-            </h2>
-            <PortableText value={project.content} components={components} />
-          </section>
-        )}
-
-        {/* Empty state */}
-        {!hasContent && !hasImages && (
-          <div className="text-center py-16" style={{ color: 'var(--white-dim)' }}>
+          </div>
+        ) : (
+          /* Empty state */
+          <div className="text-center py-20" style={{ color: 'var(--white-dim)' }}>
             <p className="text-[14px] mb-4">Detailed writeup coming soon.</p>
             {project.github && (
-              <p className="text-[13px]">Check out the <a href={project.github} target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--red)]">source code on GitHub</a>.</p>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] underline hover:text-[var(--red)]"
+              >
+                View source on GitHub ↗
+              </a>
             )}
           </div>
         )}
-
-        {/* End marker */}
-        <div className="mt-16 flex items-center gap-4">
-          <div className="w-12 h-px" style={{ background: 'var(--red)' }} />
-          <span className="text-[10px] tracking-[3px] uppercase" style={{ color: 'var(--white-dim)' }}>End</span>
-          <div className="w-12 h-px" style={{ background: 'var(--red)' }} />
-        </div>
-
-        {/* Back */}
-        <div className="mt-12">
-          <Link href="/projects" className="text-[11px] tracking-[3px] uppercase hover:text-[var(--red)]" style={{ color: 'var(--white-dim)' }}>← All projects</Link>
-        </div>
       </div>
+
+      {/* ── Prev / Next navigation ───────────────────────────────────── */}
+      <nav
+        className="border-t px-6 md:px-10 lg:px-16"
+        style={{ borderColor: 'var(--trace-line)' }}
+      >
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+
+            {/* Previous */}
+            <div className="py-12 md:pr-8 md:border-r" style={{ borderColor: 'var(--trace-line)' }}>
+              {prevProject ? (
+                <Link href={`/projects/${prevProject.slug?.current}`} className="group block">
+                  <span
+                    className="text-[10px] tracking-[3px] uppercase mb-4 flex items-center gap-2"
+                    style={{ color: 'var(--white-dim)' }}
+                  >
+                    <span className="group-hover:-translate-x-1 transition-transform">←</span>
+                    Previous
+                  </span>
+                  {prevProject.status && (
+                    <span
+                      className="text-[9px] tracking-[2px] uppercase block mb-2"
+                      style={{ color: 'var(--red)' }}
+                    >
+                      {prevProject.status.replace('-', '\u00a0')}
+                    </span>
+                  )}
+                  <span
+                    className="text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
+                    style={{ color: 'var(--text)' }}
+                  >
+                    {prevProject.title}
+                  </span>
+                </Link>
+              ) : (
+                <div className="opacity-30">
+                  <span
+                    className="text-[10px] tracking-[3px] uppercase mb-4 block"
+                    style={{ color: 'var(--white-dim)' }}
+                  >
+                    ← Previous
+                  </span>
+                  <span className="text-[16px]" style={{ color: 'var(--white-dim)' }}>
+                    No earlier projects
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Next */}
+            <div className="py-12 md:pl-8 border-t md:border-t-0" style={{ borderColor: 'var(--trace-line)' }}>
+              {nextProject ? (
+                <Link href={`/projects/${nextProject.slug?.current}`} className="group block text-right">
+                  <span
+                    className="text-[10px] tracking-[3px] uppercase mb-4 flex items-center justify-end gap-2"
+                    style={{ color: 'var(--white-dim)' }}
+                  >
+                    Next
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </span>
+                  {nextProject.status && (
+                    <span
+                      className="text-[9px] tracking-[2px] uppercase block mb-2"
+                      style={{ color: 'var(--red)' }}
+                    >
+                      {nextProject.status.replace('-', '\u00a0')}
+                    </span>
+                  )}
+                  <span
+                    className="text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
+                    style={{ color: 'var(--text)' }}
+                  >
+                    {nextProject.title}
+                  </span>
+                </Link>
+              ) : (
+                <div className="opacity-30 text-right">
+                  <span
+                    className="text-[10px] tracking-[3px] uppercase mb-4 block"
+                    style={{ color: 'var(--white-dim)' }}
+                  >
+                    Next →
+                  </span>
+                  <span className="text-[16px]" style={{ color: 'var(--white-dim)' }}>
+                    No later projects
+                  </span>
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+      </nav>
     </article>
   )
 }
