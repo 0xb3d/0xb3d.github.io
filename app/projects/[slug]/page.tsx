@@ -35,53 +35,138 @@ function generateId(children: any) {
   return getTextFromChildren(children).toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').slice(0, 80)
 }
 
+
 const components: PortableTextComponents = {
   block: {
-    h1: ({ children }: { children?: React.ReactNode }) => (
-      <h1 id={generateId(children)} className="text-[28px] md:text-[32px] mt-12 mb-6 scroll-mt-24 font-normal" style={{ color: 'var(--text)' }}>{children}</h1>
-    ),
-    h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 id={generateId(children)} className="text-[22px] mt-10 mb-5 scroll-mt-24 flex items-center gap-4 font-normal" style={{ color: 'var(--text)' }}>
-        <span className="w-8 h-px flex-shrink-0" style={{ background: 'var(--red)' }} />{children}
-      </h2>
-    ),
-    h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 id={generateId(children)} className="text-[18px] mt-8 mb-4 scroll-mt-24 font-normal" style={{ color: 'var(--text)' }}>{children}</h3>
-    ),
-    h4: ({ children }: { children?: React.ReactNode }) => (
-      <h4 id={generateId(children)} className="text-[10px] tracking-[4px] uppercase mt-6 mb-3 scroll-mt-24" style={{ color: 'var(--red)' }}>{children}</h4>
-    ),
+    h1: ({ children }: { children?: React.ReactNode }) => {
+      const id = generateId(children)
+      return (
+        <h1 
+          id={id}
+          className="text-[32px] md:text-[36px] mt-16 mb-8 scroll-mt-24 font-normal"
+          style={{ color: 'var(--text)' }}
+        >
+          {children}
+        </h1>
+      )
+    },
+    h2: ({ children }: { children?: React.ReactNode }) => {
+      const id = generateId(children)
+      return (
+        <h2 
+          id={id}
+          className="text-[26px] md:text-[28px] mt-14 mb-6 scroll-mt-24 flex items-center gap-4 font-normal"
+          style={{ color: 'var(--text)' }}
+        >
+          <span className="w-10 h-px flex-shrink-0" style={{ background: 'var(--red)' }} />
+          {children}
+        </h2>
+      )
+    },
+    h3: ({ children }: { children?: React.ReactNode }) => {
+      const id = generateId(children)
+      return (
+        <h3 
+          id={id}
+          className="text-[22px] mt-10 mb-5 scroll-mt-24 font-normal"
+          style={{ color: 'var(--text)' }}
+        >
+          {children}
+        </h3>
+      )
+    },
+    h4: ({ children }: { children?: React.ReactNode }) => {
+      const id = generateId(children)
+      return (
+        <h4 
+          id={id}
+          className="text-[11px] tracking-[4px] uppercase mt-8 mb-4 scroll-mt-24 font-normal"
+          style={{ color: 'var(--red)' }}
+        >
+          {children}
+        </h4>
+      )
+    },
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-6 text-[14px] leading-[1.9]" style={{ color: 'var(--text)' }}>{children}</p>
+      <p 
+        className="mb-7 text-[14px] md:text-[16px] leading-[2] font-light"
+        style={{ color: 'var(--text)' }}
+      >
+        {children}
+      </p>
     ),
     blockquote: ({ children }: { children?: React.ReactNode }) => (
-      <blockquote className="my-8 pl-6 py-4 italic text-[15px]" style={{ borderLeft: '2px solid var(--red)', color: 'var(--white-dim)' }}>{children}</blockquote>
+      <blockquote 
+        className="my-10 pl-8 py-6 italic text-[14px] leading-[1.9] font-light"
+        style={{ 
+          borderLeft: '3px solid var(--red)',
+          color: 'var(--white-dim)',
+          background: 'var(--card-bg)'
+        }}
+      >
+        {children}
+      </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }: { children?: React.ReactNode }) => <ul className="mb-6 space-y-2 ml-4" style={{ color: 'var(--text)' }}>{children}</ul>,
-    number: ({ children }: { children?: React.ReactNode }) => <ol className="mb-6 space-y-2 ml-4 list-decimal list-inside" style={{ color: 'var(--text)' }}>{children}</ol>,
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="mb-8 space-y-3 ml-2 font-light" style={{ color: 'var(--text)' }}>
+        {children}
+      </ul>
+    ),
+    number: ({ children }: { children?: React.ReactNode }) => (
+      <ol className="mb-8 space-y-3 ml-2 list-decimal list-inside font-light" style={{ color: 'var(--text)' }}>
+        {children}
+      </ol>
+    ),
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start gap-3 text-[14px] leading-[1.8]">
-        <span className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: 'var(--red)' }} /><span>{children}</span>
+      <li className="flex items-start gap-4 text-[14px] md:text-[14px] leading-[1.9]">
+        <span className="mt-2.5 w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--red)' }} />
+        <span>{children}</span>
       </li>
     ),
-    number: ({ children }: { children?: React.ReactNode }) => <li className="text-[14px] leading-[1.8]">{children}</li>,
+    number: ({ children }: { children?: React.ReactNode }) => (
+      <li className="text-[16px] md:text-[17px] leading-[1.9]">{children}</li>
+    ),
   },
   marks: {
-    strong: ({ children }: { children?: React.ReactNode }) => <strong style={{ color: 'var(--text)' }}>{children}</strong>,
-    em: ({ children }: { children?: React.ReactNode }) => <em className="italic">{children}</em>,
+    strong: ({ children }: { children?: React.ReactNode }) => (
+      <strong className="font-medium" style={{ color: 'var(--text)' }}>{children}</strong>
+    ),
+    em: ({ children }: { children?: React.ReactNode }) => (
+      <em className="italic">{children}</em>
+    ),
     code: ({ children }: { children?: React.ReactNode }) => (
-      <code className="px-2 py-1 text-[13px]" style={{ backgroundColor: 'var(--card-bg)', color: 'var(--red)', border: '1px solid var(--trace-line)' }}>{children}</code>
+      <code 
+        className="px-2 py-1 text-[14px] rounded font-normal"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          color: 'var(--red)',
+          border: '1px solid var(--trace-line)'
+        }}
+      >
+        {children}
+      </code>
     ),
     link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => {
       const href = value?.href || '#'
-      const isInternal = href.startsWith('/') || href.startsWith('#')
+      const isInternal = href && (href.startsWith('/') || href.startsWith('#'))
       return (
-        <a href={href} className="hover:text-[var(--red)]" style={{ color: 'var(--text)', textDecoration: 'underline', textDecorationColor: 'var(--trace-line)', textUnderlineOffset: '4px' }}
-          {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{children}</a>
+        <a
+          href={href}
+          className="transition-colors duration-300 hover:text-[var(--red)]"
+          style={{
+            color: 'var(--text)',
+            textDecoration: 'underline',
+            textDecorationColor: 'var(--red)',
+            textUnderlineOffset: '4px'
+          }}
+          {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {children}
+        </a>
       )
     },
     inlineLatex: ({ value }: { value?: { body?: string } }) => (
@@ -92,16 +177,26 @@ const components: PortableTextComponents = {
     image: ({ value }: { value: { asset?: { url?: string }; alt?: string; caption?: string } }) => {
       if (!value?.asset?.url) return null
       return (
-        <figure className="my-10">
+        <figure className="my-12">
           <div className="relative" style={{ border: '1px solid var(--trace-line)' }}>
-            <Image src={value.asset.url} alt={value.alt || ''} width={800} height={400} className="w-full" />
-            <div className="absolute top-0 left-0 w-4 h-px" style={{ background: 'var(--red)' }} />
-            <div className="absolute top-0 left-0 h-4 w-px" style={{ background: 'var(--red)' }} />
-            <div className="absolute bottom-0 right-0 w-4 h-px" style={{ background: 'var(--red)' }} />
-            <div className="absolute bottom-0 right-0 h-4 w-px" style={{ background: 'var(--red)' }} />
+            <Image 
+              src={value.asset.url} 
+              alt={value.alt || ''} 
+              width={1200} 
+              height={600} 
+              className="w-full" 
+            />
+            {/* Corner accents */}
+            <div className="absolute top-0 left-0 w-6 h-px" style={{ background: 'var(--red)' }} />
+            <div className="absolute top-0 left-0 h-6 w-px" style={{ background: 'var(--red)' }} />
+            <div className="absolute bottom-0 right-0 w-6 h-px" style={{ background: 'var(--red)' }} />
+            <div className="absolute bottom-0 right-0 h-6 w-px" style={{ background: 'var(--red)' }} />
           </div>
           {(value.alt || value.caption) && (
-            <figcaption className="mt-3 text-[10px] tracking-[2px] uppercase text-center" style={{ color: 'var(--white-dim)' }}>
+            <figcaption 
+              className="mt-4 text-[11px] tracking-[2px] uppercase text-center font-normal" 
+              style={{ color: 'var(--white-dim)' }}
+            >
               {value.caption || value.alt}
             </figcaption>
           )}
@@ -109,13 +204,16 @@ const components: PortableTextComponents = {
       )
     },
     code: ({ value }: { value: { code: string; language?: string; filename?: string } }) => (
-      <div className="my-8"><CodeBlock code={value.code} language={value.language} filename={value.filename} /></div>
+      <div className="my-10">
+        <CodeBlock code={value.code} language={value.language} filename={value.filename} />
+      </div>
     ),
     latex: ({ value }: { value: { body: string; inline?: boolean } }) => (
       <LatexBlock body={value.body} inline={value.inline} />
     ),
   },
 }
+
 
 function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
@@ -124,9 +222,9 @@ function formatDate(date: string): string {
 function getStatusDisplay(status: string): { label: string; color: string; active: boolean } {
   const map: Record<string, { label: string; color: string; active: boolean }> = {
     'in-progress': { label: 'In Progress', color: 'var(--red)', active: true },
-    'completed':   { label: 'Completed',   color: 'var(--text)', active: false },
-    'archived':    { label: 'Archived',    color: 'var(--white-dim)', active: false },
-    'planning':    { label: 'Planning',    color: 'var(--white-dim)', active: true },
+    'completed': { label: 'Completed', color: 'var(--text)', active: false },
+    'archived': { label: 'Archived', color: 'var(--white-dim)', active: false },
+    'planning': { label: 'Planning', color: 'var(--white-dim)', active: true },
   }
   return map[status] || { label: status, color: 'var(--white-dim)', active: false }
 }
