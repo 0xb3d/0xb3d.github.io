@@ -319,7 +319,7 @@ export default function About() {
                                 </h3>
                                 <p
                                     style={{
-                                        fontSize: '14px',
+                                        fontSize: '16px',
                                         color: 'var(--muted-foreground)',
                                         lineHeight: 1.8,
                                         fontWeight: 300,
@@ -360,7 +360,7 @@ export default function About() {
                         {skills.map((skill, index) => (
                             <div key={index}>
                                 <div
-                                    className="text-[14px] font-bold tracking-[4px] uppercase mb-5"
+                                    className="text-[16px] font-bold tracking-[4px] uppercase mb-5"
                                     style={{ color: 'var(--accent)'}}
                                 >
                                     {skill.title}
@@ -371,7 +371,7 @@ export default function About() {
                                             key={i}
                                             className="py-[6px] transition-colors duration-300 cursor-default"
                                             style={{
-                                                fontSize: '14px',
+                                                fontSize: '16px',
                                                 fontWeight: 300,
                                                 color: 'var(--muted-foreground)',
                                                 borderBottom: '1px solid var(--border-primary)',

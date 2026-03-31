@@ -1,5 +1,5 @@
-import {defineType, defineArrayMember} from 'sanity'
-import {ImageIcon} from '@sanity/icons'
+import { defineType, defineField, defineArrayMember } from 'sanity'
+import { ImageIcon } from '@sanity/icons'
 
 /**
  * This is the schema type for block content used in the post document type
@@ -19,58 +19,114 @@ export const blockContentType = defineType({
   of: [
     defineArrayMember({
       type: 'block',
-      // Styles let you define what blocks can be marked up as. The default
-      // set corresponds with HTML tags, but you can set any title or value
-      // you want, and decide how you want to deal with it where you want to
-      // use your content.
       styles: [
-        {title: 'Normal', value: 'normal'},
-        {title: 'H1', value: 'h1'},
-        {title: 'H2', value: 'h2'},
-        {title: 'H3', value: 'h3'},
-        {title: 'H4', value: 'h4'},
-        {title: 'Quote', value: 'blockquote'},
+        { title: 'Normal', value: 'normal' },
+        { title: 'H1', value: 'h1' },
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+        { title: 'H4', value: 'h4' },
+        { title: 'Quote', value: 'blockquote' },
       ],
-      lists: [{title: 'Bullet', value: 'bullet'}],
-      // Marks let you mark up inline text in the Portable Text Editor
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' },
+      ],
       marks: {
-        // Decorators usually describe a single property – e.g. a typographic
-        // preference or highlighting
         decorators: [
-          {title: 'Strong', value: 'strong'},
-          {title: 'Emphasis', value: 'em'},
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+          { title: 'Code', value: 'code' },
         ],
-        // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'URL',
             name: 'link',
             type: 'object',
+            title: 'Link',
             fields: [
               {
-                title: 'URL',
                 name: 'href',
                 type: 'url',
+                title: 'URL',
+              },
+            ],
+          },
+          {
+            name: 'inlineLatex',
+            type: 'object',
+            title: 'Inline Math',
+            fields: [
+              {
+                name: 'body',
+                type: 'string',
+                title: 'LaTeX expression',
+                description: 'e.g. E = mc^2 or \\frac{a}{b}',
               },
             ],
           },
         ],
       },
     }),
-    // You can add additional types here. Note that you can't use
-    // primitive types such as 'string' and 'number' in the same array
-    // as a block type.
     defineArrayMember({
       type: 'image',
-      icon: ImageIcon,
-      options: {hotspot: true},
+      options: { hotspot: true },
       fields: [
         {
           name: 'alt',
           type: 'string',
-          title: 'Alternative Text',
-        }
-      ]
+          title: 'Alternative text',
+        },
+      ],
     }),
+    defineArrayMember({
+      type: 'object',
+      name: 'latex',
+      title: 'LaTeX / Math',
+      fields: [
+        defineField({
+          name: 'body',
+          type: 'text',
+          title: 'LaTeX Expression',
+          description: 'Write raw LaTeX — e.g. \\frac{a}{b}, \\sum_{i=0}^{n}, E = mc^2',
+        }),
+        defineField({
+          name: 'inline',
+          type: 'boolean',
+          title: 'Inline (vs display block)',
+          initialValue: false,
+        }),
+      ],
+      preview: {
+        select: { title: 'body' },
+        prepare: ({ title }: { title?: string }) => ({
+          title: title ?? 'LaTeX block',
+        }),
+      },
+    }),
+    defineArrayMember({
+      type: 'code',
+      title: 'Code Block',
+      options: {
+        language: 'javascript',
+        languageAlternatives: [
+          { title: 'JavaScript', value: 'javascript' },
+          { title: 'TypeScript', value: 'typescript' },
+          { title: 'HTML', value: 'html' },
+          { title: 'CSS', value: 'css' },
+          { title: 'Python', value: 'python' },
+          { title: 'Bash', value: 'bash' },
+          { title: 'Shell', value: 'shell' },
+          { title: 'Plain Text', value: 'plaintext' },
+          { title: 'JSON', value: 'json' },
+          { title: 'SQL', value: 'sql' },
+          { title: 'Go', value: 'go' },
+          { title: 'Rust', value: 'rust' },
+          { title: 'C++', value: 'cpp' },
+          { title: 'C', value: 'c' },
+          { title: 'Assembly', value: 'x86asm' }
+        ],
+        withFilename: true,
+      },
+    }),
+    defineArrayMember({ type: 'table' }),
   ],
 })

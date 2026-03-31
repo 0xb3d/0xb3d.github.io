@@ -110,6 +110,7 @@
 
 /* ─── BASE ─── */
 html {
+  font-size: 16px; /* base scale — change this to scale rem-based sizes site-wide */
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--background);
@@ -118,8 +119,9 @@ html {
 body {
   background-color: var(--background);
   color: var(--text);
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  font-size: 16px;
+  /* font-family: var(--font-jetbrains), 'JetBrains Mono', monospace; */
+  font-family: var(--font-stix), serif;
+  font-size: 18px;
   font-weight: 450;
   line-height: 1.7;
   /* background-image:

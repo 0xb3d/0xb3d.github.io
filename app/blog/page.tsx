@@ -18,7 +18,7 @@ export default function Blog() {
         <h2
           className="mb-16"
           style={{
-            fontSize: 'clamp(32px, 4vw, 56px)',
+            fontSize: 'clamp(40px, 4vw, 64px)',
             fontWeight: 300,
             lineHeight: 1.1,
             letterSpacing: '-1px',

@@ -19,7 +19,7 @@ export default async function Projects() {
                 <div className="flex items-end justify-between mb-4" >
                     <h2
                         style={{
-                            fontSize: 'clamp(32px, 4vw, 56px)',
+                            fontSize: 'clamp(40px, 4vw, 64px)',
                             fontWeight: 300,
                             lineHeight: 1.1,
                             letterSpacing: '-1px',
@@ -29,7 +29,7 @@ export default async function Projects() {
                         Selected<br />Works
                     </h2>
                     <span
-                        className="text-[13px] tracking-[3px] mb-2"
+                        className="text-[14px] tracking-[3px] mb-2"
                         style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}
                     >
                         [ {String(count).padStart(2, '0')} ]
@@ -37,7 +37,7 @@ export default async function Projects() {
                 </div>
 
                 {/* Tagline */}
-                <p className="mb-12 text-[11px] tracking-[2px] uppercase">
+                <p className="mb-12 text-[12px] tracking-[2px] uppercase">
                     Experimental builds across security, hardware, software and scientific inquiry.
                 </p>
 

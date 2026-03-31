@@ -90,7 +90,7 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
           {featured.description && (
             <p
               className="mb-6 max-w-xl"
-              style={{ fontSize: '14px', lineHeight: 1.8, fontWeight: 300, color: 'var(--muted-foreground)' }}
+              style={{ fontSize: '16px', lineHeight: 1.8, fontWeight: 300, color: 'var(--muted-foreground)' }}
             >
               {featured.description}
             </p>
@@ -98,7 +98,7 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
 
           {/* Read link */}
           <div
-            className="flex items-center gap-2 text-[11px] tracking-[2px] uppercase transition-colors duration-300"
+            className="flex items-center gap-2 text-[12px] tracking-[2px] uppercase transition-colors duration-300"
             style={{ color: featuredHovered ? 'var(--accent)' : 'var(--muted-foreground)' }}
           >
             Read Article
@@ -155,7 +155,7 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
                     )}
                   </div>
                   <span
-                    className="text-[15px] leading-[1.4] transition-colors duration-200 group-hover:text-[var(--accent)]"
+                    className="text-[16px] leading-[1.4] transition-colors duration-200 group-hover:text-[var(--accent)]"
                     style={{ color: 'var(--foreground)' }}
                   >
                     {post.title}

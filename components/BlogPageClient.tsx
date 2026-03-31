@@ -102,13 +102,13 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
 
         {/* Search */}
         <div style={{ borderBottom: '1px solid var(--trace-line)', paddingBottom: '2px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <span className="text-[10px] tracking-[2px] uppercase" style={{ color: 'var(--muted-foreground)' }}>⌕</span>
+          <span className="text-[16px] tracking-[2px] uppercase" style={{ color: 'var(--muted-foreground)' }}>⌕</span>
           <input
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search articles..."
-            className="bg-transparent outline-none text-[12px] tracking-[1px] w-48 placeholder:opacity-40"
+            className="bg-transparent outline-none text-[14px] tracking-[1px] w-48 placeholder:opacity-40"
             style={{ color: 'var(--foreground)', fontFamily: 'var(--font-mono, monospace)' }}
           />
         </div>
@@ -116,14 +116,14 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
         {/* Category pills */}
         {allCategories.length > 0 && (
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-[9px] tracking-[2px] uppercase mr-1" style={{ color: 'var(--muted-foreground)' }}>Category</span>
+            <span className="text-[12px] tracking-[2px] uppercase mr-1" style={{ color: 'var(--muted-foreground)' }}>Category</span>
             {allCategories.map(cat => {
               const isActive = activeCategories.has(cat);
               return (
                 <button
                   key={cat}
                   onClick={() => toggleCategory(cat)}
-                  className="text-[9px] tracking-[2px] uppercase px-3 py-1 transition-all duration-200 cursor-crosshair"
+                  className="text-[12px] tracking-[2px] uppercase px-3 py-1 transition-all duration-200 cursor-crosshair"
                   style={{
                     border: '1px solid var(--border-primary)',
                     color: isActive ? '#fff' : 'var(--muted-foreground)',
@@ -159,7 +159,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                 <button
                   key={tag}
                   onClick={() => toggleTag(tag)}
-                  className="text-[9px] tracking-[2px] uppercase px-3 py-1 transition-all duration-200 cursor-crosshair"
+                  className="text-[12px] tracking-[2px] uppercase px-3 py-1 transition-all duration-200 cursor-crosshair"
                   style={{
                     border: '1px solid var(--border-primary)',
                     color: isActive ? '#fff' : 'var(--muted-foreground)',
@@ -258,7 +258,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                       {/* Stacked: meta + title */}
                       <div className="flex flex-col gap-1 min-w-0">
                         <div
-                          className="flex items-center gap-3 text-[10px] tracking-[2px] uppercase"
+                          className="flex items-center gap-3 text-[12px] tracking-[2px] uppercase"
                           style={{ color: 'var(--muted-foreground)' }}
                         >
                           <span className="tabular-nums">{formatRowDate(post.date)}</span>
@@ -276,7 +276,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                           )}
                         </div>
                         <span
-                          className="text-[15px] leading-[1.4] transition-colors duration-200 group-hover:text-[var(--accent)]"
+                          className="text-[16px] leading-[1.4] transition-colors duration-200 group-hover:text-[var(--accent)]"
                           style={{ color: 'var(--foreground)' }}
                         >
                           {post.title}

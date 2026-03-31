@@ -24,7 +24,7 @@ export default function ProjectsSection() {
                 </h2>
 
                 {/* Tagline */}
-                <p className="mb-10 text-[11px] tracking-[2px]  uppercase"
+                <p className="mb-10 text-[12px] tracking-[2px]  uppercase"
                    style={{ color: 'var(--white-dim)', maxWidth: '820px' }}
                 >
                     - Selected builds from the lab.
@@ -37,7 +37,7 @@ export default function ProjectsSection() {
                 <div className="mt-16 text-center">
                     <Link
                         href="/projects"
-                        className="inline-flex items-center gap-4 text-[11px] tracking-[3px] uppercase transition-colors duration-300 hover:text-[var(--red)]"
+                        className="inline-flex items-center gap-4 text-[14px] tracking-[3px] uppercase transition-colors duration-300 hover:text-[var(--red)]"
                         style={{ color: 'var(--white-dim)' }}
                     >
                         <span className="w-8 h-px" style={{ background: 'var(--trace-line)' }} />

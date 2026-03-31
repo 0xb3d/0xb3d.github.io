@@ -141,7 +141,7 @@ function SpotlightCard({ project }: { project: Project }) {
           <div className="flex items-start justify-between gap-4 mb-4">
             <h3
               style={{
-                fontSize: 'clamp(18px, 2vw, 26px)',
+                fontSize: 'clamp(22px, 2vw, 34px)',
                 fontWeight: 300,
                 letterSpacing: '-0.5px',
                 lineHeight: 1.2,
@@ -155,7 +155,7 @@ function SpotlightCard({ project }: { project: Project }) {
 
           {project.description && (
             <p
-              className="text-[13px] leading-[1.8]"
+              className="text-[16px] leading-[1.8]"
               style={{ color: 'var(--white-dim)' }}
             >
               {project.description}
@@ -272,14 +272,14 @@ function ProjectRow({ project }: { project: Project }) {
           <>
             {/* Desktop: 2 lines */}
             <p
-              className="hidden md:block text-[12px] leading-[1.5] line-clamp-2"
+              className="hidden md:block text-[14px] leading-[1.5] line-clamp-2"
               style={{ color: 'var(--white-dim)' }}
             >
               {project.description}
             </p>
             {/* Mobile: 1 line */}
             <p
-              className="md:hidden text-[11px] leading-[1.4] line-clamp-1"
+              className="md:hidden text-[12px] leading-[1.4] line-clamp-1"
               style={{ color: 'var(--white-dim)' }}
             >
               {project.description}
@@ -344,7 +344,7 @@ export default function ProjectsPageClient({ projects, showFilters }: ProjectsPa
             <>
               <button
                 onClick={() => setActiveTags([])}
-                className="text-[9px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300"
+                className="text-[12px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300"
                 style={{
                   border: `1px solid ${activeTags.length === 0 ? 'var(--accent)' : 'var(--border-primary)'}`,
                   color: activeTags.length === 0 ? 'var(--accent)' : 'var(--white-dim)',
@@ -356,7 +356,7 @@ export default function ProjectsPageClient({ projects, showFilters }: ProjectsPa
                 <button
                   key={tag}
                   onClick={() => toggleTag(tag)}
-                  className="text-[9px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300"
+                  className="text-[12px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300"
                   style={{
                     border: `1px solid ${activeTags.includes(tag) ? 'var(--accent)' : 'var(--border-primary)'}`,
                     color: activeTags.includes(tag) ? 'var(--accent)' : 'var(--white-dim)',
@@ -372,7 +372,7 @@ export default function ProjectsPageClient({ projects, showFilters }: ProjectsPa
               <button
                 key={key}
                 onClick={() => setSortKey(key)}
-                className="text-[9px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300"
+                className="text-[12px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300"
                 style={{
                   border: `1px solid ${sortKey === key ? 'var(--accent)' : 'var(--border-primary)'}`,
                   color: sortKey === key ? 'var(--accent)' : 'var(--white-dim)',
@@ -391,7 +391,7 @@ export default function ProjectsPageClient({ projects, showFilters }: ProjectsPa
           className="py-16 text-center"
           style={{ border: '1px solid var(--border-primary)' }}
         >
-          <span className="text-[11px] tracking-[3px] uppercase" style={{ color: 'var(--white-dim)' }}>
+          <span className="text-[12px] tracking-[3px] uppercase" style={{ color: 'var(--white-dim)' }}>
             No projects match this filter.
           </span>
         </div>

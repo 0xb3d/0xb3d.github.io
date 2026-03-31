@@ -23,6 +23,7 @@
     "@sanity/code-input": "^7.0.8",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
+    "@sanity/table": "^2.0.1",
     "@sanity/vision": "^5.13.0",
     "@types/katex": "^0.16.8",
     "@vercel/analytics": "^1.6.1",
