@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GRIMLABS
+
+A public, long-term independent research and tinkering lab. Exploring, building, and documenting experimental projects in engineering, technology, and scientific inquiry.
+
+Built with Next.js and Sanity CMS. Deployed on Vercel.
+
+---
+
+## Stack
+
+- **Framework** — [Next.js 15](https://nextjs.org) (App Router)
+- **CMS** — [Sanity](https://sanity.io) (blog posts, projects, content)
+- **Styling** — [Tailwind CSS v4](https://tailwindcss.com)
+- **Rendering** — [KaTeX](https://katex.org) for LaTeX, [highlight.js](https://highlightjs.org) for code blocks
+- **Deployment** — [Vercel](https://vercel.com)
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+
+- A Sanity project (for content)
+
+### Environment variables
+
+Create a `.env.local` file at the root:
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your_token
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### Other commands
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build      # production build
+npm run start      # serve production build locally
+npm run lint       # run ESLint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project structure
 
-## Deploy on Vercel
+```
+app/                  # Next.js app router pages
+  blog/[slug]/        # Blog post page
+  projects/[slug]/    # Project detail page
+components/           # Shared UI components
+sanity/               # Sanity schema and client config
+utils/                # Helpers (heading extraction, etc.)
+public/               # Static assets
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Content
+
+Content is managed through Sanity Studio. Blog posts and projects support:
+
+- Rich text with headings, blockquotes, lists
+- Code blocks with syntax highlighting
+- LaTeX / math rendering
+- Tables
+- Embedded images
+- Table of contents (auto-generated from headings)
+
+---
+
+## Contributing
+
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "feat: description"`
+4. Push: `git push origin feature/your-feature`
+5. Open a pull request against `main`
+
+Please keep PRs focused — one feature or fix per PR. Follow the existing code style (Tailwind classes, CSS variables for theming, no inline colour styles that override hover states).
+
+---
+
+## Deployment
+
+The `main` branch deploys automatically to Vercel on merge. Branch protection is enabled — all changes go through a pull request.
