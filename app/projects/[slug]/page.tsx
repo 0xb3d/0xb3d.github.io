@@ -265,12 +265,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <article className="min-h-screen relative">
       {/* ── Header ─────────────────────────────────────────────────── */}
-      <header className="relative py-20 px-10" style={{ borderBottom: '1px solid var(--trace-line)' }}>
-        <div className="max-w-[900px] mx-auto">
+      <header className="relative py-16 px-10 backdrop-blur-xs" style={{ borderBottom: '1px solid var(--trace-line)', backgroundColor: 'var(--card-bg)' }}>
+        <div className="max-w-[800px] mx-auto">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase mb-12 hover:text-[var(--text)]"
-            style={{ color: 'var(--white-dim)' }}
+            className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase mb-12 text-[var(--white-dim)] hover:text-[var(--red)] transition-colors duration-300"
           >
             <span>←</span><span>All projects</span>
           </Link>
@@ -303,7 +302,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </h1>
 
           {/* Description */}
-          <p className="text-[14px] leading-[1.9] max-w-[680px] mb-8" style={{ color: 'var(--white-dim)' }}>
+          <p className="text-[16px] leading-[1.9] max-w-[680px] mb-8" style={{ color: 'var(--white-dim)' }}>
             {project.description}
           </p>
 
@@ -334,7 +333,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               >
                 <i className="fab fa-github text-base" />
                 <span>Source</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
               </a>
             )}
             {project.external && (
@@ -346,7 +345,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 style={{ color: 'var(--white-dim)' }}
               >
                 <span>Live</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
               </a>
             )}
           </div>
@@ -356,13 +355,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </header>
 
       {/* ── Content ─────────────────────────────────────────────────── */}
-      <div className="max-w-[1200px] mx-auto py-16 px-10">
+      <div className="max-w-[1500px] mx-auto py-16 px-4">
         {hasContent || hasImages ? (
-          <div className={showToc ? 'grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-16 max-w-full' : ''}>
+          <div className={showToc ? 'grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-20 max-w-full' : ''}>
             {/* TOC sidebar */}
             {showToc && (
-              <aside className="hidden lg:block">
-                <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              <aside className="hidden lg:block" >
+                <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto" style={{
+                  border: '1px solid var(--trace-line)',
+                  backgroundColor: 'var(--card-bg'}}>
                   <TableOfContents headings={headings} />
                 </div>
               </aside>
@@ -405,7 +406,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
               {/* Body content */}
               {hasContent && (
-                <div className="max-w-[800px]">
+                <div className="max-w-[800px]" >
                   <PortableText value={project.content} components={components} />
                 </div>
               )}
@@ -445,9 +446,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2">
 
             {/* Previous */}
-            <div className="py-12 md:pr-8 md:border-r" style={{ borderColor: 'var(--trace-line)' }}>
+            <div className="group py-12 md:pr-8 md:border-r transition-colors duration-300 hover:bg-[rgba(185,28,28,0.04)]" style={{ borderColor: 'var(--trace-line)' }}>
               {prevProject ? (
-                <Link href={`/projects/${prevProject.slug?.current}`} className="group block">
+                <Link href={`/projects/${prevProject.slug?.current}`} className="block">
                   <span
                     className="text-[10px] tracking-[3px] uppercase mb-4 flex items-center gap-2"
                     style={{ color: 'var(--white-dim)' }}
@@ -464,14 +465,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </span>
                   )}
                   <span
-                    className="text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
-                    style={{ color: 'var(--text)' }}
+                    className="text-[var(--text)] text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
                   >
                     {prevProject.title}
                   </span>
                 </Link>
               ) : (
-                <div className="opacity-30">
+                <div className="opacity-50">
                   <span
                     className="text-[10px] tracking-[3px] uppercase mb-4 block"
                     style={{ color: 'var(--white-dim)' }}
@@ -486,9 +486,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             {/* Next */}
-            <div className="py-12 md:pl-8 border-t md:border-t-0" style={{ borderColor: 'var(--trace-line)' }}>
+            <div className="group py-12 md:pl-8 border-t md:border-t-0 transition-colors duration-300 hover:bg-[rgba(185,28,28,0.04)]" style={{ borderColor: 'var(--trace-line)' }}>
               {nextProject ? (
-                <Link href={`/projects/${nextProject.slug?.current}`} className="group block text-right">
+                <Link href={`/projects/${nextProject.slug?.current}`} className="block text-right">
                   <span
                     className="text-[10px] tracking-[3px] uppercase mb-4 flex items-center justify-end gap-2"
                     style={{ color: 'var(--white-dim)' }}
@@ -505,14 +505,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </span>
                   )}
                   <span
-                    className="text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
-                    style={{ color: 'var(--text)' }}
+                    className="text-[var(--text)] text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
                   >
                     {nextProject.title}
                   </span>
                 </Link>
               ) : (
-                <div className="opacity-30 text-right">
+                <div className="opacity-50 text-right">
                   <span
                     className="text-[10px] tracking-[3px] uppercase mb-4 block"
                     style={{ color: 'var(--white-dim)' }}

@@ -45,3 +45,4 @@ next-env.d.ts
 *~
 *.swp
 package-lock.json
+.claude/

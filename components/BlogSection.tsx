@@ -30,12 +30,11 @@ export default function BlogSection() {
         <div className="mt-16 text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-4 text-[14px] tracking-[3px] uppercase transition-colors duration-300 hover:text-[var(--red)]"
-            style={{ color: 'var(--white-dim)' }}
+            className="group inline-flex items-center gap-4 text-[14px] tracking-[3px] uppercase transition-colors duration-300 text-[var(--white-dim)] hover:text-[var(--red)]"
           >
-            <span className="w-8 h-px" style={{ background: 'var(--trace-line)' }} />
+            <span className="w-8 h-px transition-colors duration-300 bg-[var(--trace-line)] group-hover:bg-[var(--red)]" />
             View All Articles
-            <span className="w-8 h-px" style={{ background: 'var(--trace-line)' }} />
+            <span className="w-8 h-px transition-colors duration-300 bg-[var(--trace-line)] group-hover:bg-[var(--red)]" />
           </Link>
         </div>
       </div>

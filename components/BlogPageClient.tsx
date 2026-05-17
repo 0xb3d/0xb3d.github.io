@@ -123,7 +123,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                 <button
                   key={cat}
                   onClick={() => toggleCategory(cat)}
-                  className="text-[12px] tracking-[2px] uppercase px-3 py-1 transition-all duration-200 cursor-crosshair"
+                  className="text-[12px] tracking-[2px] uppercase px-3 py-1 transition-all duration-300 cursor-crosshair"
                   style={{
                     border: '1px solid var(--border-primary)',
                     color: isActive ? '#fff' : 'var(--muted-foreground)',
@@ -159,7 +159,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                 <button
                   key={tag}
                   onClick={() => toggleTag(tag)}
-                  className="text-[12px] tracking-[2px] uppercase px-3 py-1 transition-all duration-200 cursor-crosshair"
+                  className="text-[12px] tracking-[2px] uppercase px-3 py-1 transition-all duration-300 cursor-crosshair"
                   style={{
                     border: '1px solid var(--border-primary)',
                     color: isActive ? '#fff' : 'var(--muted-foreground)',
@@ -188,14 +188,14 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
 
       {/* ── Timeline ── */}
       {years.length === 0 ? (
-        <div className="py-24 text-center">
+        <div className="py-24 text-center backdrop-blur-xs">
           <p className="text-[13px] tracking-[1px]" style={{ color: 'var(--muted-foreground)' }}>
             No articles match your filters.
           </p>
           {hasFilters && (
             <button
               onClick={resetFilters}
-              className="mt-4 text-[11px] tracking-[2px] uppercase transition-colors duration-200 hover:text-[var(--accent)] cursor-crosshair"
+              className="mt-4 text-[11px] tracking-[2px] uppercase transition-colors duration-300 hover:text-[var(--accent)] cursor-crosshair"
               style={{ color: 'var(--muted-foreground)' }}
             >
               Clear filters
@@ -234,7 +234,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                   <Link
                     key={post._id}
                     href={post.link}
-                    className="group flex items-stretch cursor-crosshair transition-all duration-200"
+                    className="group flex items-stretch cursor-crosshair transition-all duration-300 backdrop-blur-sm"
                     style={{ borderBottom: '1px solid var(--border-primary)' }}
                     onMouseEnter={e => {
                       const el = e.currentTarget as HTMLElement;
@@ -249,7 +249,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                   >
                     {/* Left accent bar */}
                     <div
-                      className="accent-bar w-[2px] flex-shrink-0 transition-colors duration-200"
+                      className="accent-bar w-[2px] flex-shrink-0 transition-colors duration-300"
                       style={{ background: 'var(--border-primary)' }}
                     />
 
@@ -276,7 +276,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
                           )}
                         </div>
                         <span
-                          className="text-[16px] leading-[1.4] transition-colors duration-200 group-hover:text-[var(--accent)]"
+                          className="text-[16px] leading-[1.4] transition-colors duration-300 group-hover:text-[var(--accent)]"
                           style={{ color: 'var(--foreground)' }}
                         >
                           {post.title}
@@ -285,7 +285,7 @@ export default function BlogPageClient({ blogs }: { blogs: Blog[] }) {
 
                       {/* Arrow */}
                       <span
-                        className="text-[14px] shrink-0 pt-5 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
+                        className="text-[14px] shrink-0 pt-5 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
                         style={{ color: 'var(--muted-foreground)' }}
                       >
                         ↗

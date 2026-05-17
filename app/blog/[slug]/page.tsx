@@ -289,15 +289,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           HEADER
          ═══════════════════════════════════════════════════════════════ */}
       <header
-        className="relative pt-24 pb-16 px-6 md:px-10 lg:px-16"
-        style={{ borderBottom: '1px solid var(--trace-line)' }}
+        className="relative pt-24 pb-16 px-6 md:px-10 lg:px-16 backdrop-blur-xs"
+        style={{ borderBottom: '1px solid var(--trace-line)', backgroundColor: 'var(--card-bg)' }}
       >
         <div className="max-w-[1400px] mx-auto">
           {/* Back link */}
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center gap-3 text-[10px] tracking-[3px] uppercase mb-16 hover:text-[var(--text)] transition-colors" 
-            style={{ color: 'var(--white-dim)' }}
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-3 text-[10px] tracking-[3px] uppercase mb-16 text-[var(--white-dim)] hover:text-[var(--red)] transition-colors duration-300"
           >
             <span>←</span>
             <span>Back to writings</span>
@@ -370,18 +369,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* ═══════════════════════════════════════════════════════════════
           MAIN CONTENT AREA
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="max-w-[1600px] mx-auto py-12">
+      <div className="max-w-[1500px] mx-auto py-16 px-2">
         {/* Asymmetric padding: less on left for TOC, more on right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-8 lg:gap-12 pl-4 lg:pl-6 pr-6 md:pr-10 lg:pr-16 max-w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-20 pl-2 lg:pl-6 pr-2 md:pr-10 lg:pr-16 max-w-full">
           
           {/* ─── Left Sidebar: TOC ─── */}
           {showTOC && (
             <aside className="hidden lg:block">
-              <div 
-                className="sticky top-28 p-5"
-                style={{ 
-                  border: '1px solid var(--trace-line)', 
-                  background: 'var(--card-bg)' 
+              <div
+                className="sticky top-28 p-5 max-h-[calc(100vh-6rem)] overflow-y-auto"
+                style={{
+                  border: '1px solid var(--trace-line)',
+                  background: 'var(--card-bg)'
                 }}
               >
                 <TableOfContents headings={headings} />
@@ -445,16 +444,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Previous Post */}
-            <div 
-              className="py-12 md:pr-8 md:border-r"
+            <div
+              className="group py-12 md:pr-8 md:border-r transition-colors duration-300 hover:bg-[rgba(185,28,28,0.04)]"
               style={{ borderColor: 'var(--trace-line)' }}
             >
               {prevPost ? (
-                <Link 
+                <Link
                   href={`/blog/${prevPost.slug.current}`}
-                  className="group block"
+                  className="block"
                 >
-                  <span 
+                  <span
                     className="text-[10px] tracking-[3px] uppercase mb-4 flex items-center gap-2"
                     style={{ color: 'var(--white-dim)' }}
                   >
@@ -462,22 +461,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     Previous
                   </span>
                   {prevPost.category && (
-                    <span 
+                    <span
                       className="text-[9px] tracking-[2px] uppercase block mb-2"
                       style={{ color: 'var(--red)' }}
                     >
                       {prevPost.category}
                     </span>
                   )}
-                  <span 
-                    className="text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
-                    style={{ color: 'var(--text)' }}
+                  <span
+                    className="text-[var(--text)] text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
                   >
                     {prevPost.title}
                   </span>
                 </Link>
               ) : (
-                <div className="opacity-30">
+                <div className="opacity-50">
                   <span 
                     className="text-[10px] tracking-[3px] uppercase mb-4 block"
                     style={{ color: 'var(--white-dim)' }}
@@ -495,13 +493,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             {/* Next Post */}
-            <div className="py-12 md:pl-8 border-t md:border-t-0" style={{ borderColor: 'var(--trace-line)' }}>
+            <div
+              className="group py-12 md:pl-8 border-t md:border-t-0 transition-colors duration-300 hover:bg-[rgba(185,28,28,0.04)]"
+              style={{ borderColor: 'var(--trace-line)' }}
+            >
               {nextPost ? (
-                <Link 
+                <Link
                   href={`/blog/${nextPost.slug.current}`}
-                  className="group block text-right"
+                  className="block text-right"
                 >
-                  <span 
+                  <span
                     className="text-[10px] tracking-[3px] uppercase mb-4 flex items-center justify-end gap-2"
                     style={{ color: 'var(--white-dim)' }}
                   >
@@ -509,22 +510,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </span>
                   {nextPost.category && (
-                    <span 
+                    <span
                       className="text-[9px] tracking-[2px] uppercase block mb-2"
                       style={{ color: 'var(--red)' }}
                     >
                       {nextPost.category}
                     </span>
                   )}
-                  <span 
-                    className="text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
-                    style={{ color: 'var(--text)' }}
+                  <span
+                    className="text-[var(--text)] text-[18px] md:text-[20px] leading-[1.3] group-hover:text-[var(--red)] transition-colors line-clamp-2"
                   >
                     {nextPost.title}
                   </span>
                 </Link>
               ) : (
-                <div className="opacity-30 text-right">
+                <div className="opacity-50 text-right">
                   <span 
                     className="text-[10px] tracking-[3px] uppercase mb-4 block"
                     style={{ color: 'var(--white-dim)' }}
@@ -551,14 +551,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         className="py-12 px-6 md:px-10 lg:px-16 text-center border-t"
         style={{ borderColor: 'var(--trace-line)' }}
       >
-        <Link 
-          href="/blog" 
-          className="inline-flex items-center gap-4 text-[11px] tracking-[3px] uppercase hover:text-[var(--red)] transition-colors" 
-          style={{ color: 'var(--white-dim)' }}
+        <Link
+          href="/blog"
+          className="group inline-flex items-center gap-4 text-[11px] tracking-[3px] uppercase text-[var(--white-dim)] hover:text-[var(--red)] transition-colors duration-300"
         >
-          <span className="w-8 h-px" style={{ background: 'var(--trace-line)' }} />
+          <span className="w-8 h-px transition-colors duration-300 bg-[var(--trace-line)] group-hover:bg-[var(--red)]" />
           All writings
-          <span className="w-8 h-px" style={{ background: 'var(--trace-line)' }} />
+          <span className="w-8 h-px transition-colors duration-300 bg-[var(--trace-line)] group-hover:bg-[var(--red)]" />
         </Link>
       </div>
     </article>

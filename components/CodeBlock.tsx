@@ -115,7 +115,7 @@ export function CodeBlock({ code, language = 'plaintext', filename }: CodeBlockP
   }
 
   return (
-    <div className="my-8 not-prose relative group max-w-full overflow-hidden">
+    <div className="my-8 not-prose relative group max-w-full overflow-hidden backdrop-blur-xs">
       {/* Override any conflicting hljs background styles */}
       <style jsx global>{`
         .hljs {

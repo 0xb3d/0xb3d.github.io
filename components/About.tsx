@@ -210,7 +210,7 @@ export default function About() {
                     {/* Content grid */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
                         {/* Left — Schematic Portrait */}
-                        <div className="lg:col-span-4 flex justify-center lg:justify-start pt-4">
+                        <div className="lg:col-span-4 flex justify-center lg:justify-start pt-4 backdrop-blur-xs">
                             <SchematicPortrait />
                         </div>
 
@@ -293,17 +293,15 @@ export default function About() {
 
                     {/* Domain cards — 1px gap grid */}
                     <div
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 backdrop-blur-xs"
                         style={{
                             gap: '1px',
-                            background: 'var(--border-primary)',
                         }}
                     >
                         {domains.map((d) => (
                             <div
                                 key={d.number}
                                 className="grim-card p-8 cursor-crosshair"
-                                style={{ background: 'var(--background)' }}
                             >
                                 <div className="domain-number mb-3">{d.number}</div>
                                 <h3
@@ -356,7 +354,7 @@ export default function About() {
                     </h2>
 
                     {/* Skills grid — clean 4-column list */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 backdrop-blur-xs">
                         {skills.map((skill, index) => (
                             <div key={index}>
                                 <div

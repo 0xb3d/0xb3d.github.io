@@ -41,9 +41,17 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
       <Link
         href={featured.link}
         className="relative block cursor-crosshair overflow-hidden"
-        style={{ border: '1px solid var(--border-primary)' }}
-        onMouseEnter={() => setFeaturedHovered(true)}
-        onMouseLeave={() => setFeaturedHovered(false)}
+        style={{ border: '1px solid var(--border-primary)', transition: 'border-color 0.3s ease, background 0.3s ease' }}
+        onMouseEnter={e => {
+          setFeaturedHovered(true);
+          e.currentTarget.style.borderColor = 'var(--accent)';
+          e.currentTarget.style.background = 'rgba(185, 28, 28, 0.04)';
+        }}
+        onMouseLeave={e => {
+          setFeaturedHovered(false);
+          e.currentTarget.style.borderColor = 'var(--border-primary)';
+          e.currentTarget.style.background = 'transparent';
+        }}
       >
         <CornerTicks />
 
@@ -119,7 +127,7 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
             <Link
               key={post._id}
               href={post.link}
-              className="group flex items-stretch cursor-crosshair transition-all duration-200"
+              className="group flex items-stretch cursor-crosshair transition-all duration-300"
               style={{ borderTop: '1px solid var(--border-primary)' }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement;
@@ -134,7 +142,7 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
             >
               {/* Left accent bar */}
               <div
-                className="accent-bar w-[2px] flex-shrink-0 transition-colors duration-200"
+                className="accent-bar w-[2px] flex-shrink-0 transition-colors duration-300"
                 style={{ background: 'var(--border-primary)' }}
               />
 
@@ -155,8 +163,7 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
                     )}
                   </div>
                   <span
-                    className="text-[16px] leading-[1.4] transition-colors duration-200 group-hover:text-[var(--accent)]"
-                    style={{ color: 'var(--foreground)' }}
+                    className="text-[var(--foreground)] text-[16px] leading-[1.4] transition-colors duration-300 group-hover:text-[var(--accent)]"
                   >
                     {post.title}
                   </span>
@@ -164,8 +171,7 @@ export default function LatestPostPreviewClient({ featured, rest }: { featured: 
 
                 {/* Arrow */}
                 <span
-                  className="text-[14px] shrink-0 pt-5 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
-                  style={{ color: 'var(--muted-foreground)' }}
+                  className="text-[var(--muted-foreground)] text-[14px] shrink-0 pt-5 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
                 >
                   ↗
                 </span>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import {
   JetBrains_Mono,
+  Geist_Mono,
+  Geist,
   Cormorant_Garamond,
   Open_Sans,
   Inter,
@@ -26,6 +28,18 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -89,7 +103,7 @@ const crimsonPro = Crimson_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "GRIMLABS", 
+  title: "GRIMLABS",
   description: "GRIMLABS — a public, long-term independent research and tinkering lab. Exploring, building, and documenting experimental projects in engineering, technology, and scientific inquiry.",
 };
 
@@ -101,19 +115,42 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${jetbrainsMono.variable} ${cormorantGaramond.variable} ${openSans.variable} ${inter.variable} ${roboto.variable} ${stixTwoText.variable} ${ebGaramond.variable} ${lora.variable} ${sourceSerif4.variable} ${crimsonPro.variable} antialiased`}
+        className={`${jetbrainsMono.variable} ${geistMono.variable} ${geist.variable} ${cormorantGaramond.variable} ${openSans.variable} ${inter.variable} ${roboto.variable} ${stixTwoText.variable} ${ebGaramond.variable} ${lora.variable} ${sourceSerif4.variable} ${crimsonPro.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        {/* Translucent background layer */}
+        {/* <div
+          className="fixed inset-0 pointer-events-none -z-10"
+          style={{
+            background: `
+              radial-gradient(ellipse at top, var(--bg-wash-accent) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom, var(--bg-wash-bottom) 0%, transparent 60%),
+              linear-gradient(180deg, var(--bg-wash-top) 0%, transparent 100%)
+            `,
+          }}
+        /> */}
+
+        <div
+          className="fixed inset-0 pointer-events-none -z-10"
+          style={{
+            background: `
+      radial-gradient(ellipse at top, var(--bg-wash-accent) 0%, transparent 50%),
+      radial-gradient(ellipse at center, transparent 40%, var(--bg-wash-bottom) 100%),
+      linear-gradient(180deg, var(--bg-wash-top) 0%, transparent 100%)
+    `,
+          }}
+        />
+
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {/* Grid first (lowest z-index) */}
-          <GridOverlay pattern="hybrid" gridSize={40} cornerEmphasis={true} />
-          
+          <GridOverlay pattern="hybrid" dotSize={1} gridSize={35} cornerEmphasis={true} />
+
           {/* Then decorations */}
           <PolymathDecorations
             fixed={true}
             density='medium'
-            opacityMultiplier={0.4}
+            opacityMultiplier={0.2}
           />
-          
+
           <Header />
           {children}
           <Footer />

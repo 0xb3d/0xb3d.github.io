@@ -84,7 +84,7 @@ export function TableOfContents({ headings }: TOCProps) {
   }
 
   return (
-    <nav className="relative">
+    <nav className="relative p-2 backdrop-blur-xs">
       {/* Decorative corner accents */}
       <div className="absolute top-0 left-0 w-4 h-px" style={{ background: 'var(--red)' }} />
       <div className="absolute top-0 left-0 h-4 w-px" style={{ background: 'var(--red)' }} />
@@ -94,15 +94,16 @@ export function TableOfContents({ headings }: TOCProps) {
       {/* Header */}
       <div className="mb-6">
         <div 
-          className="text-[9px] tracking-[4px] uppercase mb-2 flex items-center gap-3"
-          style={{ color: 'var(--red)' }}
+          className="text-[11px] tracking-[6px] uppercase mb-2 flex items-center gap-3"
+          style={{ color: 'var(--red)'}}
         >
-          <span className="w-3 h-px" style={{ background: 'var(--red)' }} />
+          <span className="w-3 h-px p-1" style={{ 
+            background: 'var(--red)' }} />
           Index
         </div>
         <h4 
-          className="text-[12px] tracking-[2px] uppercase"
-          style={{ color: 'var(--white-dim)' }}
+          className="text-[14px] tracking-[2px] uppercase"
+          style={{ color: 'var(--white-dim)', borderBottom: '1px solid var(--trace-line)',}}
         >
           Contents
         </h4>
@@ -167,9 +168,9 @@ export function TableOfContents({ headings }: TOCProps) {
                 {/* Chapter number for h2 */}
                 {isH2 && chapterNum && (
                   <span 
-                    className="text-[9px] tracking-[2px] mr-2 transition-colors duration-300"
+                    className="text-[10px] tracking-[2px] mr-2 transition-colors duration-300"
                     style={{ 
-                      color: isActive || isHovered ? 'var(--red)' : 'var(--trace-line)' 
+                      color: isActive || isHovered ? 'var(--red)' : 'var(--white-dim)' 
                     }}
                   >
                     {String(chapterNum).padStart(2, '0')}
@@ -179,9 +180,9 @@ export function TableOfContents({ headings }: TOCProps) {
                 {/* Sub-item marker */}
                 {level === 'h3' && (
                   <span 
-                    className="text-[8px] mr-2 transition-colors duration-300"
+                    className="text-[10px] mr-2 transition-colors duration-300"
                     style={{ 
-                      color: isActive || isHovered ? 'var(--red)' : 'var(--trace-line)' 
+                      color: isActive || isHovered ? 'var(--red)' : 'var(--white-dim)' 
                     }}
                   >
                     →
@@ -190,9 +191,9 @@ export function TableOfContents({ headings }: TOCProps) {
 
                 {level === 'h4' && (
                   <span 
-                    className="text-[6px] mr-2 transition-colors duration-300"
+                    className="text-[8px] mr-2 transition-colors duration-300"
                     style={{ 
-                      color: isActive || isHovered ? 'var(--red)' : 'var(--trace-line)' 
+                      color: isActive || isHovered ? 'var(--red)' : 'var(--white)' 
                     }}
                   >
                     ◦
@@ -207,8 +208,8 @@ export function TableOfContents({ headings }: TOCProps) {
                       ? 'var(--text)' 
                       : isHovered 
                         ? 'var(--text)' 
-                        : 'var(--white-dim)',
-                    fontSize: isH2 ? '12px' : level === 'h3' ? '11px' : '10px',
+                        : 'var(--white)',
+                    fontSize: isH2 ? '14px' : level === 'h3' ? '13px' : '12px',
                     fontWeight: isActive && isH2 ? 500 : 400,
                     letterSpacing: isH2 ? '0.5px' : '0.3px',
                   }}
@@ -234,8 +235,8 @@ export function TableOfContents({ headings }: TOCProps) {
       {/* Bottom decoration */}
       <div className="mt-6 pt-4" style={{ borderTop: '1px solid var(--trace-line)' }}>
         <div 
-          className="text-[8px] tracking-[3px] uppercase flex items-center gap-2"
-          style={{ color: 'var(--trace-line)' }}
+          className="text-[10px] tracking-[3px] uppercase flex items-center gap-2"
+          style={{ color: 'var(--white-dim)' }}
         >
           <span>{headings.filter(h => h.level === 'h2').length} sections</span>
           <span>•</span>

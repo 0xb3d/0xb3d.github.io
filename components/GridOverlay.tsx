@@ -40,8 +40,8 @@ export default function GridOverlay({
                      !document.documentElement.classList.contains('light');
       
       return isDark 
-        ? { line: 'rgba(232, 228, 223, 0.06)', dot: 'rgba(232, 228, 223, 0.12)', accent: 'rgba(196, 30, 30, 0.15)' }
-        : { line: 'rgba(0, 0, 0, 0.04)', dot: 'rgba(0, 0, 0, 0.08)', accent: 'rgba(196, 30, 30, 0.12)' };
+        ? { line: 'rgba(232, 228, 223, 0.06)', dot: 'rgba(232, 228, 223, 0.08)', accent: 'rgba(196, 30, 30, 0.23)' }
+        : { line: 'rgba(0, 0, 0, 0.06)', dot: 'rgba(97, 97, 97, 0.12)', accent: 'rgba(196, 30, 30, 0.19)' };
     };
 
     const draw = () => {

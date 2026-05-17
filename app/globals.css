@@ -45,15 +45,21 @@
   --chem-text: rgba(0, 0, 0, 0.08);
 
   /* Renaissance semantic aliases */
-  --black: #0a0a0a;
-  --white: #1a1a1a;
-  --white-dim: rgba(0, 0, 0, 0.8);
+  --black: #000000;
+  --white: #000000;
+  --white-dim: rgba(0, 0, 0, 0.562);
   --red: #b91c1c;
   --trace-line: rgba(0, 0, 0, 0.22);
   --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 
     /* Custom crosshair — dark for light backgrounds */
   --cursor-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cline x1='12' y1='2' x2='12' y2='10' stroke='%230a0a0a' stroke-width='1.2'/%3E%3Cline x1='12' y1='14' x2='12' y2='22' stroke='%230a0a0a' stroke-width='1.2'/%3E%3Cline x1='2' y1='12' x2='10' y2='12' stroke='%230a0a0a' stroke-width='1.2'/%3E%3Cline x1='14' y1='12' x2='22' y2='12' stroke='%230a0a0a' stroke-width='1.2'/%3E%3C/svg%3E");
+
+  /* background wash color */
+  --bg-wash-top: rgba(0, 0, 0, 0.02);
+  --bg-wash-bottom: rgba(0, 0, 0, 0.02);
+  --bg-wash-accent: rgba(196, 30, 30, 0.04);
+
 }
 
 /* ─── DARK MODE ─── */
@@ -91,13 +97,18 @@
   /* Renaissance semantic aliases */
   --black: #0a0a0a;
   --white: #f0ece7;
-  --white-dim: rgba(255, 255, 255, 0.5);
+  --white-dim: rgba(255, 255, 255, 0.575);
   --red: #dc2626;
   --trace-line: rgba(255, 255, 255, 0.22);
   --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 
     /* Custom crosshair — light for dark backgrounds */
   --cursor-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cline x1='12' y1='2' x2='12' y2='10' stroke='%23e8e4df' stroke-width='1.2'/%3E%3Cline x1='12' y1='14' x2='12' y2='22' stroke='%23e8e4df' stroke-width='1.2'/%3E%3Cline x1='2' y1='12' x2='10' y2='12' stroke='%23e8e4df' stroke-width='1.2'/%3E%3Cline x1='14' y1='12' x2='22' y2='12' stroke='%23e8e4df' stroke-width='1.2'/%3E%3C/svg%3E");
+
+  /* background wash color */
+  --bg-wash-top: rgba(0, 0, 0, 0.315);
+  --bg-wash-bottom: rgba(12, 0, 0, 0.034);
+  --bg-wash-accent: rgba(53, 15, 15, 0.068);
 }
 
 /* ─── FONTS ─── */
@@ -120,7 +131,8 @@ body {
   background-color: var(--background);
   color: var(--text);
   /* font-family: var(--font-jetbrains), 'JetBrains Mono', monospace; */
-  font-family: var(--font-stix), serif;
+  /* font-family: var(--font-stix), serif; */
+  font-family: var(--font-geist);
   font-size: 18px;
   font-weight: 450;
   line-height: 1.7;
@@ -223,7 +235,7 @@ body {
 }
 
 .grim-card:hover {
-  border-color: var(--accent-dim);
+  border-color: var(--accent);
   box-shadow: 0 4px 24px var(--shadow-hover);
 }
 
