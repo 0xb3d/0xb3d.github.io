@@ -66,7 +66,7 @@ function GithubLink({ href, full = false }: { href: string; full?: boolean }) {
     <button
       type="button"
       onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(href, '_blank', 'noopener,noreferrer'); }}
-      className="flex items-center gap-1.5 transition-all duration-200 hover:text-[var(--accent)]"
+      className="flex items-center gap-1.5 transition-all duration-300 hover:text-[var(--accent)]"
       style={{ color: 'var(--white-dim)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
     >
       <i className="fa-brands fa-github text-[15px]" />
@@ -86,8 +86,16 @@ function SpotlightCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug.current}`}
-      className="group relative overflow-hidden flex flex-col md:flex-row block cursor-crosshair"
-      style={{ border: '1px solid var(--border-primary)' }}
+      className="group relative overflow-hidden flex flex-col md:flex-row block cursor-crosshair backdrop-blur-sm"
+      style={{ border: '1px solid var(--border-primary)', transition: 'border-color 0.3s ease, background 0.3s ease' }}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = 'var(--accent)';
+        e.currentTarget.style.background = 'rgba(185, 28, 28, 0.04)';
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = 'var(--border-primary)';
+        e.currentTarget.style.background = 'transparent';
+      }}
     >
       <CornerTicks />
 
@@ -140,12 +148,12 @@ function SpotlightCard({ project }: { project: Project }) {
         <div>
           <div className="flex items-start justify-between gap-4 mb-4">
             <h3
+              className="text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--accent)]"
               style={{
                 fontSize: 'clamp(22px, 2vw, 34px)',
                 fontWeight: 300,
                 letterSpacing: '-0.5px',
                 lineHeight: 1.2,
-                color: 'var(--foreground)',
               }}
             >
               {project.title}
@@ -236,7 +244,7 @@ function ProjectRow({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug.current}`}
-      className="group flex items-center gap-4 py-4 cursor-crosshair"
+      className="group flex items-center gap-4 py-4 cursor-crosshair backdrop-blur-sm"
       style={{
         borderBottom: '1px solid var(--border-primary)',
         paddingLeft: '24px',
@@ -245,7 +253,7 @@ function ProjectRow({ project }: { project: Project }) {
         display: 'flex',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.background = 'rgba(244, 128, 128, 0.07)';
+        e.currentTarget.style.background = 'rgba(185, 28, 28, 0.05)';
         e.currentTarget.style.paddingLeft = '32px';
       }}
       onMouseLeave={e => {
@@ -263,8 +271,7 @@ function ProjectRow({ project }: { project: Project }) {
       {/* Title + description */}
       <div className="flex flex-col gap-1 min-w-0 flex-1">
         <h3
-          className="text-[16px] leading-[1.3] transition-colors duration-200 group-hover:text-[var(--accent)]"
-          style={{ color: 'var(--foreground)' }}
+          className="text-[var(--foreground)] text-[16px] leading-[1.3] transition-colors duration-300 group-hover:text-[var(--accent)]"
         >
           {project.title}
         </h3>
@@ -372,10 +379,22 @@ export default function ProjectsPageClient({ projects, showFilters }: ProjectsPa
               <button
                 key={key}
                 onClick={() => setSortKey(key)}
-                className="text-[12px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300"
+                className="text-[12px] tracking-[2px] uppercase px-3 py-1.5 transition-all duration-300 cursor-crosshair"
                 style={{
                   border: `1px solid ${sortKey === key ? 'var(--accent)' : 'var(--border-primary)'}`,
                   color: sortKey === key ? 'var(--accent)' : 'var(--white-dim)',
+                }}
+                onMouseEnter={e => {
+                  if (sortKey !== key) {
+                    (e.currentTarget as HTMLElement).style.color = 'var(--accent)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)';
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (sortKey !== key) {
+                    (e.currentTarget as HTMLElement).style.color = 'var(--white-dim)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-primary)';
+                  }
                 }}
               >
                 {key === 'default' ? 'Order' : key === 'featured' ? 'Featured' : 'Active'}
@@ -388,7 +407,7 @@ export default function ProjectsPageClient({ projects, showFilters }: ProjectsPa
       {/* Content */}
       {visibleProjects.length === 0 ? (
         <div
-          className="py-16 text-center"
+          className="py-16 text-center backdrop-blur-xs"
           style={{ border: '1px solid var(--border-primary)' }}
         >
           <span className="text-[12px] tracking-[3px] uppercase" style={{ color: 'var(--white-dim)' }}>
